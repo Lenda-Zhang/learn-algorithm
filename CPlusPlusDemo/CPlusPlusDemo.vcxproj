@@ -129,6 +129,10 @@
   <ItemGroup>
     <ClCompile Include="CPlusPlusDemo.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="myinclude.h" />
+    <ClInclude Include="mylinklist.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
