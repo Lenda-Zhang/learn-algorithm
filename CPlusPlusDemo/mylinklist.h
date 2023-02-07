@@ -24,7 +24,7 @@ void print(ListNode* head)
 		std::cout << node->val << " ";
 		node = node->next;
 	}
-	std::cout<< "<end>" << std::endl;
+	std::cout << "<end>" << std::endl;
 }
 
 /**
@@ -182,5 +182,91 @@ ListNode* deleteAll(ListNode* head)
 	ListNode* dummy = new ListNode(0);
 	dummy->next = head;
 	ListNode* node = dummy;
+	while (node->next != nullptr)
+	{
+		ListNode* p = node->next;
+		node->next = node->next->next;
+		free(p);
+	}
 	return dummy->next;
+}
+
+/**
+* @brief 判断链表是否包含环，并输出环中节点数
+*/
+bool detectCycle(ListNode* head, int& ringNodeCount)
+{
+	int count = 0;
+	ListNode* fast = head, * slow = head;
+	do {
+		if (fast == nullptr)
+			break;
+		fast = fast->next;
+		slow = slow->next;
+		if (fast == nullptr)
+			break;
+		fast = fast->next;
+		++count;
+	} while (fast != slow);
+	if (fast == nullptr || slow == nullptr)
+		return false;
+	ringNodeCount = count;
+	return true;
+}
+
+/**
+* @brief 22：链表中环的入口节点
+*/
+ListNode* getEntryOfRing(ListNode* head)
+{
+	int ringNodeCnt = 0;
+	if (!detectCycle(head, ringNodeCnt))
+		return nullptr;
+	ListNode* front = head, * rear = head;
+	for (size_t i = 0; i < ringNodeCnt; i++)
+		front = front->next;
+	while (front != rear)
+	{
+		front = front->next;
+		rear = rear->next;
+	}
+	return front;
+}
+
+/**
+* @brief 22：不知道环中节点数的解法
+*/
+ListNode* getEntryOfRing2(ListNode* head)
+{
+	if (head == nullptr || head->next == nullptr)
+		return nullptr;
+	ListNode* slow = head->next;
+	ListNode* fast = slow->next;
+	while (fast != nullptr && slow != nullptr)
+	{
+		if (fast == slow)
+		{
+			ListNode* inLoop = slow;
+			ListNode* p = head;
+			while (p != inLoop)
+			{
+				p = p->next;
+				inLoop = inLoop->next;
+			}
+			return p;
+		}
+		fast = fast->next;
+		slow = slow->next;
+		if (fast != nullptr)
+			fast = fast->next;
+	}
+	return nullptr;
+}
+
+/**
+* @brief 23：两个链表的第一个重合节点
+*/
+ListNode* getIntersectionNode(ListNode* head1, ListNode* head2)
+{
+
 }

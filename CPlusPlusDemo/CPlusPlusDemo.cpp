@@ -6,17 +6,52 @@
 
 int main()
 {
+	//getEntryOfRing
 	ListNode* head = nullptr;
-	for (int i = 1; i <= 10; i++)
-	{
-		head = appendWithDummy(head,i);
-	}
-	print(head);
-	head = deleteNthFromEndInBook(head, 7);
-	print(head);
+	ListNode* entryOfRing = getEntryOfRing2(head);
+	std::cout << (entryOfRing == nullptr ? -1 : entryOfRing->val) << std::endl;
 
-	
-	
+	head = new ListNode(1);
+	head->next = head;
+	entryOfRing = getEntryOfRing2(head);
+	std::cout << (entryOfRing == nullptr ? -1 : entryOfRing->val) << std::endl;
+
+	head = new ListNode(1);
+	ListNode* m = new ListNode(2);
+	m->next = head->next;
+	head->next = m;
+	ListNode* p = new ListNode(6);
+	p->next = head->next;
+	head->next = p;
+	p = new ListNode(4);
+	p->next = head->next;
+	head->next = p;
+	ListNode* q = new ListNode(3);
+	q->next = head->next;
+	head->next = q;
+	p = new ListNode(2);
+	p->next = head->next;
+	head->next = p;
+	m->next = q;
+	entryOfRing = getEntryOfRing2(head);
+	std::cout << (entryOfRing == nullptr ? -1 : entryOfRing->val) << std::endl;
+
+	////deleteNthFromEnd and deleteAll
+	//ListNode* head = nullptr;
+	//for (int i = 1; i <= 10; i++)
+	//{
+	//	head = appendWithDummy(head, i);
+	//}
+	//print(head);
+	//head = deleteNthFromEndInBook(head, 7);
+	//print(head);
+	//head = deleteAll(head);
+	//print(head);
+	//std::cout << "deleteAll nullptr: ";
+	//head = deleteAll(head);
+	//print(head);
+
+
 	////Sentinel Demo
 	//ListNode* head = nullptr;
 	//head = append(head, 1);
