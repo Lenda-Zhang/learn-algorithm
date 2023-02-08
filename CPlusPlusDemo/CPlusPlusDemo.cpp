@@ -9,14 +9,14 @@ int main()
 {
 	//getIntersectionNode
 	ListNode* head1 = nullptr, * head2 = nullptr;
-	ListNode* node = getIntersectionNodeInBook(head1, head2);
+	ListNode* node = getIntersectionNodeBetter(head1, head2);
 	cout << (node == nullptr ? -1 : node->val) << endl;
 
 	head1 = append(head1, 1);
 	head1 = append(head1, 2);
 	head1 = append(head1, 3);
 
-	node = getIntersectionNodeInBook(head1, head2);
+	node = getIntersectionNodeBetter(head1, head2);
 	cout << (node == nullptr ? -1 : node->val) << endl;
 
 	head2 = append(head2, 7);
@@ -33,7 +33,7 @@ int main()
 	ListNode* last2 = getLast(head2);
 	last2->next = node4;
 
-	node = getIntersectionNodeInBook(head1, head2);
+	node = getIntersectionNodeBetter(head1, head2);
 	cout << (node == nullptr ? -1 : node->val) << endl;
 
 	////getEntryOfRing
@@ -80,7 +80,6 @@ int main()
 	//std::cout << "deleteAll nullptr: ";
 	//head = deleteAll(head);
 	//print(head);
-
 
 	////Sentinel Demo
 	//ListNode* head = nullptr;

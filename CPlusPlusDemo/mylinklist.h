@@ -4,20 +4,16 @@
 /**
 * @brief 单向链表节点
 */
-class ListNode
+struct ListNode
 {
-public:
 	int val;
 	ListNode* next;
 	ListNode(int val);
 };
 
-ListNode::ListNode(int val) {
-	this->val = val;
-	this->next = nullptr;
-}
+ListNode::ListNode(int val) : val(val), next(nullptr) { }
 
-int countList(ListNode* head)
+inline int countList(ListNode* head)
 {
 	int cnt = 0;
 	ListNode* node = head;
@@ -134,7 +130,7 @@ ListNode* deleteNthFromEnd(ListNode* head, int n)
 	}
 	ListNode* p = rear->next;
 	rear->next = rear->next->next;
-	free(p);
+	delete(p);
 	return dummy->next;
 }
 
@@ -365,4 +361,22 @@ ListNode* getIntersectionNodeInBook(ListNode* head1, ListNode* head2)
 		node2 = node2->next;
 	}
 	return node1;
+}
+
+/**
+* @brief 23：16ms，来自leetcode
+*/
+ListNode* getIntersectionNodeBetter(ListNode* headA, ListNode* headB)
+{
+	if (headA == nullptr || headB == nullptr)
+	{
+		return nullptr;
+	}
+	ListNode* pA = headA, * pB = headB;
+	while (pA != pB)
+	{
+		pA = pA == nullptr ? headB : pA->next;
+		pB = pB == nullptr ? headA : pB->next;
+	}
+	return pA;
 }
