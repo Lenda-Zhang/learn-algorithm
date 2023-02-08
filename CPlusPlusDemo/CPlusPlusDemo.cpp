@@ -3,38 +3,68 @@
 
 #include "myinclude.h"
 #include "mylinklist.h"
+using namespace std;
 
 int main()
 {
-	//getEntryOfRing
-	ListNode* head = nullptr;
-	ListNode* entryOfRing = getEntryOfRing2(head);
-	std::cout << (entryOfRing == nullptr ? -1 : entryOfRing->val) << std::endl;
+	//getIntersectionNode
+	ListNode* head1 = nullptr, * head2 = nullptr;
+	ListNode* node = getIntersectionNodeInBook(head1, head2);
+	cout << (node == nullptr ? -1 : node->val) << endl;
 
-	head = new ListNode(1);
-	head->next = head;
-	entryOfRing = getEntryOfRing2(head);
-	std::cout << (entryOfRing == nullptr ? -1 : entryOfRing->val) << std::endl;
+	head1 = append(head1, 1);
+	head1 = append(head1, 2);
+	head1 = append(head1, 3);
 
-	head = new ListNode(1);
-	ListNode* m = new ListNode(2);
-	m->next = head->next;
-	head->next = m;
-	ListNode* p = new ListNode(6);
-	p->next = head->next;
-	head->next = p;
-	p = new ListNode(4);
-	p->next = head->next;
-	head->next = p;
-	ListNode* q = new ListNode(3);
-	q->next = head->next;
-	head->next = q;
-	p = new ListNode(2);
-	p->next = head->next;
-	head->next = p;
-	m->next = q;
-	entryOfRing = getEntryOfRing2(head);
-	std::cout << (entryOfRing == nullptr ? -1 : entryOfRing->val) << std::endl;
+	node = getIntersectionNodeInBook(head1, head2);
+	cout << (node == nullptr ? -1 : node->val) << endl;
+
+	head2 = append(head2, 7);
+	head2 = append(head2, 8);
+
+	ListNode* node4 = new ListNode(4);
+	ListNode* node5 = new ListNode(5);
+	ListNode* node6 = new ListNode(6);
+	node4->next = node5;
+	node5->next = node6;
+
+	ListNode* last1 = getLast(head1);
+	last1->next = node4;
+	ListNode* last2 = getLast(head2);
+	last2->next = node4;
+
+	node = getIntersectionNodeInBook(head1, head2);
+	cout << (node == nullptr ? -1 : node->val) << endl;
+
+	////getEntryOfRing
+	//ListNode* head = nullptr;
+	//ListNode* entryOfRing = getEntryOfRing2(head);
+	//std::cout << (entryOfRing == nullptr ? -1 : entryOfRing->val) << std::endl;
+
+	//head = new ListNode(1);
+	//head->next = head;
+	//entryOfRing = getEntryOfRing2(head);
+	//std::cout << (entryOfRing == nullptr ? -1 : entryOfRing->val) << std::endl;
+
+	//head = new ListNode(1);
+	//ListNode* m = new ListNode(2);
+	//m->next = head->next;
+	//head->next = m;
+	//ListNode* p = new ListNode(6);
+	//p->next = head->next;
+	//head->next = p;
+	//p = new ListNode(4);
+	//p->next = head->next;
+	//head->next = p;
+	//ListNode* q = new ListNode(3);
+	//q->next = head->next;
+	//head->next = q;
+	//p = new ListNode(2);
+	//p->next = head->next;
+	//head->next = p;
+	//m->next = q;
+	//entryOfRing = getEntryOfRing2(head);
+	//std::cout << (entryOfRing == nullptr ? -1 : entryOfRing->val) << std::endl;
 
 	////deleteNthFromEnd and deleteAll
 	//ListNode* head = nullptr;

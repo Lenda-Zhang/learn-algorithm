@@ -1,4 +1,5 @@
 #pragma once
+#include <stack>
 
 /**
 * @brief 单向链表节点
@@ -14,6 +15,18 @@ public:
 ListNode::ListNode(int val) {
 	this->val = val;
 	this->next = nullptr;
+}
+
+int countList(ListNode* head)
+{
+	int cnt = 0;
+	ListNode* node = head;
+	while (node != nullptr)
+	{
+		++cnt;
+		node = node->next;
+	}
+	return cnt;
 }
 
 void print(ListNode* head)
@@ -265,8 +278,91 @@ ListNode* getEntryOfRing2(ListNode* head)
 
 /**
 * @brief 23：两个链表的第一个重合节点
+* @note 使用栈进行LIFO，时间复杂度O(m+n)，空间复杂度O(m+n)
 */
 ListNode* getIntersectionNode(ListNode* head1, ListNode* head2)
 {
+	ListNode* node1 = head1, * node2 = head2;
+	std::stack<ListNode*> stack1, stack2;
+	while (node1 != nullptr)
+	{
+		stack1.push(node1);
+		node1 = node1->next;
+	}
+	while (node2 != nullptr)
+	{
+		stack2.push(node2);
+		node2 = node2->next;
+	}
+	ListNode* intersectionNode = nullptr;
+	while (!stack1.empty() && !stack2.empty())
+	{
+		if (stack1.top() == stack2.top())
+		{
+			intersectionNode = stack1.top();
+			stack1.pop();
+			stack2.pop();
+		}
+		else
+			return intersectionNode;
+	}
+	return nullptr;
+}
 
+/**
+* 声明getLast函数
+*/
+ListNode* getLast(ListNode* head);
+
+/**
+* @brief 23：两个链表的第一个重合节点
+* @note 将两个链表改造成一个包含环的链表
+*/
+ListNode* getIntersectionNode2(ListNode* head1, ListNode* head2) 
+{
+	if (head1 == nullptr || head2 == nullptr)
+		return nullptr;
+	// 构造环
+	ListNode* head = (head2 == nullptr ? head1 : head2);
+	ListNode* last = getLast(head);
+	last->next = head;
+	ListNode* newHead = (head == head2 ? head1 : head2);
+	return getEntryOfRing2(newHead);
+}
+
+ListNode* getLast(ListNode* head)
+{
+	if (head == nullptr)
+		return nullptr;
+	ListNode* preNode = head, * node = head->next;
+	while (node != nullptr)
+	{
+		preNode = node;
+		node = node->next;
+	}
+	return preNode;
+}
+
+/**
+* @brief 23：遍历链表，前移较长链表的指针，使链表后端对齐，逐步移动节点，找到第一个相等的栈指针，无需栈空间
+*/
+ListNode* getIntersectionNodeInBook(ListNode* head1, ListNode* head2) 
+{
+	int cnt1 = countList(head1);
+	int cnt2 = countList(head2);
+	int delta = abs(cnt1 - cnt2);
+	ListNode* longer = cnt1 > cnt2 ? head1 : head2;
+	ListNode* shorter = cnt1 > cnt2 ? head2 : head1;
+	ListNode* node1 = longer;
+	for (size_t i = 0; i < delta; i++)
+	{
+		node1 = node1->next;
+	}
+	ListNode* node2 = shorter;
+	while (node1 != node2)
+	{
+		node1 = node1->next;
+		node2 = node2->next;
+	}
+	return node1;
 }
