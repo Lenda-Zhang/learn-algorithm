@@ -153,7 +153,7 @@ ListNode* deleteNthFromEndInBook(ListNode* head, int n)
 	}
 	ListNode* p = rear->next;
 	rear->next = rear->next->next;
-	free(p);
+	delete(p);
 	return dummy->next;
 }
 
@@ -179,7 +179,7 @@ ListNode* deleteNthFromEndHard(ListNode* head, int n)
 	}
 	ListNode* p = rear->next;
 	rear->next = rear->next->next;
-	free(p);
+	delete(p);
 	return dummy->next;
 }
 
@@ -194,10 +194,10 @@ ListNode* deleteAll(ListNode* head)
 	while (node->next != nullptr)
 	{
 		ListNode* p = node->next;
-		node->next = node->next->next;
-		free(p);
+		node->next = p->next;
+		delete(p);
 	}
-	return dummy->next;
+	return nullptr;
 }
 
 /**
@@ -314,7 +314,7 @@ ListNode* getLast(ListNode* head);
 * @brief 23：两个链表的第一个重合节点
 * @note 将两个链表改造成一个包含环的链表
 */
-ListNode* getIntersectionNode2(ListNode* head1, ListNode* head2) 
+ListNode* getIntersectionNode2(ListNode* head1, ListNode* head2)
 {
 	if (head1 == nullptr || head2 == nullptr)
 		return nullptr;
@@ -342,7 +342,7 @@ ListNode* getLast(ListNode* head)
 /**
 * @brief 23：遍历链表，前移较长链表的指针，使链表后端对齐，逐步移动节点，找到第一个相等的栈指针，无需栈空间
 */
-ListNode* getIntersectionNodeInBook(ListNode* head1, ListNode* head2) 
+ListNode* getIntersectionNodeInBook(ListNode* head1, ListNode* head2)
 {
 	int cnt1 = countList(head1);
 	int cnt2 = countList(head2);
@@ -364,7 +364,7 @@ ListNode* getIntersectionNodeInBook(ListNode* head1, ListNode* head2)
 }
 
 /**
-* @brief 23：16ms，来自leetcode
+* @brief 23：16ms，来自leetcode，没理解
 */
 ListNode* getIntersectionNodeBetter(ListNode* headA, ListNode* headB)
 {
@@ -379,4 +379,134 @@ ListNode* getIntersectionNodeBetter(ListNode* headA, ListNode* headB)
 		pB = pB == nullptr ? headA : pB->next;
 	}
 	return pA;
+}
+
+/**
+* @brief 24：反转链表
+* @note 时间复杂度O(n)，空间复杂度O(1)
+*/
+ListNode* reverseList(ListNode* head)
+{
+	if (head == nullptr || head->next == nullptr)
+		return head;
+	ListNode* left = nullptr, * j = head;
+	while (j != nullptr)
+	{
+		ListNode* right = j->next;
+		j->next = left;
+		left = j;
+		j = right;
+	}
+	return left;
+}
+
+/**
+* @brief 24：0ms，来自leetcode
+*/
+ListNode* reverseListBetter(ListNode* head) {
+	if (head == nullptr || head->next == nullptr) {
+		return head;
+	}
+	ListNode* now = reverseListBetter(head->next);
+	head->next->next = head;
+	head->next = nullptr;
+	return now;
+}
+
+void addToList(int val, int& carry, ListNode** head)
+{
+	int sum = val + carry;
+	carry = sum / 10;
+	*head = appendWithDummy(*head, sum % 10);
+}
+
+/**
+* @brief 25：单向链表组成的两个非负整数相加，和仍用单向链表表示
+*/
+ListNode* addTwoNumbers(ListNode* head1, ListNode* head2)
+{
+	ListNode* r1 = reverseList(head1);
+	ListNode* r2 = reverseList(head2);
+	ListNode* sumList = nullptr;
+	int carry = 0;
+	while (r1 != nullptr && r2 != nullptr)
+	{
+		addToList(r1->val + r2->val, carry, &sumList);
+		r1 = r1->next;
+		r2 = r2->next;
+	}
+	ListNode* rest = r2 == nullptr ? r1 : r2;
+	while (rest != nullptr)
+	{
+		addToList(rest->val, carry, &sumList);
+		rest = rest->next;
+	}
+	if (carry)
+	{
+		addToList(0, carry, &sumList);
+	}
+	return reverseList(sumList);
+}
+
+ListNode* addReverse(ListNode* head1, ListNode* head2)
+{
+	ListNode* dummy = new ListNode(0);
+	ListNode* sumNode = dummy;
+	ListNode* node1 = head1, * node2 = head2;
+	int carry = 0;
+	while (node1 != nullptr || node2 != nullptr)
+	{
+		int sum = (node1 == nullptr ? 0 : node1->val) + (node2 == nullptr ? 0 : node2->val) + carry;
+		ListNode* newNode = new ListNode(sum % 10);
+		sumNode->next = newNode;
+		sumNode = sumNode->next;
+		carry = sum / 10;
+		node1 = node1 == nullptr ? nullptr : node1->next;
+		node2 = node2 == nullptr ? nullptr : node2->next;
+	}
+	if (carry)
+	{
+		sumNode->next = new ListNode(carry);
+	}
+	return dummy->next;
+}
+
+/**
+* @brief 25：来自leetcode，内存占用低
+*/
+ListNode* addTwoNumbersBetter(ListNode* head1, ListNode* head2)
+{
+	ListNode* r1 = reverseList(head1);
+	ListNode* r2 = reverseList(head2);
+	ListNode* sumList = addReverse(r1, r2);
+	return reverseList(sumList);
+}
+
+/**
+* 26：重排链表：L0->Ln->L1->Ln-1->L2->Ln-2->...
+*/
+void reorderList(ListNode* head)
+{
+	if (head == nullptr || head->next == nullptr)
+		return;
+	//快慢指针法把链表分成两半
+	ListNode* slow = head->next, * fast = slow->next;
+	while (fast != nullptr && slow != nullptr)
+	{
+		fast=slow = slow->next;
+		if (fast != nullptr)
+			fast = fast->next;
+	}
+	slow = reverseList(slow);
+	ListNode* left = head, * right = head->next;
+	ListNode* node = slow, * rest = slow->next;
+	while (node != nullptr)
+	{
+		node->next = right;
+		left->next = node;
+		node = rest;
+		rest = node->next;
+		left = node;
+		right = right->next;
+	}
 }

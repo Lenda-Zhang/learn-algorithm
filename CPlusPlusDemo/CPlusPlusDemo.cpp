@@ -7,34 +7,89 @@ using namespace std;
 
 int main()
 {
-	//getIntersectionNode
-	ListNode* head1 = nullptr, * head2 = nullptr;
-	ListNode* node = getIntersectionNodeBetter(head1, head2);
-	cout << (node == nullptr ? -1 : node->val) << endl;
+	//reorderList
+	ListNode* head = nullptr;
+	for (size_t i = 0; i < 5; i++)
+	{
+		head = appendWithDummy(head, i + 1);
+	}
+	print(head);
+	reorderList(head);
+	print(head);
 
-	head1 = append(head1, 1);
-	head1 = append(head1, 2);
-	head1 = append(head1, 3);
+	////addTwoNumbers
+	//ListNode* head1 = nullptr, * head2 = nullptr;
+	//for (size_t i = 0; i < 3; i++)
+	//{
+	//	head1 = appendWithDummy(head1, i + 3);
+	//}
+	//print(head1);
+	//for (size_t i = 0; i < 4; i++)
+	//{
+	//	head2 = appendWithDummy(head2, i + 6);
+	//}
+	//print(head2);
+	//ListNode* sum = addTwoNumbersBetter(head1, head2);
+	//cout << "Sum: ";
+	//print(sum);
+	//head1 = deleteAll(head1);
+	//head2 = deleteAll(head2);
 
-	node = getIntersectionNodeBetter(head1, head2);
-	cout << (node == nullptr ? -1 : node->val) << endl;
+	//for (size_t i = 0; i < 3; i++)
+	//{
+	//	head1 = appendWithDummy(head1, i + 6);
+	//}
+	//head1 = reverseList(head1);
+	//print(head1);
+	//for (size_t i = 0; i < 3; i++)
+	//{
+	//	head2 = appendWithDummy(head2, i + 3);
+	//}
+	//head2 = reverseList(head2);
+	//print(head2);
+	//ListNode* sumList = addTwoNumbersBetter(head1, head2);
+	//cout << "Sum: ";
+	//print(sumList);
 
-	head2 = append(head2, 7);
-	head2 = append(head2, 8);
 
-	ListNode* node4 = new ListNode(4);
-	ListNode* node5 = new ListNode(5);
-	ListNode* node6 = new ListNode(6);
-	node4->next = node5;
-	node5->next = node6;
+	//reverseList
+	/*ListNode* head = nullptr;
+	for (size_t i = 1; i <= 5; i++)
+	{
+		head = appendWithDummy(head, i);
+	}
+	print(head);
+	head = reverseListBetter(head);
+	print(head);*/
 
-	ListNode* last1 = getLast(head1);
-	last1->next = node4;
-	ListNode* last2 = getLast(head2);
-	last2->next = node4;
+	////getIntersectionNode
+	//ListNode* head1 = nullptr, * head2 = nullptr;
+	//ListNode* node = getIntersectionNodeBetter(head1, head2);
+	//cout << (node == nullptr ? -1 : node->val) << endl;
 
-	node = getIntersectionNodeBetter(head1, head2);
-	cout << (node == nullptr ? -1 : node->val) << endl;
+	//head1 = append(head1, 1);
+	//head1 = append(head1, 2);
+	//head1 = append(head1, 3);
+
+	//node = getIntersectionNodeBetter(head1, head2);
+	//cout << (node == nullptr ? -1 : node->val) << endl;
+
+	//head2 = append(head2, 7);
+	//head2 = append(head2, 8);
+
+	//ListNode* node4 = new ListNode(4);
+	//ListNode* node5 = new ListNode(5);
+	//ListNode* node6 = new ListNode(6);
+	//node4->next = node5;
+	//node5->next = node6;
+
+	//ListNode* last1 = getLast(head1);
+	//last1->next = node4;
+	//ListNode* last2 = getLast(head2);
+	//last2->next = node4;
+
+	//node = getIntersectionNodeBetter(head1, head2);
+	//cout << (node == nullptr ? -1 : node->val) << endl;
 
 	////getEntryOfRing
 	//ListNode* head = nullptr;
