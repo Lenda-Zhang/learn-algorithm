@@ -483,20 +483,23 @@ ListNode* addTwoNumbersBetter(ListNode* head1, ListNode* head2)
 }
 
 /**
-* 26：重排链表：L0->Ln->L1->Ln-1->L2->Ln-2->...
+* @brief 26：重排链表：L0->Ln->L1->Ln-1->L2->Ln-2->...
 */
 void reorderList(ListNode* head)
 {
 	if (head == nullptr || head->next == nullptr)
 		return;
 	//快慢指针法把链表分成两半
-	ListNode* slow = head->next, * fast = slow->next;
+	ListNode* prev = head, * slow = head->next, * fast = slow->next;
 	while (fast != nullptr && slow != nullptr)
 	{
-		fast=slow = slow->next;
+		fast = fast->next;
+		prev = slow;
+		slow = slow->next;
 		if (fast != nullptr)
 			fast = fast->next;
 	}
+	prev->next = nullptr;
 	slow = reverseList(slow);
 	ListNode* left = head, * right = head->next;
 	ListNode* node = slow, * rest = slow->next;
@@ -504,9 +507,44 @@ void reorderList(ListNode* head)
 	{
 		node->next = right;
 		left->next = node;
+
+		left = right;
+		right = right == nullptr ? nullptr : right->next;
 		node = rest;
-		rest = node->next;
-		left = node;
-		right = right->next;
+		rest = rest == nullptr ? nullptr : rest->next;
 	}
 }
+
+/**
+* @brief 27：回文链表
+*/
+bool isPalindrome(ListNode* head)
+{
+	if (head == nullptr || head->next == nullptr)
+		return true;
+	ListNode* prev = head, * slow = head->next, * fast = slow->next;
+	while (fast != nullptr && slow != nullptr)
+	{
+		fast = fast->next;
+		prev = slow;
+		slow = slow->next;
+		if (fast != nullptr)
+		{
+			fast = fast->next;
+		}
+	}
+	prev->next = nullptr;
+	ListNode* firstHalf = head, * secondHalf = slow;
+	ListNode* secondHalfReverse = reverseList(secondHalf);
+	while (firstHalf != nullptr && secondHalfReverse != nullptr) {
+		if (firstHalf->val != secondHalfReverse->val)
+			return false;
+		firstHalf = firstHalf->next;
+		secondHalfReverse = secondHalfReverse->next;
+	}
+	return true;
+}
+
+/**
+* @brief 28
+*/

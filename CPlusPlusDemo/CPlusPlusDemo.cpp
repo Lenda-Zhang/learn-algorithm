@@ -14,8 +14,16 @@ int main()
 		head = appendWithDummy(head, i + 1);
 	}
 	print(head);
-	reorderList(head);
+	cout << isPalindrome(head) << endl;
+	head = deleteAll(head);
+	head = appendWithDummy(head, 1);
+	head = appendWithDummy(head, 2);
+	head = appendWithDummy(head, 3);
+	//head = appendWithDummy(head, 3);
+	head = appendWithDummy(head, 2);
+	head = appendWithDummy(head, 1);
 	print(head);
+	cout << isPalindrome(head) << endl;
 
 	////addTwoNumbers
 	//ListNode* head1 = nullptr, * head2 = nullptr;
