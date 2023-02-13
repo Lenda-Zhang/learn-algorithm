@@ -11,6 +11,18 @@ struct ListNode
 	ListNode(int val);
 };
 
+/**
+* @brief 多级双向链表节点
+*/
+class Node {
+public:
+	int val;
+	Node* prev;
+	Node* next;
+	Node* child;
+	Node(int val) :val(val), prev(nullptr), next(nullptr), child(nullptr) {}
+};
+
 ListNode::ListNode(int val) : val(val), next(nullptr) { }
 
 inline int countList(ListNode* head)
@@ -68,6 +80,35 @@ ListNode* appendWithDummy(ListNode* head, int val)
 	}
 	node->next = newNode;
 	return dummy->next;
+}
+
+Node* getLast(Node* head)
+{
+	if (head == nullptr)
+		return nullptr;
+	Node* node = head;
+	while (node->next != nullptr)
+	{
+		node = node->next;
+	}
+	return node;
+}
+
+/**
+* 未测试
+*/
+Node* appendWithDummy(Node* head, int val)
+{
+	Node* newNode = new Node(val);
+	if (head == nullptr)
+	{
+		head = newNode;
+		return head;
+	}
+	Node* last = getLast(head);
+	newNode->prev = last;
+	last->next = newNode;
+	return head;
 }
 
 /**
@@ -545,6 +586,95 @@ bool isPalindrome(ListNode* head)
 	return true;
 }
 
+void print(Node* head)
+{
+	Node* node = head;
+	while (node != nullptr)
+	{
+		std::cout << node->val << " ";
+		node = node->next;
+	}
+	std::cout << "<end>" << std::endl;
+}
+
+void printCircularList(Node* head)
+{
+	if (head != nullptr)
+	{
+		Node* node = head;
+		do
+		{
+			std::cout << node->val << " ";
+			node = node->next;
+		} while (node != head);
+	}
+	std::cout << "<end>" << std::endl;
+}
+
 /**
-* @brief 28
+* @brief 28：展平多级双向链表
 */
+Node* flatten(Node* head)
+{
+	Node* p = head;
+	while (p != nullptr)
+	{
+		Node* pNext = p->next;
+		if (p->child != nullptr)
+		{
+			Node* cHead = flatten(p->child);
+			Node* cLast = getLast(cHead);
+			cLast->next = p->next;
+			cHead->prev = p;
+			if (p->next != nullptr)
+				p->next->prev = cLast;
+			p->next = cHead;
+			p->child = nullptr;
+		}
+		p = pNext;
+	}
+	return head;
+}
+
+/**
+* @brief 29：插入一个值，使排序的循环链表仍然有序
+*/
+Node* insert(Node* head, int insertVal)
+{
+	Node* newNode = new Node(insertVal);
+	if (head == nullptr)
+	{
+		head = newNode;
+		head->next = head;
+		return head;
+	}
+	Node* p = head->next, * min = head, * max = head;
+	do
+	{
+		if (p->val >= max->val) // 找到最后一个值最大的节点
+			max = p;
+		p = p->next;
+	} while (p != head);
+	min = max->next; // 最后一个值最大的节点的下一个节点即为第一个值最小的节点
+	if (insertVal <= min->val || insertVal >= max->val) // 若插入值比min小或比max大，则插入min和max之间
+	{
+		newNode->next = min;
+		max->next = newNode;
+	}
+	else
+	{
+		// 从值最小的节点开始找，找到最后一个比invertVal小的，第一个比insertVal大的节点p，插在两者之间
+		p = min;
+		Node* lastLessThan = nullptr, * firstMoreThan = nullptr;
+		do
+		{
+			if (p->val <= insertVal) // 找到最后一个比invertVal小的
+				lastLessThan = p;
+			p = p->next;
+		} while (p != min);
+		firstMoreThan = lastLessThan->next; // 最后一个比invertVal小的节点的下一个节点即为第一个比insertVal大的节点
+		newNode->next = firstMoreThan;
+		lastLessThan->next = newNode;
+	}
+	return head;
+}

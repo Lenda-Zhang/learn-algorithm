@@ -7,23 +7,65 @@ using namespace std;
 
 int main()
 {
+	//insert
+	Node* n1 = new Node(3);
+	Node* n2 = new Node(3);
+	Node* n3 = new Node(3);
+	n1->next = n2;
+	n2->next = n3;
+	n3->next = n1;
+
+	Node* head = insert(n1, 0);
+	printCircularList(head);
+
+	//flatten
+	//Node* n1 = new Node(1);
+	//Node* n2 = new Node(2);
+	//Node* n3 = new Node(3);
+	//Node* n4 = new Node(4);
+	//Node* n5 = new Node(5);
+	//Node* n6 = new Node(6);
+	//Node* n7 = new Node(7);
+	//Node* n8 = new Node(8);
+	//Node* n9 = new Node(9);
+	//n1->next = n2;
+	//n2->prev = n1;
+	//n2->next = n3;
+	//n3->prev = n2;
+	//n3->next = n4;
+	//n4->prev = n3;
+
+	//n5->next = n6;
+	//n6->prev = n5;
+	//n6->next = n7;
+	//n7->prev = n6;
+
+	//n8->next = n9;
+	//n9->prev = n8;
+
+	//n2->child = n5;
+	//n6->child = n8;
+
+	//Node* head = flatten(n1);
+	//print(head);
+
 	//reorderList
-	ListNode* head = nullptr;
-	for (size_t i = 0; i < 5; i++)
-	{
-		head = appendWithDummy(head, i + 1);
-	}
-	print(head);
-	cout << isPalindrome(head) << endl;
-	head = deleteAll(head);
-	head = appendWithDummy(head, 1);
-	head = appendWithDummy(head, 2);
-	head = appendWithDummy(head, 3);
+	//ListNode* head = nullptr;
+	//for (size_t i = 0; i < 5; i++)
+	//{
+	//	head = appendWithDummy(head, i + 1);
+	//}
+	//print(head);
+	//cout << isPalindrome(head) << endl;
+	//head = deleteAll(head);
+	//head = appendWithDummy(head, 1);
+	//head = appendWithDummy(head, 2);
 	//head = appendWithDummy(head, 3);
-	head = appendWithDummy(head, 2);
-	head = appendWithDummy(head, 1);
-	print(head);
-	cout << isPalindrome(head) << endl;
+	////head = appendWithDummy(head, 3);
+	//head = appendWithDummy(head, 2);
+	//head = appendWithDummy(head, 1);
+	//print(head);
+	//cout << isPalindrome(head) << endl;
 
 	////addTwoNumbers
 	//ListNode* head1 = nullptr, * head2 = nullptr;
