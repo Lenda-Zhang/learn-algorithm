@@ -1,5 +1,7 @@
 #pragma once
 #include <stack>
+#include <unordered_map>
+#include <vector>
 
 /**
 * @brief 单向链表节点
@@ -10,6 +12,8 @@ struct ListNode
 	ListNode* next;
 	ListNode(int val);
 };
+
+ListNode::ListNode(int val) : val(val), next(nullptr) { }
 
 /**
 * @brief 多级双向链表节点
@@ -23,7 +27,38 @@ public:
 	Node(int val) :val(val), prev(nullptr), next(nullptr), child(nullptr) {}
 };
 
-ListNode::ListNode(int val) : val(val), next(nullptr) { }
+/**
+* @brief 30：插入、删除、随机访问都是O(1)的容器
+*/
+class RandomizedSet {
+public:
+	unordered_map<int, int> indices; // 元素与对应位置的集合
+	vector<int> nums; // 存储元素
+	bool insert(int val) {
+		if (indices.count(val))
+			return false;
+		int index = nums.size();
+		nums.emplace_back(val);
+		indices[val] = index;
+		return true;
+	}
+	bool remove(int val) {
+		if (!indices.count(val))
+			return false;
+		// 将待删除元素与末尾元素交换位置，再删除
+		int index = indices[val];
+		int lastVal = nums.back();
+		nums[index] = lastVal;
+		indices[lastVal] = index;
+		nums.pop_back();
+		indices.erase(val);
+		return true;
+	}
+	int getRandom() {
+		int randomIndex = rand() % nums.size();
+		return nums[randomIndex];
+	}
+};
 
 inline int countList(ListNode* head)
 {
