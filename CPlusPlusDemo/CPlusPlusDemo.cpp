@@ -3,20 +3,33 @@
 
 #include "myinclude.h"
 #include "mylinklist.h"
+#include "myhashmap.h"
 using namespace std;
 
 int main()
 {
-	//insert
-	Node* n1 = new Node(3);
-	Node* n2 = new Node(3);
-	Node* n3 = new Node(3);
-	n1->next = n2;
-	n2->next = n3;
-	n3->next = n1;
+	//isAnagram
+	cout << isAnagram("ab", "bae") << endl;
 
-	Node* head = insert(n1, 0);
-	printCircularList(head);
+	////LRUCache
+	//LRUCache *lRUCache = new LRUCache(2);
+	//lRUCache->put(2, 1); // 缓存是 {2=1}
+	//lRUCache->put(2, 2); // 缓存是 {2=2}
+	//cout << "key = 2, value = " << lRUCache->get(2) << endl;    // 返回 2
+	//lRUCache->put(1, 1); // 缓存是 {1=1, 2=2}
+	//lRUCache->put(4, 1); // 该操作会使得关键字 2 作废，缓存是 {4=1, 1=1}
+	//cout << "key = 1, value = " << lRUCache->get(2) << endl;    // 返回 -1 (未找到)
+
+	////insert
+	//Node* n1 = new Node(3);
+	//Node* n2 = new Node(3);
+	//Node* n3 = new Node(3);
+	//n1->next = n2;
+	//n2->next = n3;
+	//n3->next = n1;
+
+	//Node* head = insert(n1, 0);
+	//printCircularList(head);
 
 	//flatten
 	//Node* n1 = new Node(1);

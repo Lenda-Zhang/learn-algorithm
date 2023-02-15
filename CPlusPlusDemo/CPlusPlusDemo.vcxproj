@@ -131,6 +131,7 @@
     <ClCompile Include="CPlusPlusDemo.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="myhashmap.h" />
     <ClInclude Include="myinclude.h" />
     <ClInclude Include="mylinklist.h" />
   </ItemGroup>
