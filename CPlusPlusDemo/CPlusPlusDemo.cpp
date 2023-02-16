@@ -8,8 +8,13 @@ using namespace std;
 
 int main()
 {
-	//isAnagram
-	cout << isAnagram("ab", "bae") << endl;
+	//isAlienSorted
+	vector<string> words{ "hello", "leetcode" };
+	string order = "hlabcdefgijkmnopqrstuvwxyz";
+	cout << isAlienSorted(words, order) << endl;
+
+	////isAnagram
+	//cout << isAnagram("ab", "bae") << endl;
 
 	////LRUCache
 	//LRUCache *lRUCache = new LRUCache(2);
