@@ -134,6 +134,7 @@
     <ClInclude Include="myhashmap.h" />
     <ClInclude Include="myinclude.h" />
     <ClInclude Include="mylinklist.h" />
+    <ClInclude Include="mystack.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

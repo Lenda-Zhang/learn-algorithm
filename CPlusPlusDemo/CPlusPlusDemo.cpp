@@ -4,14 +4,38 @@
 #include "myinclude.h"
 #include "mylinklist.h"
 #include "myhashmap.h"
+#include "mystack.h"
 using namespace std;
 
 int main()
 {
-	//isAlienSorted
-	vector<string> words{ "hello", "leetcode" };
-	string order = "hlabcdefgijkmnopqrstuvwxyz";
-	cout << isAlienSorted(words, order) << endl;
+	vector<int>	temperatures{ 73, 74, 75, 71, 69, 72, 76, 73 };
+	vector<int> result = dailyTemperatures(temperatures);
+	for (auto a : result)
+	{
+		cout << a << " ";
+	}
+	cout << endl;
+
+	/*vector<int> asteroids = { 8, -8 };
+	vector<int> result = asteroidCollision(asteroids);
+	for (auto a : result)
+	{
+		cout << a << " ";
+	}
+	cout << endl;*/
+
+	//stack<int> s;
+	//cout << s.top() << endl; // throw exception
+
+	////evalRPN
+	//vector<string> tokens = { "4","13","5","/","+" };
+	//cout << evalRPN(tokens) << endl;
+
+	////isAlienSorted
+	//vector<string> words{ "hello", "leetcode" };
+	//string order = "hlabcdefgijkmnopqrstuvwxyz";
+	//cout << isAlienSorted(words, order) << endl;
 
 	////isAnagram
 	//cout << isAnagram("ab", "bae") << endl;
