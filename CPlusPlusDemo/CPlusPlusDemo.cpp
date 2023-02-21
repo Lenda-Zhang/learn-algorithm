@@ -9,13 +9,13 @@ using namespace std;
 
 int main()
 {
-	vector<int>	temperatures{ 73, 74, 75, 71, 69, 72, 76, 73 };
+	/*vector<int>	temperatures{ 73, 74, 75, 71, 69, 72, 76, 73 };
 	vector<int> result = dailyTemperatures(temperatures);
 	for (auto a : result)
 	{
 		cout << a << " ";
 	}
-	cout << endl;
+	cout << endl;*/
 
 	/*vector<int> asteroids = { 8, -8 };
 	vector<int> result = asteroidCollision(asteroids);

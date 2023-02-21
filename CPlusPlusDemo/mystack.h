@@ -191,3 +191,33 @@ vector<int> dailyTemperaturesTimeout(vector<int>& temperatures) {
 	}
 	return waitingDays;
 }
+
+/**
+* @brief 39：提交不通过，原因：超出时间限制
+*/
+int largestRectangleAreaTimeout(vector<int>& heights) {
+	int n = heights.size();
+	int ans = 0;
+	for (int mid = 0; mid < n; ++mid) {
+		// 枚举高
+		int height = heights[mid];
+		int left = mid, right = mid;
+		// 确定左右边界
+		while (left - 1 >= 0 && heights[left - 1] >= height) {
+			--left;
+		}
+		while (right + 1 < n && heights[right + 1] >= height) {
+			++right;
+		}
+		// 计算面积
+		ans = max(ans, (right - left + 1) * height);
+	}
+	return ans;
+}
+
+/**
+* @brief 39：直方图最大矩形面积
+*/
+int largestRectangleArea(vector<int>& heights) {
+
+}
