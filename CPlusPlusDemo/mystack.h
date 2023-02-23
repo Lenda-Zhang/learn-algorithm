@@ -136,7 +136,7 @@ vector<int> dailyTemperaturesForce(vector<int>& temperatures) {
 	int n = temperatures.size();
 	vector<int> waitingDays(n);
 	int next[101]{ 0 }; // 每个温度第一次出现的下标
-	for (auto &t : next)
+	for (auto& t : next)
 		t = INT_MAX;
 	for (int i = n - 1; i >= 0; i--)
 	{
@@ -194,6 +194,7 @@ vector<int> dailyTemperaturesTimeout(vector<int>& temperatures) {
 
 /**
 * @brief 39：提交不通过，原因：超出时间限制
+* 时间复杂度为O(n^2)，空间复杂度为O(1)。
 */
 int largestRectangleAreaTimeout(vector<int>& heights) {
 	int n = heights.size();
@@ -217,7 +218,124 @@ int largestRectangleAreaTimeout(vector<int>& heights) {
 
 /**
 * @brief 39：直方图最大矩形面积
+* 时间复杂度为O(n)，空间复杂度为O(n)。
 */
 int largestRectangleArea(vector<int>& heights) {
+	int n = heights.size();
+	vector<int> left(n), right(n);
+	stack<int> mono_stack;
+	for (int i = 0; i < n; ++i)
+	{
+		while (!mono_stack.empty() && heights[mono_stack.top()] >= heights[i])
+			mono_stack.pop();
+		left[i] = mono_stack.empty() ? -1 : mono_stack.top();
+		mono_stack.push(i);
+	}
+	mono_stack = stack<int>();
+	for (int i = n - 1; i >= 0; --i)
+	{
+		while (!mono_stack.empty() && heights[mono_stack.top()] >= heights[i])
+			mono_stack.pop();
+		right[i] = mono_stack.empty() ? n : mono_stack.top();
+		mono_stack.push(i);
+	}
+	int ans = 0;
+	for (int i = 0; i < n; ++i)
+	{
+		ans = max(ans, (right[i] - left[i] - 1) * heights[i]);
+	}
+	return ans;
+}
 
+/**
+* @brief 40：矩阵中最大的矩形
+* 时间复杂度为O(m^2*n)，空间复杂度为O(mn)，其中m为行数，n为列数。
+*/
+int maximalRectangle(vector<string>& matrix) {
+	// 矩阵
+	int m = matrix.size();
+	if (m == 0)
+		return 0;
+	int	n = matrix[0].size();
+	vector<vector<int>> left(m, vector<int>(n));
+	// 我们首先计算出矩阵的每个元素的左边连续 1 的数量，使用二维数组 left 记录，其中 left[i][j] 为矩阵第 i 行第 j 列元素的左边连续 1 的数量。
+	for (int i = 0; i < m; ++i)
+	{
+		for (int j = 0; j < n; ++j)
+		{
+			if (matrix[i][j] == '1')
+				left[i][j] = (j == 0 ? 0 : left[i][j - 1]) + 1;
+		}
+	}
+	// 求面积
+	int ret = 0;
+	for (int i = 0; i < m; ++i)
+	{
+		for (int j = 0; j < n; ++j)
+		{
+			if (matrix[i][j] == '0')
+				continue;
+			int width = left[i][j];
+			int area = width;
+			for (int k = i - 1; k >= 0; --k)
+			{
+				width = min(width, left[k][j]);
+				area = max(area, (i - k + 1) * width);
+			}
+			ret = max(ret, area);
+		}
+	}
+	return ret;
+}
+
+/**
+* @brief 40：矩阵中最大的矩形
+* 使用单调栈，时间复杂度为O(mn)，空间复杂度为O(mn)，其中m为行数，n为列数。
+*/
+int maximalRectangleBetter(vector<string>& matrix) {
+	// 矩阵
+	int m = matrix.size();
+	if (m == 0)
+		return 0;
+	int	n = matrix[0].size();
+	vector<vector<int>> left(m, vector<int>(n));
+	// 我们首先计算出矩阵的每个元素的左边连续 1 的数量，使用二维数组 left 记录，其中 left[i][j] 为矩阵第 i 行第 j 列元素的左边连续 1 的数量。
+	for (int i = 0; i < m; ++i)
+	{
+		for (int j = 0; j < n; ++j)
+		{
+			if (matrix[i][j] == '1')
+				left[i][j] = (j == 0 ? 0 : left[i][j - 1]) + 1;
+		}
+	}
+	// 利用单调栈求面积
+	int ret = 0;
+	for (int j = 0; j < n; ++j)
+	{
+		vector<int> up(m), down(m);
+		stack<int> stk;
+		for (int i = 0; i < m; ++i)
+		{
+			while (!stk.empty() && left[stk.top()][j] >= left[i][j])
+				stk.pop();
+			up[i] = stk.empty() ? -1 : stk.top();
+			stk.push(i);
+		}
+		stk = stack<int>();
+		for (int i = m - 1; i >= 0; --i)
+		{
+			while (!stk.empty() && left[stk.top()][j] >= left[i][j])
+				stk.pop();
+			down[i] = stk.empty() ? m : stk.top();
+			stk.push(i);
+		}
+		int area = 0;
+		for (int i = 0; i < m; ++i)
+		{
+			int height = down[i] - up[i] - 1;
+			area = max(area, height * left[i][j]);
+		}
+		ret = max(ret, area);
+	}
+	return ret;
 }

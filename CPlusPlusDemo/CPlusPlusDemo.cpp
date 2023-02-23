@@ -9,6 +9,9 @@ using namespace std;
 
 int main()
 {
+	vector<string> matrix{ "10100", "10111", "11111", "10010" };
+	cout << maximalRectangleBetter(matrix) << endl;
+
 	/*vector<int>	temperatures{ 73, 74, 75, 71, 69, 72, 76, 73 };
 	vector<int> result = dailyTemperatures(temperatures);
 	for (auto a : result)
