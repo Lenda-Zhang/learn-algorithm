@@ -5,12 +5,30 @@
 #include "mylinklist.h"
 #include "myhashmap.h"
 #include "mystack.h"
+#include "myqueue.h"
 using namespace std;
 
 int main()
 {
-	vector<string> matrix{ "10100", "10111", "11111", "10010" };
-	cout << maximalRectangleBetter(matrix) << endl;
+	RecentCounter* recentCounter = new RecentCounter();
+	int param_1 = recentCounter->ping(1);
+	param_1 = recentCounter->ping(100);
+	param_1 = recentCounter->ping(3001);
+	param_1 = recentCounter->ping(3002);
+	cout << param_1 << endl;
+
+	//MovingAverage* obj = new MovingAverage(3);
+	//double param_1 = obj->next(1); // 返回 1.0 = 1 / 1
+	//cout << param_1 << endl;
+	//param_1 = obj->next(10); // 返回 5.5 = (1 + 10) / 2
+	//cout << param_1 << endl;
+	//param_1 = obj->next(3); // 返回 4.66667 = (1 + 10 + 3) / 3
+	//cout << param_1 << endl;
+	//param_1 = obj->next(5);; // 返回 6.0 = (10 + 3 + 5) / 3
+	//cout << param_1 << endl;
+
+	/*vector<string> matrix{ "10100", "10111", "11111", "10010" };
+	cout << maximalRectangleBetter(matrix) << endl;*/
 
 	/*vector<int>	temperatures{ 73, 74, 75, 71, 69, 72, 76, 73 };
 	vector<int> result = dailyTemperatures(temperatures);
