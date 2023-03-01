@@ -230,7 +230,7 @@ void preOrder(TreeNode* root)
 	}
 }
 
-/** @brief 44. 二叉树每层的最大值
+/** @brief 44：二叉树每层的最大值
  * 深度优先中先序遍历，时间复杂度为O(n)，空间复杂度为O(height)，其中n为二叉树节点个数，height表示二叉树的高度。
  */
 class Solution1 {
@@ -256,10 +256,10 @@ public:
 	}
 };
 
-/** @brief 44. 二叉树每层的最大值
- * 广度优先遍历
+/** @brief 44：二叉树每层的最大值
+ * 广度优先遍历，时间复杂度为O(n)，空间复杂度为O(n)，存储二叉树节点的空间开销。
  */
-class Solution1 {
+class Solution2 {
 public:
 	vector<int> largestValues(TreeNode* root) {
 		if (!root)
@@ -288,3 +288,54 @@ public:
 	}
 };
 
+/** @brief （没看懂）45：二叉树最底层最左边的值
+* 深度优先遍历，时间复杂度为O(n)，空间复杂度为O(n)。
+*/
+class Solution3 {
+public:
+	void dfs(TreeNode* root, int height, int& curHeight, int& curVal)
+	{
+		if (root == nullptr)
+			return;
+		++height;
+		dfs(root->left, height, curHeight, curVal);
+		dfs(root->right, height, curHeight, curVal);
+		if (height > curHeight)
+		{
+			curHeight = height;
+			curVal = root->val;
+		}
+	}
+
+	int findBottomLeftValue(TreeNode* root) {
+		int curVal, curHeight = 0;
+		dfs(root, 0, curHeight, curVal);
+		return curVal;
+	}
+};
+
+/** @brief 45：
+* 广度优先遍历
+* 时间复杂度为O(n)
+* 空间复杂度为O(n)。如果二叉树为满二叉树，则队列q最多保存n/2(向上取整)个节点。
+*/
+class Solution
+{
+public:
+	int findBottomLeftValue(TreeNode* root)
+	{
+		int ret;
+		queue<TreeNode*> q;
+		q.push(root);
+		while (!q.empty()) {
+			auto node = q.front();
+			q.pop();
+			if (node->right)
+				q.push(node->right);
+			if (node->left)
+				q.push(node->left);
+			ret = node->val;
+		}
+		return ret;
+	}
+};
