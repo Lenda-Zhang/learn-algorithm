@@ -10,12 +10,29 @@ using namespace std;
 
 int main()
 {
-	RecentCounter* recentCounter = new RecentCounter();
+	//cout << toBinary(8) << endl;
+
+	/*输入：inputs = ["CBTInserter", "insert", "insert", "get_root"], inputs = [[[1, 2, 3, 4, 5, 6]], [7], [8], []]
+		输出：[null, 3, 4, [1, 2, 3, 4, 5, 6, 7, 8]]*/
+	TreeNode* leftCLC = new TreeNode(4);
+	TreeNode* leftCRC = new TreeNode(5);
+	TreeNode* rightCLC = new TreeNode(6);
+	TreeNode* leftC = new TreeNode(2, leftCLC, leftCRC);
+	TreeNode* rightC = new TreeNode(3, rightCLC, nullptr);
+	TreeNode* root = new TreeNode(1, leftC, rightC);
+	CBTInserter* obj = new CBTInserter(root);
+	int param_1 = obj->insert(7);
+	param_1 = obj->insert(8);
+	TreeNode* param_2 = obj->get_root();
+	levelOrder(obj->get_root());
+	preOrder(obj->get_root());
+
+	/*RecentCounter* recentCounter = new RecentCounter();
 	int param_1 = recentCounter->ping(1);
 	param_1 = recentCounter->ping(100);
 	param_1 = recentCounter->ping(3001);
 	param_1 = recentCounter->ping(3002);
-	cout << param_1 << endl;
+	cout << param_1 << endl;*/
 
 	//MovingAverage* obj = new MovingAverage(3);
 	//double param_1 = obj->next(1); // 返回 1.0 = 1 / 1

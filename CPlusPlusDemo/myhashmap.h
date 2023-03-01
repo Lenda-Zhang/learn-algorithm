@@ -176,9 +176,9 @@ bool isAlienSorted(vector<string>& words, string order) {
 	if (words.size() < 2)
 		return true;
 	int map[26] = { 0 };
-	for (size_t i = 0; i < order.size(); i++)
+	for (int i = 0; i < order.size(); i++)
 		map[order[i] - 'a'] = i;
-	for (size_t i = 1; i < words.size(); i++)
+	for (int i = 1; i < words.size(); i++)
 	{
 		if (!compareByOrder(words[i - 1], words[i], map))
 			return false;
