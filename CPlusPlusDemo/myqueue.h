@@ -319,7 +319,7 @@ public:
 * 时间复杂度为O(n)
 * 空间复杂度为O(n)。如果二叉树为满二叉树，则队列q最多保存n/2(向上取整)个节点。
 */
-class Solution
+class Solution4
 {
 public:
 	int findBottomLeftValue(TreeNode* root)
@@ -337,5 +337,95 @@ public:
 			ret = node->val;
 		}
 		return ret;
+	}
+};
+
+/** @brief 46:二叉树的右侧视图
+*/
+class Solution5 {
+public:
+	// 广度优先遍历
+	// 时间复杂度为O(n)，每个节点入队出队一次，空间复杂度为O(n)，队列长度最大不超过n，其中n为节点总数
+	vector<int> rightSideViewBFS(TreeNode* root) {
+		if (root == nullptr)
+			return {};
+		queue<pair<TreeNode*, int>> q;
+		unordered_map<int, int> rightmostValAtDepth;
+		q.push(make_pair(root, 0));
+		while (!q.empty())
+		{
+			auto nodeInfo = q.front();
+			q.pop();
+			rightmostValAtDepth[nodeInfo.second] = nodeInfo.first->val; //每层最后访问的即为该层最右侧节点
+			if (nodeInfo.first->left)
+				q.push(make_pair(nodeInfo.first->left, nodeInfo.second + 1));
+			if (nodeInfo.first->right)
+				q.push(make_pair(nodeInfo.first->right, nodeInfo.second + 1));
+		}
+		vector<int> res;
+		for (int i = 0; i < rightmostValAtDepth.size(); ++i)
+			res.push_back(rightmostValAtDepth[i]);
+		return res;
+	}
+
+	// 深度优先遍历
+	// 时间复杂度为O(n)，空间复杂度为O(n)，最坏情况下树高度等于总节点数n
+	vector<int> rightSideView(TreeNode* root)
+	{
+		if (root == nullptr)
+			return {};
+		unordered_map<int, int> rightmostValAtDepth;
+		vector<int> res;
+		dfs(root, 0, rightmostValAtDepth);
+		for (int i = 0; i < rightmostValAtDepth.size(); i++)
+			res.push_back(rightmostValAtDepth[i]);
+		return res;
+	}
+
+	void dfs(TreeNode* root, int depth, unordered_map<int, int>& rightmostValAtDepth)
+	{
+		if (root)
+		{
+			if (rightmostValAtDepth.count(depth) == 0)
+				rightmostValAtDepth[depth] = root->val;
+			dfs(root->right, depth + 1, rightmostValAtDepth);
+			dfs(root->left, depth + 1, rightmostValAtDepth);
+		}
+	}
+};
+
+/** @brief 47:二叉树剪枝
+*/
+class Solution {
+public:
+	TreeNode* pruneTree(TreeNode* root) {
+		if (root == nullptr || isTreeAllVal0(root))
+			return nullptr;
+		if (isTreeAllVal0(root->left))
+		{
+			root->left = nullptr;	// 剪枝
+		}
+		else
+		{
+			pruneTree(root->left);
+		}
+		if (isTreeAllVal0(root->right))
+		{
+			root->right = nullptr;
+		}
+		else
+		{
+			pruneTree(root->right);
+		}
+		return root;
+	}
+
+	bool isTreeAllVal0(TreeNode* root)
+	{
+		if (root == nullptr)
+			return true;
+		if (root && root->val)
+			return false;
+		return isTreeAllVal0(root->left) && isTreeAllVal0(root->right);
 	}
 };
