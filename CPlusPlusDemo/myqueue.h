@@ -394,11 +394,13 @@ public:
 	}
 };
 
-/** @brief 47:二叉树剪枝
+/** @brief 47:二叉树剪枝，自己写
+* 时间复杂度为O(n)，空间复杂度为O(n)。
 */
-class Solution {
+class Solution6 {
 public:
-	TreeNode* pruneTree(TreeNode* root) {
+	TreeNode* pruneTree(TreeNode* root)
+	{
 		if (root == nullptr || isTreeAllVal0(root))
 			return nullptr;
 		if (isTreeAllVal0(root->left))
@@ -411,7 +413,7 @@ public:
 		}
 		if (isTreeAllVal0(root->right))
 		{
-			root->right = nullptr;
+			root->right = nullptr;	// 剪枝
 		}
 		else
 		{
@@ -419,13 +421,95 @@ public:
 		}
 		return root;
 	}
-
+private:
+	// 时间复杂度为O(n)，空间复杂度为O(n)。
 	bool isTreeAllVal0(TreeNode* root)
 	{
 		if (root == nullptr)
 			return true;
-		if (root && root->val)
+		if (root->val)
 			return false;
 		return isTreeAllVal0(root->left) && isTreeAllVal0(root->right);
 	}
 };
+
+/** @brief 47:二叉树剪枝
+* 时间复杂度为O(n)，空间复杂度为O(n)。
+*/
+class Solution {
+public:
+	TreeNode* pruneTree(TreeNode* root)
+	{
+		if (!root)
+			return nullptr;
+		root->left = pruneTree(root->left);
+		root->right = pruneTree(root->right);
+		if (!root->val && !root->left && !root->right)
+			return nullptr;
+		return root;
+	}
+};
+
+/** @brief 48:序列化与反序列化二叉树
+* 使用dfs中的preorder。
+* 每个节点只访问一次，时间复杂度为O(n)。
+* 递归过程中会使用栈空间，空间复杂度为O(n)。
+*/
+class Codec {
+public:
+	// Encodes a tree to a single string.
+	string serialize(TreeNode* root) {
+		string str;
+		if (root == nullptr)
+			str += "None,";
+		else
+		{
+			str += to_string(root->val) + ",";
+			str += serialize(root->left);
+			str += serialize(root->right);
+		}
+		return str;
+	}
+
+	// Decodes your encoded data to tree.
+	TreeNode* deserialize(string data) {
+		list<string> dataArray;
+		string str;
+		for (auto& ch : data)
+		{
+			if (ch == ',')
+			{
+				dataArray.push_back(str);
+				str.clear();
+			}
+			else 
+			{
+				str.push_back(ch);
+			}
+		}
+		if (!str.empty())
+		{
+			dataArray.push_back(str);
+			str.clear();
+		}
+		return rdeserialize(dataArray);
+	}
+
+	TreeNode* rdeserialize(list<string>& dataArray)
+	{
+		if (dataArray.front() == "None")
+		{
+			dataArray.erase(dataArray.begin());
+			return nullptr;
+		}
+		TreeNode* root = new TreeNode(stoi(dataArray.front()));
+		dataArray.erase(dataArray.begin());
+		root->left = rdeserialize(dataArray);
+		root->right = rdeserialize(dataArray);
+		return root;
+	}
+};
+
+// Your Codec object will be instantiated and called as such:
+// Codec ser, deser;
+// TreeNode* ans = deser.deserialize(ser.serialize(root));
