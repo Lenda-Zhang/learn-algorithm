@@ -222,12 +222,11 @@ void levelOrder(TreeNode* root)
 */
 void preOrder(TreeNode* root)
 {
-	if (root)
-	{
-		cout << root->val << " ";
-		preOrder(root->left);
-		preOrder(root->right);
-	}
+	if (!root)
+		return;
+	cout << root->val << " ";
+	preOrder(root->left);
+	preOrder(root->right);
 }
 
 /** @brief 44：二叉树每层的最大值
@@ -436,7 +435,7 @@ private:
 /** @brief 47:二叉树剪枝
 * 时间复杂度为O(n)，空间复杂度为O(n)。
 */
-class Solution {
+class Solution7 {
 public:
 	TreeNode* pruneTree(TreeNode* root)
 	{
@@ -454,6 +453,9 @@ public:
 * 使用dfs中的preorder。
 * 每个节点只访问一次，时间复杂度为O(n)。
 * 递归过程中会使用栈空间，空间复杂度为O(n)。
+* Your Codec object will be instantiated and called as such:
+* Codec ser, deser;
+* TreeNode* ans = deser.deserialize(ser.serialize(root));
 */
 class Codec {
 public:
@@ -510,6 +512,111 @@ public:
 	}
 };
 
-// Your Codec object will be instantiated and called as such:
-// Codec ser, deser;
-// TreeNode* ans = deser.deserialize(ser.serialize(root));
+/** @brief 49:从根节点到叶节点的路径数字之和（自己写）
+* 使用dfs中的preorder。
+* 时间复杂度为O(n)。
+* 空间复杂度为O(n)。
+*/
+class Solution8 {
+public:
+	int sumNumbers(TreeNode* root) {
+		string numStr;
+		int sum = 0;
+		dfs(root, numStr, sum);
+		return sum;
+	}
+
+	// preOrder
+	void dfs(TreeNode* root, string& pathStr, int &sum)
+	{
+		if (!root)
+			return;
+		pathStr += to_string(root->val);
+		if (!root->left && !root->right)
+		{
+			sum += stoi(pathStr);
+		}
+		else
+		{
+			dfs(root->left, pathStr, sum);
+			dfs(root->right, pathStr, sum);
+		}
+		pathStr.pop_back();
+	}
+};
+
+/** @brief 49:从根节点到叶节点的路径数字之和（Leetcode-dfs）
+* 使用dfs中的preorder。
+* 时间复杂度为O(n)，对每个节点访问一次。
+* 空间复杂度为O(n)。空间复杂度主要取决于递归调用的栈空间，递归栈的深度等于二叉树的高度。最坏情况下，二叉树的高度等于节点个数。
+*/
+class Solution9 {
+public:
+	int sumNumbers(TreeNode* root) {
+		return dfs(root, 0);
+	}
+
+	int dfs(TreeNode* root, int prevSum)
+	{
+		if (root == nullptr)
+			return 0;
+		int sum = prevSum * 10 + root->val;
+		if (root->left == nullptr && root->right == nullptr)
+			return sum;
+		else
+			return dfs(root->left, sum) + dfs(root->right, sum);
+	}
+};
+
+/** @brief 49:从根节点到叶节点的路径数字之和（Leetcode-bfs）
+* 使用bfs。
+* 时间复杂度为O(n)，对每个节点访问一次。
+* 空间复杂度为O(n)。空间复杂度主要取决于队列，每个队列中的元素个数不会超过n。
+*/
+class Solution10 {
+public:
+	int sumNumbers(TreeNode* root) {
+		if (root == nullptr)
+			return 0;
+		queue<TreeNode*> nodeQueue;	// 节点
+		queue<int> numQueue;	// 节点对应路径上数字组成的值
+		nodeQueue.push(root);
+		numQueue.push(root->val);
+		int sum = 0;
+		while (!nodeQueue.empty())
+		{
+			auto node = nodeQueue.front();
+			auto num = numQueue.front();
+			nodeQueue.pop();
+			numQueue.pop();
+			if (!node->left && !node->right)
+				sum += num;
+			else
+			{
+				if (node->left)
+				{
+					nodeQueue.push(node->left);
+					numQueue.push(num * 10 + node->left->val);
+				}
+				if (node->right)
+				{
+					nodeQueue.push(node->right);
+					numQueue.push(num * 10 + node->right->val);
+				}
+			}
+		}
+		return sum;
+	}
+};
+
+/** @brief 50:向下的路径节点之和
+* 
+* 时间复杂度为O()
+* 空间复杂度为O()
+*/
+class Solution {
+public:
+	int pathSum(TreeNode* root, int targetSum) {
+
+	}
+};

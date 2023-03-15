@@ -10,20 +10,23 @@ using namespace std;
 
 int main()
 {
-	TreeNode* n2 = new TreeNode(2);
+	string s = "";
+	cout << s.empty() << endl;
+
+	/*TreeNode* n2 = new TreeNode(2);
 	TreeNode* n3 = new TreeNode(3);
 	TreeNode* n1 = new TreeNode(1, n2, n3);
 	TreeNode* n4 = new TreeNode(4);
 	TreeNode* n5 = new TreeNode(5);
 	n2->right = n5;
 	n3->right = n4;
-	Solution *s = new Solution();
+	Solution5 *s = new Solution5();
 	vector<int> res = s->rightSideView(n1);
 	for (int i = 0; i < res.size(); i++)
 	{
 		cout << res[i] << " ";
 	}
-	cout << endl;
+	cout << endl;*/
 
 	//cout << toBinary(8) << endl;
 
