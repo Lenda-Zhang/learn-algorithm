@@ -136,6 +136,7 @@
     <ClInclude Include="mylinklist.h" />
     <ClInclude Include="myqueue.h" />
     <ClInclude Include="mystack.h" />
+    <ClInclude Include="mytree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

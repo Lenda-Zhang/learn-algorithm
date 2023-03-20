@@ -1,8 +1,5 @@
 #pragma once
-#include <unordered_map>
-#include <string>
-#include <algorithm>
-using namespace std;
+#include "myinclude.h"
 
 /**
 * @brief 30：插入、删除、随机访问都是O(1)的容器

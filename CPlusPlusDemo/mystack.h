@@ -1,8 +1,5 @@
 #pragma once
-#include <vector>
-#include <string>
-#include <stack>
-using namespace std;
+#include "myinclude.h"
 
 /**
 * @brief 36：后缀表达式

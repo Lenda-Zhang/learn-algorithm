@@ -1,8 +1,5 @@
 #pragma once
-#include <stack>
-#include <unordered_map>
-#include <vector>
-using namespace std;
+#include "myinclude.h"
 
 /**
 * @brief 单向链表节点
@@ -442,6 +439,35 @@ ListNode* reverseList(ListNode* head)
 		j = right;
 	}
 	return left;
+}
+
+/**
+* 递归
+*/
+ListNode* reverseNext(ListNode* current, ListNode* prev)
+{
+	if (current == nullptr)
+		return prev;
+	// 自写
+	/*ListNode* next = current->next;
+	current->next = prev;
+	return reverseNext(next, current);*/
+
+	// 推荐：
+	// recursion(1,null),recursion(2,1),recursion(3,2),recursion(4,3),recursion(5,4),recursion(null,5),递推结束。
+	// 回溯阶段修改节点的指向，即反转。
+	ListNode* result = reverseNext(current->next, current);
+	current->next = prev;
+	return result;
+}
+
+/** @brief 24: 
+* 时间复杂度为O(n)，每个节点访问一次。
+* 空间复杂度为O(n)，递归的深度与链表长度相关。
+*/
+ListNode* reverseListRecursion(ListNode* head)
+{
+	return reverseNext(head, nullptr);
 }
 
 /**

@@ -6,12 +6,45 @@
 #include "myhashmap.h"
 #include "mystack.h"
 #include "myqueue.h"
+#include "mytree.h"
 using namespace std;
 
 int main()
 {
-	string s = "";
-	cout << s.empty() << endl;
+	// Build binary tree
+	/*TreeNode* descendant2 = new TreeNode(2);
+	TreeNode* descendant3 = new TreeNode(3);
+	TreeNode* descendant4 = new TreeNode(4);
+	TreeNode* descendant5 = new TreeNode(5);
+	TreeNode* descendant6 = new TreeNode(6);
+	TreeNode* root = new TreeNode(1, descendant2, descendant3);
+	descendant2->left = descendant4;
+	descendant2->right = descendant5;
+	descendant3->left = descendant6;*/
+
+	// error code
+	string serStr = "1,2,3,4,5,6";
+	Codec ser, deser;
+	cout << serStr << endl;
+	cout << deser.deserialize(serStr) << endl;
+
+	// Traverse
+	/*MyBinaryTree tree;
+	tree.preOrderTraverseRecursion(root);
+	cout << endl;
+	tree.preOrderTraverseIteration(root);
+	cout << endl;
+	tree.inOrderTraverseRecursion(root);
+	cout << endl;
+	tree.inOrderTraverseIteration(root);
+	cout << endl;
+	tree.postOrderTraverseRecursion(root);
+	cout << endl; 
+	tree.postOrderTraverseIteration(root);
+	cout << endl;*/
+
+	/*string s = "";
+	cout << s.empty() << endl;*/
 
 	/*TreeNode* n2 = new TreeNode(2);
 	TreeNode* n3 = new TreeNode(3);
@@ -202,12 +235,12 @@ int main()
 
 	//reverseList
 	/*ListNode* head = nullptr;
-	for (size_t i = 1; i <= 5; i++)
+	for (int i = 1; i <= 5; i++)
 	{
 		head = appendWithDummy(head, i);
 	}
 	print(head);
-	head = reverseListBetter(head);
+	head = reverseListRecursion(head);
 	print(head);*/
 
 	////getIntersectionNode

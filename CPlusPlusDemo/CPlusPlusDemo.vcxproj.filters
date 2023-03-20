@@ -35,5 +35,8 @@
     <ClInclude Include="myqueue.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="mytree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
