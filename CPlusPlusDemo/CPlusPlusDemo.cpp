@@ -12,7 +12,7 @@ using namespace std;
 int main()
 {
 	// Build binary tree
-	/*TreeNode* descendant2 = new TreeNode(2);
+	TreeNode* descendant2 = new TreeNode(2);
 	TreeNode* descendant3 = new TreeNode(3);
 	TreeNode* descendant4 = new TreeNode(4);
 	TreeNode* descendant5 = new TreeNode(5);
@@ -20,13 +20,13 @@ int main()
 	TreeNode* root = new TreeNode(1, descendant2, descendant3);
 	descendant2->left = descendant4;
 	descendant2->right = descendant5;
-	descendant3->left = descendant6;*/
+	descendant3->left = descendant6;
 
 	// error code
-	string serStr = "1,2,3,4,5,6";
+	/*string serStr = "1,2,3,4,5,6";
 	Codec ser, deser;
 	cout << serStr << endl;
-	cout << deser.deserialize(serStr) << endl;
+	cout << deser.deserialize(serStr) << endl;*/
 
 	// Traverse
 	/*MyBinaryTree tree;
@@ -41,7 +41,9 @@ int main()
 	tree.postOrderTraverseRecursion(root);
 	cout << endl; 
 	tree.postOrderTraverseIteration(root);
-	cout << endl;*/
+	cout << endl;
+	tree.bfs(root);
+	cout << endl; */
 
 	/*string s = "";
 	cout << s.empty() << endl;*/

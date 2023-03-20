@@ -156,6 +156,24 @@ public:
 			}
 		}
 	}
+
+	void bfs(TreeNode* root)
+	{
+		if (root == nullptr)
+			return;
+		queue<TreeNode*> q;
+		q.push(root);
+		while (!q.empty())
+		{
+			auto node = q.front();
+			q.pop();
+			cout << unitbuf << node->val << " " << nounitbuf;
+			if (node->left)
+				q.push(node->left);
+			if (node->right)
+				q.push(node->right);
+		}
+	}
 };
 
 /** @brief 43：往完全二叉树添加节点
