@@ -147,7 +147,7 @@ public:
 			{
 				cout << unitbuf << node->val << " " << nounitbuf;
 				prev = node;
-				node = nullptr;
+				node = nullptr;	// node置空，跳过查找最下层左孩子，使得栈中存放的节点pop
 				s.pop();
 			}
 			else
@@ -511,6 +511,7 @@ public:
 			str += "None,";
 		else
 		{
+			// dfs中preOrder
 			str += to_string(root->val) + ",";
 			str += serialize(root->left);
 			str += serialize(root->right);
@@ -551,8 +552,10 @@ private:
 		}
 		TreeNode* root = new TreeNode(stoi(dataArray.front()));
 		dataArray.erase(dataArray.begin());
-		root->left = rdeserialize(dataArray);
-		root->right = rdeserialize(dataArray);
+		if (!dataArray.empty())
+			root->left = rdeserialize(dataArray);
+		if (!dataArray.empty())
+			root->right = rdeserialize(dataArray);
 		return root;
 	}
 };

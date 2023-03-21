@@ -22,11 +22,16 @@ int main()
 	descendant2->right = descendant5;
 	descendant3->left = descendant6;
 
-	// error code
-	/*string serStr = "1,2,3,4,5,6";
 	Codec ser, deser;
+	string serStr = ser.serialize(root);
 	cout << serStr << endl;
-	cout << deser.deserialize(serStr) << endl;*/
+	TreeNode* ans = deser.deserialize(serStr);
+	cout << ser.serialize(root) << endl;
+
+	serStr = "1,2,3,None,None,4,5,";
+	cout << serStr << endl;
+	root = deser.deserialize(serStr);
+	cout << ser.serialize(root) << endl;
 
 	// Traverse
 	/*MyBinaryTree tree;
