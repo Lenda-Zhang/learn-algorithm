@@ -135,6 +135,7 @@
     <ClInclude Include="myinclude.h" />
     <ClInclude Include="mylinklist.h" />
     <ClInclude Include="myqueue.h" />
+    <ClInclude Include="mysequencelist.h" />
     <ClInclude Include="mystack.h" />
     <ClInclude Include="mytree.h" />
   </ItemGroup>
