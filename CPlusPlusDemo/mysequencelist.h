@@ -321,16 +321,12 @@ bool MyReverseList(int a[], int left, int right, int arraySize)
 //08 时间O(n),空间O(1)
 void Exchange(int a[], int m, int n, int arraySize)
 {
-	printArray(a, arraySize);
 	MyReverseList(a, 0, m - 1, arraySize);
-	printArray(a, arraySize);
 	MyReverseList(a, m, m + n - 1, arraySize);
-	printArray(a, arraySize);
 	MyReverseList(a, 0, m + n - 1, arraySize);
-	printArray(a, arraySize);
 }
 
-//09 有序表且要求时间最少,则使用折半查找,时间,空间
+//09 有序表且要求时间最少,则使用折半查找,时间O(log2n),空间O(1)
 void FindOrInsert(int a[], int x, int& arraySize)
 {
 	int low = 0, high = arraySize - 1, mid;
@@ -344,7 +340,7 @@ void FindOrInsert(int a[], int x, int& arraySize)
 		else
 			low = mid + 1;
 	}
-	if (a[mid] == x && mid != (arraySize - 1))
+	if (a[mid] == x && mid != (arraySize - 1))	//找到则与后继元素互换
 	{
 		int temp = a[mid];
 		a[mid] = a[mid + 1];
@@ -361,4 +357,128 @@ void FindOrInsert(int a[], int x, int& arraySize)
 		a[i + 1] = x;
 		arraySize++;
 	}
+}
+
+void Reverse(int a[], int from, int to)
+{
+	for (int i = 0; i < (to - from + 1) / 2; i++)
+	{
+		int temp = a[from + i];
+		a[from + i] = a[to - i];
+		a[to - i] = temp;
+	}
+	//自做
+	/*for (int i = from, j = to; i < j; i++, j--)
+	{
+		int temp = a[i];
+		a[i] = a[j];
+		a[j] = temp;
+	}*/
+}
+
+//10 循环左移p个元素,0<p<n,时间空间都尽可能高效
+// 时间O(n),空间O(1)
+void Converse(int a[], int n, int p)
+{
+	Reverse(a, 0, p - 1);
+	Reverse(a, p, n - 1);
+	Reverse(a, 0, n - 1);
+}
+
+//11 找出等长升序序列a和b的中位数,长度>=1,时间空间都尽可能高效,时间O(n),空间O(1)
+int FindMedian(int a[], int b[], int arraySize)
+{
+	int i = 0, j = 0, k = 0, median = a[0];	//中位数应为包含a和b所有元素的升序序列中的第arraySize个数，median记录中位数，k记录当前是第几个数
+	while (i < arraySize && j < arraySize)
+	{
+		if (a[i] > b[j])
+			median = b[j++];
+		else
+			median = a[i++];
+		k++;
+		if (k == arraySize)
+			break;
+	}
+	return median;
+}
+
+//12 找出主元素,0<=ai<n,时间空间都尽可能高效,时间O(n),空间O(n)
+int FindMajorElement(int a[], int n)
+{
+	if (n < 1)
+		return -1;
+	int* const cnts = new int[n] {0};
+	for (int i = 0; i < n; i++)
+	{
+		cnts[a[i]]++;
+	}
+	int major = cnts[0], maxCnt = 0;
+	for (int i = 1; i < n; i++)
+	{
+		if (cnts[i] > maxCnt)
+		{
+			major = i;
+			maxCnt = cnts[i];
+		}
+	}
+	delete[] cnts;
+	if (maxCnt > n / 2)
+		return major;
+	return -1;
+}
+
+//13 找出数组中未出现的最小正整数,在时间上尽可能高效,因此采用空间换时间,时间O(n),空间O(n)
+int FindMinPositiveInt(int a[], int n)
+{
+	int* const b = new int[n] {0};	//依次存储数字1~n是否出现，如：b[0]=1表示数字1出现，b[n-1]表示数字n出现
+	for (int i = 0; i < n; i++)
+	{
+		if (a[i] > 0 && a[i] <= n)
+			b[a[i] - 1] = 1;
+	}
+	int i;
+	for (i = 0; i < n; i++)
+	{
+		if (b[i] == 0)
+			break;
+	}
+	return i + 1;
+}
+
+void sortThreeInts(int& a, int& b, int& c)
+{
+	if (a > c)
+		swap(a, c);
+	if (a > b)
+		swap(a, b);
+	if (b > c)
+		swap(b, c);
+}
+
+//a是否为三个数中的最小值
+bool xls_min(int a, int b, int c)
+{
+	if (a <= b && a <= c) return true;
+	return false;
+}
+
+//14 计算并输出所有三元组中的最小距离,D=|a-b|+|b-c|+|c-a|,时间空间都尽可能高效,
+//时间O(n),空间O(1),n为三个数组长度之和
+int GetTripleMinDistance(int A[], int n, int B[], int m, int C[], int p)
+{
+	int dMin = INT_MAX;
+	int i = 0, j = 0, k = 0;
+	while (i < n && j < m && k < p && dMin > 0)
+	{
+		int d = abs(A[i] - B[j]) + abs(B[j] - C[k]) + abs(C[k] - A[i]);
+		if (d < dMin)
+			dMin = d;
+		if (xls_min(A[i], B[j], C[k]))	//更新a
+			i++;
+		else if (xls_min(B[j], A[i], C[k]))
+			j++;
+		else
+			k++;
+	}
+	return dMin;
 }

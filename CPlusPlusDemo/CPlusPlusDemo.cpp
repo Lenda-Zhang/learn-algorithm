@@ -12,6 +12,42 @@ using namespace std;
 
 int main()
 {
+	int a[] = { -1,0,9 }, b[] = { -25,-10,10,11 }, c[] = { 2,9,17,30,41 };
+	cout << GetTripleMinDistance(a, 3, b, 4, c, 5) << endl;
+
+	/*int a = 3, b = 2, c = 1;
+	cout << "a=" << a << ",b=" << b << ",c=" << c << endl;
+	sortThreeInts(a, b, c);
+	cout << "a=" << a << ",b=" << b << ",c=" << c << endl;*/
+
+	/*int a[] = { -5,3,2,3 };
+	cout << FindMinPositiveInt(a, 4) << endl;
+	int b[] = { 1,2,3 };
+	cout << FindMinPositiveInt(b, 3) << endl;*/
+
+	/*int a[] = { 0,5,5,3,5,7,5,5 };
+	cout << FindMajorElement(a, 8) << endl;
+	int b[] = { 0,5,5,3,5,1,5,7 };
+	cout << FindMajorElement(b, 8) << endl;
+	int* c = new int[0];
+	cout << FindMajorElement(c, 0) << endl;*/
+
+	/*int a[] = { 11,13,15,17,19 };
+	int b[] = { 2,4,6,8,20 };
+	cout << FindMedian(a, b, 5) << endl;*/
+
+	/*int a[] = { 1,2,3,4,5,6,7,8,9,10 };
+	int arraySize = 10;
+	printArray(a, arraySize);
+	Converse(a, 10, 3);
+	printArray(a, arraySize);*/
+
+	//int a[MaxSize] = { 1,2,3,4,5,7,8 };
+	//int arraySize = 7;
+	//printArray(a, arraySize);
+	////FindOrInsert(a, 6, arraySize);
+	//FindOrInsert(a, 2, arraySize);
+	//printArray(a, arraySize);
 
 
 	//int left = 1, right = 10;
