@@ -1,5 +1,6 @@
 #pragma once
 #include "myinclude.h"
+#include "wdlinklist.h"
 
 #define MaxSize 50	//定义线性表的最大长度
 //静态分配
@@ -228,11 +229,6 @@ void DeleteDuplicateFromSort(MySqList& L)
 	}
 	L.length = i + 1;
 }
-
-typedef struct LNode {
-	int data;
-	struct LNode* next;
-}LNode, * Linklist;
 
 //06 思考:无序表,使用散列表拉链法,时间O(n),空间O(n)
 void DeleteDuplicate(MySqList& L)

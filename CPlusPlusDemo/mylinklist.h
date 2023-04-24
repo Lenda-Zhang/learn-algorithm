@@ -626,6 +626,7 @@ void print(Node* head)
 	std::cout << "<end>" << std::endl;
 }
 
+//´òÓ¡Ñ­»·Á´±í
 void printCircularList(Node* head)
 {
 	if (head != nullptr)

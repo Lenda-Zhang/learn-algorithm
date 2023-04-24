@@ -8,12 +8,35 @@
 #include "myqueue.h"
 #include "mytree.h"
 #include "mysequencelist.h"
+#include "wdlinklist.h"
 using namespace std;
 
 int main()
 {
-	int a[] = { -1,0,9 }, b[] = { -25,-10,10,11 }, c[] = { 2,9,17,30,41 };
-	cout << GetTripleMinDistance(a, 3, b, 4, c, 5) << endl;
+	DLinkList DL = nullptr;
+	TailInsert(DL);
+	PrintDLinkList(DL);
+	//InsertDNode(DL, 1, 11);
+	//InsertDNode(DL, 4, 44);
+	DeleteDNode(DL, 3);
+	PrintDLinkList(DL);
+
+	//LinkList L = nullptr;
+	////HeadInsert(L);
+	//TailInsert(L);
+	//PrintLinkList(L);
+	////InsertAfter(L, 4, 4);
+	////Delete(L, 1);
+	//Delete(L, 4);
+	//PrintLinkList(L);
+
+	/*auto p = GetItemByIndex(L, 3);
+	cout << (p == nullptr ? INT_MIN : p->data) << endl;
+	p = GetItemByVal(L, 6);
+	cout << (p == nullptr ? INT_MIN : p->data) << endl;*/
+
+	/*int a[] = { -1,0,9 }, b[] = { -25,-10,10,11 }, c[] = { 2,9,17,30,41 };
+	cout << GetTripleMinDistance(a, 3, b, 4, c, 5) << endl;*/
 
 	/*int a = 3, b = 2, c = 1;
 	cout << "a=" << a << ",b=" << b << ",c=" << c << endl;
