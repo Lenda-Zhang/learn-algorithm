@@ -626,7 +626,7 @@ void print(Node* head)
 	std::cout << "<end>" << std::endl;
 }
 
-//打印循环链表
+//打印循环链表(不带头结点)
 void printCircularList(Node* head)
 {
 	if (head != nullptr)

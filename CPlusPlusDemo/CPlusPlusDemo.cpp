@@ -13,21 +13,34 @@ using namespace std;
 
 int main()
 {
-	DLinkList DL = nullptr;
-	TailInsert(DL);
-	PrintDLinkList(DL);
-	//InsertDNode(DL, 1, 11);
-	//InsertDNode(DL, 4, 44);
-	DeleteDNode(DL, 3);
-	PrintDLinkList(DL);
+	/*DLinkList CDL = nullptr;
+	CDLTailInsert(CDL);
+	PrintCDL(CDL);*/
+
+	//LinkList CL = nullptr;
+	//CLTailInsert(CL);
+	//PrintCircularList(CL);
+
+	//DLinkList DL = nullptr;
+	//TailInsert(DL);
+	//PrintDLinkList(DL);
+	//int pos, x;
+	////cin >> pos >> x;
+	////InsertDNode(DL, pos, x);
+	//cin >> pos;
+	//DeleteDNode(DL, pos);
+	//PrintDLinkList(DL);
 
 	//LinkList L = nullptr;
 	////HeadInsert(L);
 	//TailInsert(L);
 	//PrintLinkList(L);
-	////InsertAfter(L, 4, 4);
-	////Delete(L, 1);
-	//Delete(L, 4);
+	//int pos, x;
+	////cin >> pos >> x;
+	////InsertBefore(L, pos, x);
+	////InsertAfter(L, pos, x);
+	//cin >> pos;
+	//Delete(L, pos);
 	//PrintLinkList(L);
 
 	/*auto p = GetItemByIndex(L, 3);

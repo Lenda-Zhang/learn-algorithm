@@ -23,7 +23,7 @@ typedef struct
 	int next;
 } SLinkList[MaxSize];
 
-//单链表的基本操作
+#pragma region 单链表的基本操作
 //头插法逆向建立单链表
 //每个结点插入时间为O(1)，设单链表表长为n，则总时间为O(n)
 LinkList HeadInsert(LinkList& L)
@@ -163,7 +163,11 @@ void PrintLinkList(LinkList L)
 	}
 	cout << endl;
 }
+#pragma endregion
 
+#pragma region 双链表的基本操作
+//尾插法建立双链表
+//时间O(n)
 DLinkList TailInsert(DLinkList& DL)
 {
 	DL = (DLinkList)malloc(sizeof(DNode));
@@ -175,6 +179,7 @@ DLinkList TailInsert(DLinkList& DL)
 	{
 		s = (DNode*)malloc(sizeof(DNode));
 		s->data = x;
+		s->prior = r;
 		r->next = s;
 		r = s;
 		scanf("%d", &x);
@@ -214,6 +219,7 @@ int GetLength(DLinkList DL)
 }
 
 //双链表插入，将值为x的新结点插入到双链表的第i个位置上
+//时间O(n)
 bool InsertDNode(DLinkList& DL, int i, int val)
 {
 	if (i<1 || i>GetLength(DL) + 1)	//有效位置为1~(n+1)
@@ -230,6 +236,7 @@ bool InsertDNode(DLinkList& DL, int i, int val)
 }
 
 //双链表删除
+//时间O(n)
 bool DeleteDNode(DLinkList& DL, int i)
 {
 	if (i<1 || i>GetLength(DL))	//检查删除位置的合法性
@@ -255,7 +262,98 @@ void PrintDLinkList(DLinkList DL)
 	}
 	cout << endl;
 }
+#pragma endregion
 
-//带头结点的循环链表判空
+#pragma region 循环单链表的基本操作
+//尾插法正向建立循环单链表
+//每个结点插入时间为O(1)，设单链表表长为n，则总时间为O(n)
+LinkList CLTailInsert(LinkList& CL)
+{
+	int x;
+	CL = (LinkList)malloc(sizeof(LNode));
+	LNode* s, * r = CL;	//r为尾指针
+	scanf("%d", &x);
+	while (x != 9999)
+	{
+		s = (LNode*)malloc(sizeof(LNode));
+		s->data = x;
+		r->next = s;
+		r = s;
+		scanf("%d", &x);
+	}
+	r->next = CL;	//尾结点指针指向头指针
+	return CL;
+}
 
-//带头结点的循环链表遍历(打印)
+//带头结点的循环单链表判空
+//时间O(1)
+bool IsCircularListEmpty(LinkList CL)
+{
+	if (CL->next == CL)
+		return true;
+	return false;
+}
+
+//带头结点的循环单链表打印(遍历)
+//时间O(n)
+void PrintCircularList(LinkList CL)
+{
+	if (IsCircularListEmpty(CL))
+		return;
+	LNode* p = CL->next;
+	do
+	{
+		cout << p->data << " ";
+		p = p->next;
+	} while (p != CL);
+	cout << endl;
+}
+#pragma endregion
+
+#pragma region 循环双链表的基本操作
+//尾插法正向建立循环双链表
+//时间O(n)
+DLinkList CDLTailInsert(DLinkList& CDL)
+{
+	CDL = (DLinkList)malloc(sizeof(DNode));
+	DNode* s, * r = CDL;	//r为尾指针
+	int x;
+	scanf("%d", &x);
+	while (x != 9999)
+	{
+		s = (DNode*)malloc(sizeof(DNode));
+		s->data = x;
+		s->prior = r;
+		r->next = s;
+		r = s;
+		scanf("%d", &x);
+	}
+	r->next = CDL;
+	CDL->prior = r;
+	return CDL;
+}
+
+//带头结点的循环双链表判空
+//时间O(1)
+bool IsCDLEmpty(DLinkList CDL)
+{
+	if (CDL->prior == CDL && CDL->next == CDL)
+		return true;
+	return false;
+}
+
+//带头结点的循环双链表打印(遍历)
+//时间O(n)
+void PrintCDL(DLinkList CDL)
+{
+	if (IsCDLEmpty(CDL))
+		return;
+	DNode* p = CDL->next;
+	do
+	{
+		cout << p->data << " ";
+		p = p->next;
+	} while (p != CDL);
+	cout << endl;
+}
+#pragma endregion
