@@ -13,6 +13,77 @@ using namespace std;
 
 int main()
 {
+	LinkList L1 = nullptr, L2 = nullptr;
+	TailInsert(L1);
+	TailInsert(L2);
+	PrintLinkList(L1);
+	PrintLinkList(L2);
+	L1 = MergeIntoDecreasing(L1, L2);
+	PrintLinkList(L1);
+
+	/*LinkList L = nullptr;
+	TailInsert(L);
+	PrintLinkList(L);
+	RemoveDuplicate(L);
+	PrintLinkList(L);*/
+
+	////OutputIncreasing(L);
+	//LinkList B = SplitList2(L);
+	//PrintLinkList(L);
+	//PrintLinkList(B);
+
+	/*LNode* p1 = (LNode*)malloc(sizeof(LNode));
+	p1->data = 1;
+	LNode* p2 = (LNode*)malloc(sizeof(LNode));
+	p2->data = 2;
+	LNode* p3 = (LNode*)malloc(sizeof(LNode));
+	p3->data = 3;
+	LNode* p4 = (LNode*)malloc(sizeof(LNode));
+	p4->data = 4;
+	LNode* p5 = (LNode*)malloc(sizeof(LNode));
+	p5->data = 5;
+	LNode* p6 = (LNode*)malloc(sizeof(LNode));
+	p6->data = 6;
+	LNode* p7 = (LNode*)malloc(sizeof(LNode));
+	p7->data = 7;
+	p1->next = p2;
+	p2->next = p3;
+	p3->next = p4;
+	p4->next = p5;
+	p5->next = nullptr;
+	p6->next = p7;
+	p7->next = p3;
+	LinkList commonList = FindCommon(p1, p6);
+	LinkList L = (LinkList)malloc(sizeof(LNode));
+	L->next = commonList;
+	PrintLinkList(L);*/
+
+	//LinkList L = nullptr;
+	//TailInsert(L);
+	//PrintLinkList(L);
+	////SortIncreasing(L);
+	//int x, y;
+	//cin >> x >> y;
+	//DeleteBetweenXAndY(L, x, y);
+	//PrintLinkList(L);
+
+	/*LinkList L = nullptr;
+	TailInsert(L);
+	PrintLinkList(L);
+	DeleteMin(L);
+	PrintLinkList(L);*/
+
+	/*LinkList L = nullptr;
+	TailInsert(L);
+	PrintLinkList(L);
+	OutputInversion(L);*/
+
+	//int x;
+	//cin >> x;
+	////DeleteNodeWithValX(L, x);
+	//DeleteRecursion(L->next, x);
+	//PrintLinkList(L);
+
 	/*DLinkList CDL = nullptr;
 	CDLTailInsert(CDL);
 	PrintCDL(CDL);*/
@@ -25,10 +96,10 @@ int main()
 	//TailInsert(DL);
 	//PrintDLinkList(DL);
 	//int pos, x;
-	////cin >> pos >> x;
-	////InsertDNode(DL, pos, x);
-	//cin >> pos;
-	//DeleteDNode(DL, pos);
+	//cin >> pos >> x;
+	//InsertDNode(DL, pos, x);
+	///*cin >> pos;
+	//DeleteDNode(DL, pos);*/
 	//PrintDLinkList(DL);
 
 	//LinkList L = nullptr;
@@ -37,7 +108,7 @@ int main()
 	//PrintLinkList(L);
 	//int pos, x;
 	////cin >> pos >> x;
-	////InsertBefore(L, pos, x);
+	//////InsertBefore(L, pos, x);
 	////InsertAfter(L, pos, x);
 	//cin >> pos;
 	//Delete(L, pos);

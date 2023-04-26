@@ -2,8 +2,9 @@
 #include "myinclude.h"
 #include "wdlinklist.h"
 
-#define MaxSize 50	//定义线性表的最大长度
-//静态分配
+#pragma region 静态分配
+//定义线性表的最大长度
+#define MaxSize 50
 typedef struct {
 	int data[MaxSize];	//顺序表的元素
 	int length;	//顺序表的当前长度
@@ -75,8 +76,9 @@ void PrintList(MySqList L)
 	}
 	cout << endl;
 }
+#pragma endregion
 
-//动态分配
+#pragma region 动态分配
 #define InitSize 100
 typedef struct {
 	int* data;
@@ -100,8 +102,9 @@ void DestroyListDA(MySqListDA& L)
 	delete(L.data);
 	L.length = 0;
 }
+#pragma endregion
 
-/* 2.2 综合题 */
+#pragma region 2.2 综合题
 //01 时间O(n),空间O(1)
 bool DeleteMin(MySqList& L, int& e)
 {
@@ -478,3 +481,4 @@ int GetTripleMinDistance(int A[], int n, int B[], int m, int C[], int p)
 	}
 	return dMin;
 }
+#pragma endregion
