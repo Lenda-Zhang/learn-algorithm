@@ -308,6 +308,19 @@ void PrintCircularList(LinkList CL)
 	} while (p != CL);
 	cout << endl;
 }
+
+//带头结点的循环单链表的最后一个结点
+LNode* GetLast(LinkList CL)
+{
+	if (IsCircularListEmpty(CL))
+		return nullptr;
+	LNode* p = CL->next;
+	do
+	{
+		p = p->next;
+	} while (p->next != CL);
+	return p;
+}
 #pragma endregion
 
 #pragma region 循环双链表的基本操作
@@ -666,5 +679,242 @@ LinkList MergeIntoDecreasing(LinkList& A, LinkList& B)
 		p = next;
 	}
 	return A;
+}
+
+//14 A,B是两个带头结点的单链表，元素递增有序，
+//从A和B中的公共元素产生带头结点的单链表C，
+//要求不破坏A,B的结点
+//时间O(len1+len2),空间O(1),len1,len2分别为单链表L1,L2的长度
+LinkList FindCommon2(LinkList L1, LinkList L2)
+{
+	LinkList L3 = (LinkList)malloc(sizeof(LNode));
+	LNode* p1 = L1->next, * p2 = L2->next;
+	while (p1 != nullptr && p2 != nullptr)
+	{
+		if (p1 == p2)
+			break;
+		else if (p1->data < p2->data)
+		{
+			p1 = p1->next;
+		}
+		else
+		{
+			p2 = p2->next;
+		}
+	}
+	if (p1 == nullptr || p2 == nullptr)
+		L3->next = nullptr;
+	else
+	{
+		L3->next = p1;
+	}
+	return L3;
+}
+
+//15 时间O(len1+len2),空间O(1),len1,len2分别为单链表L1,L2的长度
+void FindCommon3(LinkList& L1, LinkList L2)
+{
+	LNode* p1 = L1->next, * p2 = L2->next, * p1Prior = L1;
+	while (p1 != nullptr && p2 != nullptr)
+	{
+		if (p1 == p2)
+			break;
+		else if (p1->data < p2->data)
+		{
+			LNode* p = p1;
+			p1Prior->next = p1->next;
+			p1 = p1->next;
+			free(p);
+		}
+		else
+		{
+			p2 = p2->next;
+		}
+	}
+	while (p1 != nullptr)	//无公共节点
+	{
+		LNode* p = p1;
+		p1Prior->next = p1->next;
+		p1 = p1->next;
+		free(p);
+	}
+}
+
+//16 假定A,B都带头结点，方便测试时建立单链表
+//时间O(len1*len2),空间O(1)
+bool IsSubsequence(LinkList A, LinkList B)
+{
+	if (B->next == nullptr)	//空表是任何序列的连续子序列
+		return true;
+	LNode* p1 = A->next, * firstP1 = p1;
+	while (p1 != nullptr)
+	{
+		LNode* p2 = B->next;
+		while (p1 != nullptr && p2 != nullptr)
+		{
+			if (p1->data != p2->data)
+			{
+				break;
+			}
+			p1 = p1->next;
+			p2 = p2->next;
+		}
+		if (p2 == nullptr)
+			return true;
+		else
+		{
+			p1 = firstP1->next;
+			firstP1 = p1;
+		}
+	}
+	return false;
+}
+
+//17 时间O(n),空间O(1)
+bool IsCDLSymmetry(DLinkList CDL)
+{
+	if (CDL->next == CDL && CDL->prior == CDL)
+		return false;
+	DNode* first = CDL->next, * last = CDL->prior;
+	while (first != last)
+	{
+		if (first->data != last->data)
+			return false;
+		first = first->next;
+		last = last->prior;
+	}
+	return true;
+}
+
+//18 带头结点的循环单链表h1和h2，将h2链接到h1之后，
+//要求链接后的链表仍保持循环链表形式
+//时间O(len1+len2),空间O(1),len1,len2分别为单链表L1,L2的长度
+void Link(LinkList& h1, LinkList h2)
+{
+	if (h2->next == h2)	//若h2为空，则无需链接
+		return;
+	if (h1->next == h1)	//若h1为空且h2不为空，则将h2链接到h1之后，并将h2尾结点的指针域指向h1
+	{
+		LNode* r2 = GetLast(h2);
+		h1->next = h2->next;
+		r2->next = h1;
+		return;
+	}
+	LNode* r1 = GetLast(h1), * r2 = GetLast(h2);
+	r1->next = h2->next;
+	r2->next = h1;
+}
+
+//19 时间O(n^2),空间O(1)
+void DeleteIncreasing(LinkList& CL)
+{
+	while (CL->next != CL)
+	{
+		LNode* minPrior = CL, * minP = CL->next, * prior = minP, * p = minP->next;
+		while (p != CL)
+		{
+			if (p->data < minP->data)
+			{
+				minP = p;
+				minPrior = prior;
+			}
+			prior = p;
+			p = p->next;
+		}
+		minPrior->next = minP->next;
+		free(minP);
+		//PrintCircularList(CL);
+	}
+	free(CL);
+}
+
+//带头结点的带访问频度的双链表
+typedef struct FreqDNode {
+	int data;
+	int freq = 0;
+	struct FreqDNode* pre, * next;
+}FreqDNode, * FreqDLinkList;
+
+bool IsFreqDLEmpty(FreqDLinkList FDL)
+{
+	if (FDL->next == nullptr)
+		return true;
+	return false;
+}
+
+//20 时间O(n),空间O(1)
+FreqDNode* Locate(FreqDLinkList FDL, int x)
+{
+	if (IsFreqDLEmpty(FDL))
+		return nullptr;
+	FreqDNode* p = FDL->next;
+	while (p != nullptr && p->data == x)
+	{
+		p = p->next;
+	}
+	//若找到值为x的结点，则将它从链表上摘下
+	//并从头开始扫描，插入到频度相同的结点前面
+	if (p != nullptr)
+	{
+		p->freq++;
+		if (p->pre == FDL || p->pre->freq > p->freq)
+			return p;
+		p->pre->next = p->next;	//将它从链表上摘下
+		if (p->next != nullptr)
+			p->next->pre = p->pre;
+		FreqDNode* q = p->pre;
+		while (q != FDL && q->freq <= p->freq)	//查找前驱结点
+		{
+			q = q->pre;
+		}
+		p->next = q->next;
+		if (q->next != nullptr)
+			q->next->pre = p;
+		p->pre = q;
+		q->next = p;
+	}
+	return p;
+}
+
+//21 判断单链表是否存在环（不带头结点）
+//思路：快慢指针法，慢指针每次走一步，快指针每次走两步
+//时间O(n),空间O(1)
+bool DoesLHasARing(LinkList L)
+{
+	if (L == nullptr || L->next == nullptr)
+		return false;
+	LNode* slow = L, * fast = slow->next;
+	while (slow != nullptr && fast != nullptr)
+	{
+		if (slow == fast)
+			return true;
+		slow = slow->next;
+		fast = fast->next;
+		if (fast != nullptr)
+			fast = fast->next;
+	}
+	return false;
+}
+
+//22 查找带头结点的单链表中倒数第k个结点的值
+//思路：前后指针法，前指针提前走k步，然后两个指针一起每次走一步
+int GetKthToLast(LinkList L, int k)
+{
+	LNode* front = L, * rear = front;
+	int cnt = 0;
+	while (cnt < k && front != nullptr)
+	{
+		front = front->next;
+		++cnt;
+	}
+	if (front == nullptr)
+		return 0;
+	while (front != nullptr && rear != nullptr)
+	{
+		front = front->next;
+		rear = rear->next;
+	}
+	cout << rear->data << endl;
+	return 1;
 }
 #pragma endregion

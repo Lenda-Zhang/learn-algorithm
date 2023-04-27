@@ -13,13 +13,68 @@ using namespace std;
 
 int main()
 {
-	LinkList L1 = nullptr, L2 = nullptr;
+	LinkList L = nullptr;
+	TailInsert(L);
+	PrintLinkList(L);
+	int k;
+	cin >> k;
+	cout << "Find or not: " << GetKthToLast(L, k) << endl;
+
+	/*LNode* p1 = (LNode*)malloc(sizeof(LNode));
+	p1->data = 1;
+	LNode* p2 = (LNode*)malloc(sizeof(LNode));
+	p2->data = 2;
+	LNode* p3 = (LNode*)malloc(sizeof(LNode));
+	p3->data = 3;
+	LNode* p4 = (LNode*)malloc(sizeof(LNode));
+	p4->data = 4;
+	LNode* p5 = (LNode*)malloc(sizeof(LNode));
+	p5->data = 5;
+	LNode* p6 = (LNode*)malloc(sizeof(LNode));
+	p6->data = 1;
+	LNode* p7 = (LNode*)malloc(sizeof(LNode));
+	p7->data = 3;
+	p1->next = p2;
+	p2->next = p3;
+	p3->next = p4;
+	p4->next = p5;
+	p5->next = p6;
+	p6->next = p7;
+	p7->next = p4;
+	cout << DoesLHasARing(p1) << endl;*/
+
+	/*LinkList CL = nullptr;
+	CLTailInsert(CL);
+	PrintCircularList(CL);
+	DeleteIncreasing(CL);*/
+
+	/*LNode* CL1 = nullptr, * CL2 = nullptr;
+	CLTailInsert(CL1);
+	CLTailInsert(CL2);
+	PrintCircularList(CL1);
+	PrintCircularList(CL2);
+	Link(CL1, CL2);
+	PrintCircularList(CL1);*/
+
+	/*DLinkList CDL = nullptr;
+	CDLTailInsert(CDL);
+	PrintCDL(CDL);
+	cout << IsCDLSymmetry(CDL) << endl;*/
+
+	/*LinkList L1 = nullptr, L2 = nullptr;
+	TailInsert(L1);
+	TailInsert(L2);
+	PrintLinkList(L1);
+	PrintLinkList(L2);
+	cout << IsSubsequence(L1, L2) << endl;*/
+
+	/*LinkList L1 = nullptr, L2 = nullptr;
 	TailInsert(L1);
 	TailInsert(L2);
 	PrintLinkList(L1);
 	PrintLinkList(L2);
 	L1 = MergeIntoDecreasing(L1, L2);
-	PrintLinkList(L1);
+	PrintLinkList(L1);*/
 
 	/*LinkList L = nullptr;
 	TailInsert(L);
@@ -43,20 +98,23 @@ int main()
 	LNode* p5 = (LNode*)malloc(sizeof(LNode));
 	p5->data = 5;
 	LNode* p6 = (LNode*)malloc(sizeof(LNode));
-	p6->data = 6;
+	p6->data = 1;
 	LNode* p7 = (LNode*)malloc(sizeof(LNode));
-	p7->data = 7;
+	p7->data = 3;
 	p1->next = p2;
 	p2->next = p3;
 	p3->next = p4;
 	p4->next = p5;
 	p5->next = nullptr;
 	p6->next = p7;
-	p7->next = p3;
-	LinkList commonList = FindCommon(p1, p6);
-	LinkList L = (LinkList)malloc(sizeof(LNode));
-	L->next = commonList;
-	PrintLinkList(L);*/
+	p7->next = nullptr;
+	LinkList L1 = (LinkList)malloc(sizeof(LNode));
+	LinkList L2 = (LinkList)malloc(sizeof(LNode));
+	L1->next = p1;
+	L2->next = p6;
+	FindCommon3(L1, L2);
+	PrintLinkList(L1);
+	PrintLinkList(L2);*/
 
 	//LinkList L = nullptr;
 	//TailInsert(L);
