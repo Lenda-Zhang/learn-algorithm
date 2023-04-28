@@ -13,12 +13,24 @@ using namespace std;
 
 int main()
 {
-	LinkList L = nullptr;
+	/*LinkList L = nullptr;
+	TailInsert(L);
+	PrintLinkList(L);
+	Reorder(L);
+	PrintLinkList(L);*/
+
+	/*LinkList L = nullptr;
+	TailInsert(L);
+	PrintLinkList(L);
+	DeleteElemWithSameAbs(L,25);
+	PrintLinkList(L);*/
+
+	/*LinkList L = nullptr;
 	TailInsert(L);
 	PrintLinkList(L);
 	int k;
 	cin >> k;
-	cout << "Find or not: " << GetKthToLast(L, k) << endl;
+	cout << "Find or not: " << GetKthToLast(L, k) << endl;*/
 
 	/*LNode* p1 = (LNode*)malloc(sizeof(LNode));
 	p1->data = 1;
@@ -48,25 +60,50 @@ int main()
 	PrintCircularList(CL);
 	DeleteIncreasing(CL);*/
 
-	/*LNode* CL1 = nullptr, * CL2 = nullptr;
-	CLTailInsert(CL1);
-	CLTailInsert(CL2);
-	PrintCircularList(CL1);
-	PrintCircularList(CL2);
-	Link(CL1, CL2);
-	PrintCircularList(CL1);*/
+	//LNode* p1 = (LNode*)malloc(sizeof(LNode));
+	//p1->data = 1;
+	//LNode* p2 = (LNode*)malloc(sizeof(LNode));
+	//p2->data = 2;
+	//LNode* p3 = (LNode*)malloc(sizeof(LNode));
+	//p3->data = 3;
+	//LNode* p4 = (LNode*)malloc(sizeof(LNode));
+	//p4->data = 4;
+	//LNode* p5 = (LNode*)malloc(sizeof(LNode));
+	//p5->data = 5;
+	//LNode* p6 = (LNode*)malloc(sizeof(LNode));
+	//p6->data = 1;
+	//LNode* p7 = (LNode*)malloc(sizeof(LNode));
+	//p7->data = 3;
+	//p1->next = p2;
+	//p2->next = p3;
+	//p3->next = p4;
+	//p4->next = p5;
+	//p5->next = p1;
+	//p6->next = p7;
+	//p7->next = p6;
+	//Link(p1, p6);
+	//LNode* p = p1;
+	//do
+	//{
+	//	cout << p->data << " ";
+	//	p = p->next;
+	//} while (p != p1);
+	//cout << endl;
 
 	/*DLinkList CDL = nullptr;
 	CDLTailInsert(CDL);
 	PrintCDL(CDL);
 	cout << IsCDLSymmetry(CDL) << endl;*/
 
-	/*LinkList L1 = nullptr, L2 = nullptr;
-	TailInsert(L1);
-	TailInsert(L2);
-	PrintLinkList(L1);
-	PrintLinkList(L2);
-	cout << IsSubsequence(L1, L2) << endl;*/
+	//LinkList L1 = nullptr, L2 = nullptr;
+	//TailInsert(L1);
+	//TailInsert(L2);
+	//PrintLinkList(L1);
+	//PrintLinkList(L2);
+	//FindCommon3(L1, L2);
+	//PrintLinkList(L1);
+	//PrintLinkList(L2);
+	//cout << IsSubsequence(L1, L2) << endl;
 
 	/*LinkList L1 = nullptr, L2 = nullptr;
 	TailInsert(L1);
@@ -107,14 +144,13 @@ int main()
 	p4->next = p5;
 	p5->next = nullptr;
 	p6->next = p7;
-	p7->next = nullptr;
+	p7->next = p4;
 	LinkList L1 = (LinkList)malloc(sizeof(LNode));
 	LinkList L2 = (LinkList)malloc(sizeof(LNode));
 	L1->next = p1;
 	L2->next = p6;
-	FindCommon3(L1, L2);
-	PrintLinkList(L1);
-	PrintLinkList(L2);*/
+	LNode* common = FindCommon4(L1, L2);
+	cout << (common == nullptr ? "null" : to_string(common->data)) << endl;*/
 
 	//LinkList L = nullptr;
 	//TailInsert(L);
@@ -131,15 +167,14 @@ int main()
 	DeleteMin(L);
 	PrintLinkList(L);*/
 
-	/*LinkList L = nullptr;
-	TailInsert(L);
-	PrintLinkList(L);
-	OutputInversion(L);*/
-
+	//LinkList L = nullptr;
+	//TailInsert(L);
+	//PrintLinkList(L);
+	//OutputInversion2(L);
 	//int x;
 	//cin >> x;
-	////DeleteNodeWithValX(L, x);
-	//DeleteRecursion(L->next, x);
+	//DeleteNodeWithValX(L, x);
+	////DeleteRecursion(L->next, x);
 	//PrintLinkList(L);
 
 	/*DLinkList CDL = nullptr;
