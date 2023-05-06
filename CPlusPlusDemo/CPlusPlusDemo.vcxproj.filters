@@ -44,5 +44,11 @@
     <ClInclude Include="wdlinklist.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="wdstack.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="wdqueue.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

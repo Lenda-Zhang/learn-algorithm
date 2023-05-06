@@ -9,10 +9,55 @@
 #include "mytree.h"
 #include "mysequencelist.h"
 #include "wdlinklist.h"
+#include "wdstack.h"
+#include "wdqueue.h"
 using namespace std;
 
 int main()
 {
+	/*SqQueue q;
+	InitQueue(q);
+	cout << (q.front == q.rear == 0) << endl;
+	cout << QueueEmpty(q) << endl;*/
+
+	/*CharLinkNode* seq = nullptr;
+	cout << IsCentralSymmetry(seq) << endl;
+
+	CharLinkNode* seq1 = nullptr;
+	Push(seq1, 'x');
+	Push(seq1, 'y');
+	Push(seq1, 'x');
+	cout << IsCentralSymmetry(seq1) << endl;
+
+	CharLinkNode* seq2 = nullptr;
+	Push(seq2, 'x');
+	Push(seq2, 'y');
+	Push(seq2, 'y');
+	Push(seq2, 'x');
+	cout << IsCentralSymmetry(seq2) << endl;
+
+	CharLinkNode* seq3 = nullptr;
+	Push(seq3, 'x');
+	Push(seq3, 'y');
+	Push(seq3, 'x');
+	Push(seq3, 'x');
+	cout << IsCentralSymmetry(seq3) << endl;
+
+	CharLinkNode* seq4 = nullptr;
+	Push(seq4, 'x');
+	Push(seq4, 'y');
+	Push(seq4, 'y');
+	Push(seq4, 'x');
+	Push(seq4, 'y');
+	cout << IsCentralSymmetry(seq4) << endl;*/
+
+	//char seq1[] = "IOIIOIOO";
+	//char seq2[] = "IOOIOIIO";
+	//char seq3[] = "IIIOIOIO";
+	//char seq4[] = "IIIOOIOO";
+	//int length = 8;
+	//cout << IsLegal(seq1, length) << " " << IsLegal(seq2, length) << " " << IsLegal(seq3, length) << " " << IsLegal(seq4, length) << endl;
+
 	/*LinkList L = nullptr;
 	TailInsert(L);
 	PrintLinkList(L);
