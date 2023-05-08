@@ -15,6 +15,22 @@ using namespace std;
 
 int main()
 {
+	//cout << P(2, 5) << endl;
+
+	/*char train[] = { 'H','H','H','S','S','S','S','\0' };
+	Adjust(train);
+	char* p = train;
+	while (*p)
+	{
+		cout << *p << " ";
+		p++;
+	}
+	cout << endl;*/
+
+	/*string exp1 = "a*{e*[d/(b-c)]+f}";
+	string exp2 = "a/{c-d";
+	cout << BracketMatching(exp1) << " " << BracketMatching(exp2) << endl;*/
+
 	/*SqQueue q;
 	InitQueue(q);
 	cout << (q.front == q.rear == 0) << endl;

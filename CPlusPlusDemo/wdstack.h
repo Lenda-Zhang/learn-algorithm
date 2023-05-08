@@ -82,14 +82,13 @@ bool StackEmpty(LinkStack Lhead)
 		return false;
 }
 
-bool Push(LinkStack& Lhead, int x)
+void Push(LinkStack& Lhead, int x)
 {
 	//没有栈满上溢情况
 	Linknode* n = (Linknode*)malloc(sizeof(Linknode));
 	n->data = x;
 	n->next = Lhead;
 	Lhead = n;
-	return true;
 }
 
 bool Pop(LinkStack& Lhead, int& x)

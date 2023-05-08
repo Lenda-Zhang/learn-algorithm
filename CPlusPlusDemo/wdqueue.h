@@ -102,18 +102,18 @@ bool DeCQueue(SqQueue& CQ, int& x)
 typedef struct
 {
 	LNode* front, * rear;	//头指针指向队头结点，尾指针指向队尾结点
-}*LinkQueue;
+}LinkQueue;
 
 #pragma region 链队之普通队列的基本操作
 void InitQueue(LinkQueue& Q)
 {
-	Q->front = Q->rear = (LNode*)malloc(sizeof(LNode));	  //建立头结点
-	Q->front->next = nullptr;
+	Q.front = Q.rear = (LNode*)malloc(sizeof(LNode));	  //建立头结点
+	Q.front->next = nullptr;
 }
 
 bool QueueEmpty(LinkQueue Q)
 {
-	if (Q->front == Q->rear)
+	if (Q.front == Q.rear)
 		return true;
 	return false;
 }
@@ -129,41 +129,59 @@ void EnQueue(LinkQueue& Q, int x)
 	LNode* s = (LNode*)malloc(sizeof(LNode));
 	s->data = x;
 	s->next = nullptr;
-	Q->rear->next = s;
-	Q->rear = s;
+	Q.rear->next = s;
+	Q.rear = s;
 }
 
 bool DeQueue(LinkQueue& Q, int& x)
 {
-	if (Q->front == Q->rear)	//空队
+	if (Q.front == Q.rear)	//空队
 		return false;
-	LNode* p = Q->front->next;
+	LNode* p = Q.front->next;
 	x = p->data;
-	Q->front->next = p->next;
-	if (Q->rear == p)
-		Q->rear = Q->front;
+	Q.front->next = p->next;
+	if (Q.rear == p)
+		Q.rear = Q.front;
 	free(p);
 	return true;
+}
+
+void DestroyQueue(LinkQueue& Q)
+{
+	int x;
+	while (!QueueEmpty(Q))
+		DeQueue(Q, x);
+}
+
+void PrintQueue(LinkQueue Q)
+{
+	LNode* p = Q.front->next;
+	while (p != nullptr)
+	{
+		cout << p->data << " ";
+		p = p->next;
+	}
+	cout << endl;
 }
 #pragma endregion
 
 #pragma region 链队之循环队列的基本操作
 void InitCQueue(LinkQueue& CQ)
 {
-	CQ->front = CQ->rear = (LNode*)malloc(sizeof(LNode));	//建立头结点,front指向队头结点,rear指向队尾结点的下一个位置
-	CQ->rear->next = CQ->front;
+	CQ.front = CQ.rear = (LNode*)malloc(sizeof(LNode));	//建立头结点,front指向队头结点,rear指向队尾结点的下一个位置
+	CQ.rear->next = CQ.front;
 }
 
 bool CQueueEmpty(LinkQueue CQ)
 {
-	if (CQ->front == CQ->rear)
+	if (CQ.front == CQ.rear)
 		return true;
 	return false;
 }
 
 bool CQueueOverflow(LinkQueue CQ)
 {
-	if (CQ->rear->next == CQ->front)
+	if (CQ.rear->next == CQ.front)
 		return true;
 	return false;
 }
@@ -174,19 +192,19 @@ void EnCQueue(LinkQueue& CQ, int x)
 	{
 		//在rear后插入一个新的空闲结点
 		auto s = (LNode*)malloc(sizeof(LNode));
-		s->next = CQ->rear->next;
-		CQ->rear->next = s;
+		s->next = CQ.rear->next;
+		CQ.rear->next = s;
 	}
-	CQ->rear->data = x;
-	CQ->rear = CQ->rear->next;
+	CQ.rear->data = x;
+	CQ.rear = CQ.rear->next;
 }
 
 bool DeCQueue(LinkQueue& CQ, int& x)
 {
 	if (CQueueEmpty(CQ))
 		return false;
-	x = CQ->front->data;
-	CQ->front = CQ->front->next;
+	x = CQ.front->data;
+	CQ.front = CQ.front->next;
 	return true;
 }
 #pragma endregion
@@ -294,4 +312,100 @@ bool QueueEmpty(QueueUsing2Stacks Q)
 #pragma endregion
 
 #pragma region 3.3 综合题
+//1 括号匹配
+//时间O(n),空间O(1),n为算术表达式长度
+bool BracketMatching(string expression)
+{
+	if (expression == "")
+		return true;
+	LinkStack stack;
+	InitStack(stack);
+	int i = 0;
+	char c = expression[i];
+	while (c != '\0')
+	{
+		c = expression[i++];
+		if (c == '(' || c == '[' || c == '{')
+		{
+			Push(stack, c);
+		}
+		else if (c == ')' || c == ']' || c == '}')
+		{
+			int topC;
+			int matchC = (c == ')' ? '(' : c == ']' ? '[' : '{');
+			if (!Pop(stack, topC) || topC != matchC)
+				return false;
+		}
+	}
+	bool match = StackEmpty(stack);
+	DestroyStack(stack);
+	return match;
+}
+
+//2 利用火车调度栈将所有软座车厢调整到硬座车厢之前
+//时间O(n),空间O(1),n为队列长度
+void Adjust(char* train)
+{
+	LinkStack stack;
+	InitStack(stack);
+	char* p = train, * q = train;
+	int x;	//0表示S，1表示H
+	while (*p)
+	{
+		if (*p == 'H')
+		{
+			Push(stack, 1);
+		}
+		else
+		{
+			*(q++) = *p;
+		}
+		p++;
+	}
+	while (!StackEmpty(stack))
+	{
+		Pop(stack, x);
+		*(q++) = 'H';
+	}
+	DestroyStack(stack);
+}
+
+//3 利用一个栈实现递归函数的非递归计算
+//时间O(n),空间为O(1),n为入参n
+int P(int x, int n)
+{
+	SqStack stack;
+	InitStack(stack);
+	int temp;	//函数中定义局部变量，如果不初始化，则值为未定义
+	for (int i = 0; i <= n; i++)
+	{
+
+		if (i == 0)
+			temp = 1;
+		else if (i == 1)
+			temp = 2 * x;
+		else
+		{
+			int p1 = 0, p2 = 0;
+			Pop(stack, p1);
+			Pop(stack, p2);
+			temp = 2 * x * p1 - 2 * (i - 1) * p2;
+			Push(stack, p1);
+		}
+		Push(stack, temp);
+	}
+	GetTop(stack, temp);
+	return temp;
+}
+
+//4 轮渡管理
+//vehicles中1表示客车，0表示货车
+void FerryManagement(int vehicles[], int length)
+{
+	SqQueue trucks, cars, ferryQ;
+	InitQueue(trucks);
+	InitQueue(cars);
+	InitQueue(ferryQ);
+
+}
 #pragma endregion
