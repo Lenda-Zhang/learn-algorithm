@@ -147,7 +147,7 @@ public:
 			{
 				cout << unitbuf << node->val << " " << nounitbuf;
 				prev = node;
-				node = nullptr;	// node置空，跳过查找最下层左孩子，使得栈中存放的节点pop
+				node = nullptr;	// node置空，使得栈中存放的节点pop
 				s.pop();
 			}
 			else
@@ -674,5 +674,5 @@ public:
 */
 
 /** @brief 58
-* 
+*
 */

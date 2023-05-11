@@ -141,6 +141,8 @@
     <ClInclude Include="wdlinklist.h" />
     <ClInclude Include="wdqueue.h" />
     <ClInclude Include="wdstack.h" />
+    <ClInclude Include="wdstring.h" />
+    <ClInclude Include="wdtree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

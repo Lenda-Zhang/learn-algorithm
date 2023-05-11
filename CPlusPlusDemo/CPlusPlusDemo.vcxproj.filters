@@ -50,5 +50,11 @@
     <ClInclude Include="wdqueue.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="wdstring.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="wdtree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

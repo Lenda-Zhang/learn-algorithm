@@ -11,10 +11,19 @@
 #include "wdlinklist.h"
 #include "wdstack.h"
 #include "wdqueue.h"
+#include "wdtree.h"
 using namespace std;
 
 int main()
 {
+	string data = "1,2,4,None,None,5,None,None,3,None,6,None,None";
+	WdCodec c;
+	ThreadTree T = c.deserialize(data);
+	cout << c.serialize(T) << endl;
+	CreatePostThread(T);
+	PostOrder(T);
+	
+
 	//cout << P(2, 5) << endl;
 
 	/*char train[] = { 'H','H','H','S','S','S','S','\0' };
