@@ -20,9 +20,12 @@ int main()
 	WdCodec c;
 	ThreadTree T = c.deserialize(data);
 	cout << c.serialize(T) << endl;
+	/*CreatePreThread(T);
+	PreOrder(T);
+	PreOrderReverse(T);*/
 	CreatePostThread(T);
 	PostOrder(T);
-	
+	PostOrderReverse(T);
 
 	//cout << P(2, 5) << endl;
 

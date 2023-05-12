@@ -301,9 +301,41 @@ ThreadNode* LRNNextnode(ThreadNode* p)
 		return LRNFirstnode(p->parent->rchild);
 }
 
+//找到后序序列中的最后一个结点
+ThreadNode* LRNLastnode(ThreadTree T)
+{
+	return T;
+}
+
+//后序线索二叉树中结点p的前驱
+ThreadNode* LRNPrevnode(ThreadTree T)
+{
+	ThreadNode* p = T;
+	//若p为叶子节点
+	if (p->ltag == 1 && p->rtag == 1)
+	{
+		return p->lchild;
+	}
+	else if (p->rtag == 0)	//若p有右孩子
+	{
+		return p->rchild;
+	}
+	else	//若p没有右孩子，但有左孩子
+	{
+		return p->lchild;
+	}
+}
+
 void PostOrder(ThreadTree T)
 {
 	for (ThreadNode* p = LRNFirstnode(T); p != nullptr; p = LRNNextnode(p))
+		cout << unitbuf << p->data << " " << nounitbuf;
+	cout << endl;
+}
+
+void PostOrderReverse(ThreadTree T)
+{
+	for (ThreadNode* p = LRNLastnode(T); p != nullptr; p = LRNPrevnode(p))
 		cout << unitbuf << p->data << " " << nounitbuf;
 	cout << endl;
 }
