@@ -16,16 +16,71 @@ using namespace std;
 
 int main()
 {
-	string data = "1,2,4,None,None,5,None,None,3,None,6,None,None";
+	/*string s = "101,102,104,105,103,106,";
+	vector<ElemType> v = to_vector(s);
+	for (auto i : v)
+		cout << unitbuf << i << " ";
+	cout << endl;*/
+
+	string s = "101,102,104,105,103,106,107";
+	cout << GetPostByPreStr(s) << endl;
+	s = "";
+	cout << GetPostByPreStr(s) << endl;
+
+	//int preOrder[] = { 1,2,4,5,3,6 };
+	//int inOrder[] = { 4,2,5,1,3,6 };
+	///*int preOrder2[] = { 1,2,4,5,3,6 };
+	//int inOrder2[] = { 4,2,5,1,6,3 };*/
+	//int length = 6;
+	//auto T = Deserialize(0, length - 1, 0, length - 1, preOrder, inOrder);
+	//PreOrderRecursion(T);
+	//cout << endl;
+	//InOrderRecursion(T);
+	//cout << endl;
+	////cout << GetHeight2(T) << endl;
+	//cout << GetWidth(T) << endl;
+	//auto anc = NearestCommonAncestor(T, T->rchild, T);
+	//cout << (anc ? anc->data : 0) << endl;
+	//Search(T, 1);
+	//PreOrderRecursion(T);
+	//cout << endl;
+	//InOrderRecursion(T);
+	//cout << endl;
+	//cout << GetKthOfPreOrder(T, 4) << endl;
+	/*PreOrderRecursion(T);
+	cout << endl;
+	InOrderRecursion(T);
+	cout << endl;
+	SwapLRChild(T);
+	PreOrderRecursion(T);
+	cout << endl;
+	InOrderRecursion(T);
+	cout << endl;*/
+	//cout << GetHeight2(T) << endl;
+	//cout << NumOfDoubleBranchNode(T) << endl;
+	//cout << IsFBT(T) << endl;
+	//T = Deserialize(0, length - 1, 0, length - 1, preOrder2, inOrder2);
+	//cout << IsFBT(T) << endl;
+	//PostOrderIteration(T);
+
+	//string data = "1,2,4,None,None,5,None,None,3,None,6,None,None";
+	//BiTree T = Deserialize(data);
+	//int height = GetHeight(T);
+	//cout << endl << height << endl;
+	//BFSReverse(T);
+	//PostOrderIteration(T);
+
+	/*string data = "1,2,4,None,None,5,None,None,3,None,6,None,None";
 	WdCodec c;
 	ThreadTree T = c.deserialize(data);
 	cout << c.serialize(T) << endl;
-	/*CreatePreThread(T);
+	CreatePreThread(T);
 	PreOrder(T);
-	PreOrderReverse(T);*/
+	PreOrderReverse(T);
+	T = c.deserialize(data);
 	CreatePostThread(T);
 	PostOrder(T);
-	PostOrderReverse(T);
+	PostOrderReverse(T);*/
 
 	//cout << P(2, 5) << endl;
 

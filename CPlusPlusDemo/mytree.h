@@ -48,8 +48,8 @@ void preOrder(TreeNode* root)
 }
 
 /** @brief 树的遍历：BFS(Breadth first search)、DFS(Depth first search)。
-* 其中BFS分为前序遍历、中序遍历、后序遍历。处理方式分为递归、迭代，迭代方式一般采用栈。
-* DFS一般采用队列实现层序遍历。
+* 其中DFS分为前序遍历、中序遍历、后序遍历。处理方式分为递归、迭代，迭代方式一般采用栈。
+* BFS一般采用队列实现层序遍历。
 */
 class MyBinaryTree {
 public:
@@ -134,7 +134,7 @@ public:
 			return;
 		stack<TreeNode*> s;
 		auto node = root;
-		TreeNode* prev = nullptr;
+		TreeNode* prev = nullptr;	//用于判断右孩子是否已遍历
 		while (!s.empty() || node)
 		{
 			while (node)
@@ -147,7 +147,7 @@ public:
 			{
 				cout << unitbuf << node->val << " " << nounitbuf;
 				prev = node;
-				node = nullptr;	// node置空，使得栈中存放的节点pop
+				node = nullptr;	// node置空，使得消耗栈中存放的节点
 				s.pop();
 			}
 			else
