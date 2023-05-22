@@ -869,5 +869,40 @@ string GetPostByPreStr(string data)
 	return "";
 }
 
-//16 
+//16 将二叉树的叶子结点按从左到右的顺序连成一个单链表
+//时间空间复杂度同先序遍历
+//head为头结点，prev为前驱结点
+BiTNode* LinkListOfLeafNodes(BiTree T, BiTNode* head, BiTNode*& prev)
+{
+	if (T)
+	{
+		if (T->lchild == nullptr && T->rchild == nullptr)
+		{
+			prev->rchild = T;
+			prev = T;
+		}
+		else
+		{
+			LinkListOfLeafNodes(T->lchild, head, prev);
+			LinkListOfLeafNodes(T->rchild, head, prev);
+		}
+	}
+	return head;
+}
+
+//17 判断两棵二叉树是否相似
+//
+bool IsSimilar(BiTree T1, BiTree T2)
+{
+	if (T1 == nullptr && T2 == nullptr)
+		return true;
+	else if (T1 == nullptr || T2 == nullptr)
+		return false;
+	else
+		return IsSimilar(T1->lchild, T2->lchild) && IsSimilar(T1->rchild, T2->rchild);
+}
+
+//18 在中序线索二叉树中查找指定结点在后序的前驱节点
+//
+
 #pragma endregion

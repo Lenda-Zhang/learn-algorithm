@@ -22,21 +22,31 @@ int main()
 		cout << unitbuf << i << " ";
 	cout << endl;*/
 
-	string s = "101,102,104,105,103,106,107";
-	cout << GetPostByPreStr(s) << endl;
-	s = "";
-	cout << GetPostByPreStr(s) << endl;
+	//string s = "101,102,104,105,103,106,107";
+	//cout << GetPostByPreStr(s) << endl;
+	//s = "";
+	//cout << GetPostByPreStr(s) << endl;
 
-	//int preOrder[] = { 1,2,4,5,3,6 };
-	//int inOrder[] = { 4,2,5,1,3,6 };
-	///*int preOrder2[] = { 1,2,4,5,3,6 };
-	//int inOrder2[] = { 4,2,5,1,6,3 };*/
-	//int length = 6;
-	//auto T = Deserialize(0, length - 1, 0, length - 1, preOrder, inOrder);
-	//PreOrderRecursion(T);
-	//cout << endl;
-	//InOrderRecursion(T);
-	//cout << endl;
+	int preOrder[] = { 1,2,4,5,3,6 };
+	int inOrder[] = { 4,2,5,1,3,6 };
+	/*int preOrder2[] = { 1,2,4,5,3,6 };
+	int inOrder2[] = { 4,2,5,1,6,3 };*/
+	int length = 6;
+	auto T = Deserialize(0, length - 1, 0, length - 1, preOrder, inOrder);
+	PreOrderRecursion(T);
+	cout << endl;
+	InOrderRecursion(T);
+	cout << endl;
+	BiTNode* head = (BiTNode*)malloc(sizeof(BiTNode));
+	head->lchild = nullptr;
+	head->rchild = nullptr;
+	auto node = LinkListOfLeafNodes(T, head, head);
+	node = node->rchild;
+	while (node != nullptr)
+	{
+		cout << unitbuf << node->data << " " << nounitbuf;
+		node = node->rchild;
+	}
 	////cout << GetHeight2(T) << endl;
 	//cout << GetWidth(T) << endl;
 	//auto anc = NearestCommonAncestor(T, T->rchild, T);
