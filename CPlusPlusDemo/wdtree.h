@@ -902,7 +902,27 @@ bool IsSimilar(BiTree T1, BiTree T2)
 		return IsSimilar(T1->lchild, T2->lchild) && IsSimilar(T1->rchild, T2->rchild);
 }
 
-//18 在中序线索二叉树中查找指定结点在后序的前驱节点
+//18 在中序线索二叉树t中，求指定结点p在后序下的前驱结点q
 //
-
+ThreadTree InPostPre(ThreadTree t, ThreadNode* p)
+{
+	ThreadNode* q;
+	if (p->rtag == 0)	//若p有右子女，则右子女为其后序前驱
+		q = p->rchild;
+	else if (p->ltag == 0)	//若p只有左子女，则左子女为其后序前驱
+		q = p->lchild;
+	else if (p->lchild == nullptr)	//若p是中序序列的第一结点，则无后序前驱
+		q = nullptr;
+	else
+	{
+		//顺左线索向上查找p的祖先，若存在，再找祖先的左子女
+		while (p->ltag == 1 && p->lchild != nullptr)
+			p = p->lchild;
+		if (p->ltag == 0)
+			q = p->lchild;	//p结点的祖先的左子女是其后序前驱
+		else
+			q = nullptr;	//仅有单支树（p是叶子），已到根结点，p无后序前驱
+	}
+	return q;
+}
 #pragma endregion
