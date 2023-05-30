@@ -548,6 +548,19 @@ int GetHeight2(BiTree T)
 	return level;
 }
 
+//*5 拓展：递归算法求二叉树高度
+int GetHeightRecursion(BiTree T)
+{
+	if (T == nullptr)
+		return 0;
+	int lHeight = GetHeightRecursion(T->lchild);
+	int rHeight = GetHeightRecursion(T->rchild);
+	if (rHeight > lHeight)
+		return rHeight + 1;	//树的高度为子树最大高度加根节点
+	else
+		return lHeight + 1;
+}
+
 //6 二叉树各结点值互不相同，根据先序遍历、中序遍历序列建立该二叉树的二叉链表
 //注意：使用llen,rlen简化下标计算，可以判断是否有孩子
 //时间O(n),空间O(1),n为二叉树结点总数
@@ -924,5 +937,175 @@ ThreadTree InPostPre(ThreadTree t, ThreadNode* p)
 			q = nullptr;	//仅有单支树（p是叶子），已到根结点，p无后序前驱
 	}
 	return q;
+}
+#pragma endregion
+
+#pragma region 章末归纳总结：编写有关二叉树的递归算法
+//1 统计二叉树中度为1的结点个数
+//NLR
+int NodeOfDegree1(BiTree T)
+{
+	if (!T)
+		return 0;
+	int cnt = 0;
+	if ((T->lchild && !T->rchild) || (!T->lchild && T->rchild))
+		cnt += 1;
+	cnt += NodeOfDegree1(T->lchild);
+	cnt += NodeOfDegree1(T->rchild);
+	return cnt;
+}
+
+//2 统计二叉树中度为2的结点个数
+//NLR
+int NodeOfDegree2(BiTree T)
+{
+	if (!T)
+		return 0;
+	int cnt = 0;
+	if (T->lchild && T->rchild)
+		cnt += 1;
+	cnt += NodeOfDegree2(T->lchild);
+	cnt += NodeOfDegree2(T->rchild);
+	return cnt;
+}
+
+//3 统计二叉树中度为0的结点个数
+//NLR
+int NodeOfDegree0(BiTree T)
+{
+	if (!T)
+		return 0;
+	int cnt = 0;
+	if (!T->lchild && !T->rchild)
+		cnt += 1;
+	cnt += NodeOfDegree0(T->lchild);
+	cnt += NodeOfDegree0(T->rchild);
+	return cnt;
+}
+
+//4 统计二叉树的高度
+//LRN
+int BiTreeHeight(BiTree T)
+{
+	if (T == nullptr)
+		return 0;
+	int lHeight = BiTreeHeight(T->lchild);
+	int rHeight = BiTreeHeight(T->rchild);
+	if (rHeight > lHeight)
+		return rHeight + 1;
+	else
+		return lHeight + 1;
+}
+
+//计算每层宽度，下标从1开始，即width[1]记录第1层宽度，特别地，width[0]记录最大层数
+//NLR
+void CalculateWidth(BiTree T, int width[], int level)
+{
+	if (T == nullptr)
+		return;
+	if (level > width[0])
+		width[0] = level;
+	width[level]++;
+	CalculateWidth(T->lchild, width, level + 1);
+	CalculateWidth(T->rchild, width, level + 1);
+}
+
+//5 统计二叉树的宽度
+//
+int BiTreeBreadth(BiTree T)
+{
+	int a[MaxSize + 1] = { 0 };
+	CalculateWidth(T, a, 1);
+	int length = a[0];
+	int breadth = a[1];
+	for (int i = 2; i <= length; i++)
+	{
+		if (a[i] > breadth)
+			breadth = a[i];
+	}
+	return breadth;
+}
+
+//6 从二叉树中删去所有叶节点
+//NLR
+void DeleteAllLeaves(BiTree& T, BiTNode* prev)
+{
+	if (T == nullptr)
+		return;
+	if (!T->lchild && !T->rchild)
+	{
+		auto temp = T;
+		if (prev == nullptr)	//树中只有一个根节点
+		{
+			T = nullptr;
+		}
+		else
+		{
+			if (T == prev->lchild)
+				prev->lchild = nullptr;
+			else
+				prev->rchild = nullptr;
+		}
+		free(temp);
+	}
+	else
+	{
+		DeleteAllLeaves(T->lchild, T);
+		DeleteAllLeaves(T->rchild, T);
+	}
+}
+
+//*7 计算指定结点*p所在的层次
+int GetLayer(BiTree T, BiTNode* p)
+{
+	if (T == nullptr)
+		return 0;
+	if (T == p)
+		return 1;
+	int lLayer = GetLayer(T->lchild, p);
+	int rLayer = GetLayer(T->rchild, p);
+	if (lLayer || rLayer)
+	{
+		if (rLayer > lLayer)
+			return rLayer + 1;
+		else
+			return lLayer + 1;
+	}
+	return 0;
+}
+
+//8 计算二叉树中各结点中最大元素的值
+int MaxVal(BiTree T)
+{
+	if (T == nullptr)
+		return INT_MIN;
+	int lMax = MaxVal(T->lchild);
+	int rMax = MaxVal(T->rchild);
+	int childMax = rMax > lMax ? rMax : lMax;
+	return childMax > T->data ? childMax : T->data;
+}
+
+//9 交换二叉树中所有结点的两个子女
+//LRN
+void ExchangeChild(BiTree T)
+{
+	if (T->lchild != nullptr)
+		ExchangeChild(T->lchild);
+	if (T->rchild != nullptr)
+		ExchangeChild(T->rchild);
+	auto temp = T->lchild;
+	T->lchild = T->rchild;
+	T->rchild = temp;
+}
+
+//10 以先序次序输出一棵二叉树中所有结点的数据值及结点所在的层次
+void PreOrderAndLevel(BiTree T, int level)
+{
+	if (T != nullptr)
+	{
+		cout << "val=" << T->data << ", level=" << level << endl;
+		PreOrderAndLevel(T->lchild, level + 1);
+		PreOrderAndLevel(T->rchild, level + 1);
+	}
 }
 #pragma endregion
