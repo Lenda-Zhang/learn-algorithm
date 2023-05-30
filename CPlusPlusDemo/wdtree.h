@@ -1064,7 +1064,7 @@ int GetLayer(BiTree T, BiTNode* p)
 		return 1;
 	int lLayer = GetLayer(T->lchild, p);
 	int rLayer = GetLayer(T->rchild, p);
-	if (lLayer || rLayer)
+	if (lLayer || rLayer)	//1表示找到p了，从递归栈返回的栈层数即为p所在层次
 	{
 		if (rLayer > lLayer)
 			return rLayer + 1;
