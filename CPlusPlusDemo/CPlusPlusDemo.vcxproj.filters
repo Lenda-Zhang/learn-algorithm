@@ -56,5 +56,8 @@
     <ClInclude Include="wdtree.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="wdsort.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

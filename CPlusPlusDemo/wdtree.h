@@ -2,14 +2,14 @@
 #include "myinclude.h"
 #include "wdstack.h"
 
-//二叉树的链式存储结构
 typedef int ElemType;
 
+//二叉树的链式存储结构
 typedef struct BiTNode
 {
 	ElemType data;	//数据域
 	struct BiTNode* lchild, * rchild;	//左右孩子指针
-}BiTNode, * BiTree;
+}BiTNode, BSTNode, * BiTree;
 
 BiTNode* rdeserialize(list<string>& dataArray, BiTNode* parent)
 {
