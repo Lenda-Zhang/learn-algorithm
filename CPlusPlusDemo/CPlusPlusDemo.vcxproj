@@ -140,6 +140,7 @@
     <ClInclude Include="mytree.h" />
     <ClInclude Include="wdlinklist.h" />
     <ClInclude Include="wdqueue.h" />
+    <ClInclude Include="wdBST.h" />
     <ClInclude Include="wdsort.h" />
     <ClInclude Include="wdstack.h" />
     <ClInclude Include="wdstring.h" />

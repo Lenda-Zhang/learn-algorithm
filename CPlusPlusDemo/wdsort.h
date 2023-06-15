@@ -1,75 +1,73 @@
 #pragma once
 #include "myinclude.h"
-#include "wdtree.h"
 
-#pragma region 二叉排序树(Binary Sort Tree)
-//查找(递归)
-BSTNode* BST_Search_Recursion(BiTree T, ElemType key)
-{
-	if (T == nullptr)
-		return nullptr;
-	if (key == T->data)
-		return T;
-	else if (key < T->data)
-		return BST_Search_Recursion(T->lchild, key);
-	else
-		return BST_Search_Recursion(T->rchild, key);
-}
+typedef int ElemType;
 
-//查找(非递归)
-BSTNode* BST_Search_Iteration(BiTree T, ElemType key)
+#pragma region 插入排序
+//直接插入排序
+//时间O(n^2),空间O(1)
+//稳定性：稳定
+//适用性：适用于顺序存储和链式存储
+void InsertSort(ElemType a[], int n)
 {
-	while (T && key != T->data)
+	int i, j;
+	for (i = 2; i <= n; i++)
 	{
-		if (key < T->data)
-			T = T->lchild;
-		else
-			T = T->rchild;
-	}
-	return T;
-}
-
-//插入，注：返回值0表示树中存在相同关键字的结点，插入失败；1表示插入成功
-int BST_Insert(BiTree& T, ElemType key)
-{
-	if (T == nullptr)
-	{
-		T = (BSTNode*)malloc(sizeof(BSTNode));
-		T->data = key;
-		T->lchild = nullptr; 
-		T->rchild = nullptr;
-		return 1;
-	}
-	else if (key == T->data)
-	{
-		return 0;
-	}
-	else if (key < T->data)
-	{
-		return BST_Insert(T->lchild, key);
-	}
-	else
-	{
-		return BST_Insert(T->rchild, key);
+		if (a[i] < a[i - 1]) {
+			a[0] = a[i];	//复制为哨兵，a[0]不存放元素
+			for (j = i - 1; a[0] < a[j]; j--)
+			{
+				a[j + 1] = a[j];
+			}
+			a[j + 1] = a[0];
+		}
 	}
 }
 
-//构造
-void Create_BST(BiTree& T, ElemType str[], int n)
+//折半插入排序
+//时间O(n^2),空间O(1)
+//稳定性：稳定
+//适用性：仅适用于顺序存储
+void InsertSort2(ElemType a[], int n)
 {
-	T = nullptr;	//初始时T为空树
-	int i = 0;
-	while (i < n)
+	int i, j, low, high, mid;
+	for (i = 2; i <= n; i++)
 	{
-		BST_Insert(T, str[i]);
+		a[0] = a[i];	//复制为哨兵，a[0]不存放元素
+		low = 1;
+		high = i - 1;
+		while (low <= high)	//优点：比较次数约为O(nlog2(n))，与待排序表的初始状态无关，仅取决于表中元素个数n
+		{
+			mid = (low + high) / 2;
+			if (a[mid] > a[0])
+				high = mid - 1;
+			else
+				low = mid + 1;
+		}
+		for (j = i - 1; j >= high + 1; --j)
+		{
+			a[j + 1] = a[j];
+		}
+		a[high + 1] = a[0];
 	}
 }
 
-//删除，暂无代码
-//思想：分3种情况考虑：
-//1.若被删除结点z是叶节点，则直接删除，不会破坏二叉排序树的性质。
-//2.若结点z只有一棵左子树或右子树，则让z的子树成为z父结点的子树，替代z的位置。
-//3.若结点z有左、右两棵子树，则令z的直接后继(或直接前驱)替代z，然后从二叉排序树中删去这个直接后继(或直接前驱)，这样就转换成了第一或第二种情况。
-
-
+//希尔排序
+//时间O(n^2),空间O(1)
+//稳定性：不稳定
+//适用性：仅适用于顺序存储
+void ShellSort(ElemType a[], int n)
+{
+	//a[0]只是暂存单元，不是哨兵。当j<=0时，插入位置已到
+	int dk, i, j;
+	for (dk = n / 2; dk >= 1; dk = dk / 2)
+		for (i = dk + 1; i <= n; ++i)
+			if (a[i] < a[i - dk])
+			{
+				a[0] = a[i];
+				for (j = i - dk; j > 0 && a[j] > a[0]; j -= dk)
+					a[j + dk] = a[j];
+				a[j + dk] = a[0];
+			}
+}
 #pragma endregion
