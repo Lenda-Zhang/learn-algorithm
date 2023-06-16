@@ -71,3 +71,64 @@ void ShellSort(ElemType a[], int n)
 			}
 }
 #pragma endregion
+
+#pragma region 交换排序
+//冒泡排序
+//时间O(n^2),空间O(1)
+//稳定性：稳定
+//适用性：适用于顺序存储和链式存储的线性表，当链式存储时，可以从前向后进行比较查找插入位置
+void BubbleSort(ElemType a[], int n)
+{
+	for (int i = 0; i < n - 1; i++)
+	{
+		bool flag = false;	//表示本趟冒泡是否发生交换的标志
+		for (int j = n - 1; j > i; j--)
+		{
+			if (a[j - 1] > a[j]) {
+				swap(a[j - 1], a[j]);
+				flag = true;
+			}
+		}
+		if (!flag)	//若本趟遍历后没有发生交换，说明表已经有序
+			return;
+	}
+}
+
+//一趟划分
+int Partition(ElemType a[], int low, int high)
+{
+	ElemType pivot = a[low];
+	while (low < high)
+	{
+		while (low < high && a[high] >= pivot)
+			--high;
+		a[low] = a[high];
+		while (low < high && a[low] <= pivot)
+			++low;
+		a[high] = a[low];
+	}
+	a[low] = pivot;
+	return low;
+}
+
+//快速排序
+//时间：平均与最佳很接近,为O(nlog2(n)),最坏为O(n^2),
+//空间O(log2(n))~O(n)
+//稳定性：不稳定
+//适用性：只适用于顺序存储
+void QuickSort(ElemType a[], int low, int high)
+{
+	if (low < high)
+	{
+		int pivotpos = Partition(a, low, high);
+		QuickSort(a, low, pivotpos - 1);
+		QuickSort(a, pivotpos + 1, high);
+	}
+}
+#pragma endregion
+
+#pragma region 选择排序
+//简单选择排序
+
+//堆排序
+#pragma endregion
