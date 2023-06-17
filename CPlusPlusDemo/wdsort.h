@@ -85,7 +85,7 @@ void BubbleSort(ElemType a[], int n)
 		for (int j = n - 1; j > i; j--)
 		{
 			if (a[j - 1] > a[j]) {
-				swap(a[j - 1], a[j]);
+				swap(a[j - 1], a[j]);	//封装的swap()函数共移动元素3次
 				flag = true;
 			}
 		}
@@ -129,6 +129,103 @@ void QuickSort(ElemType a[], int low, int high)
 
 #pragma region 选择排序
 //简单选择排序
+//时间O(n^2),空间O(1)
+//稳定性：不稳定
+//适用性：适用于顺序存储
+void SelectSort(ElemType a[], int n)
+{
+	for (int i = 0; i < n - 1; i++)
+	{
+		int min = i;	//记录最小元素的位置
+		for (int j = i + 1; j < n; j++)
+		{
+			if (a[j] < a[min])
+				min = j;
+		}
+		if (min != i)
+			swap(a[i], a[min]);
+	}
+}
+
+//将以元素k为根的子树进行调整
+void HeapAdjust(ElemType a[], int k, int len)
+{
+	a[0] = a[k];	//a[0]暂存子树的根结点,元素从1开始存储
+	for (int i = 2 * k; i <= len; i *= 2)
+	{
+		if (i < len && a[i] < a[i + 1])
+			i++;	//取值较大的子结点向下筛选
+		if (a[0] >= a[i])
+			break;
+		else
+		{
+			a[k] = a[i];	//将a[i]调整到双亲结点上
+			k = i;
+		}
+	}
+	a[k] = a[0];
+}
+
+//建立大根堆
+void BuildMaxHeap(ElemType a[], int len)
+{
+	for (int i = len / 2; i > 0; i--)	//从(n/2)~1,从下往上反复调整堆
+	{
+		HeapAdjust(a, i, len);
+	}
+}
 
 //堆排序
+//时间O(nlog2(n)),空间O(1)
+//稳定性：不稳定
+//适用性：适用于顺序存储
+void HeapSort(ElemType a[], int len)
+{
+	BuildMaxHeap(a, len);
+	for (int i = len; i > 1; i--)	//用大根堆建立升序序列,所以从len开始,注:下标0处缓存数据,元素从1开始存储
+	{
+		swap(a[i], a[1]);
+		HeapAdjust(a, 1, i - 1);
+	}
+}
+#pragma endregion
+
+#pragma region 归并排序
+int n = 10;
+ElemType* b = (ElemType*)malloc((n + 1) * sizeof(ElemType));	//辅助数组B
+void Merge(ElemType a[], int low, int mid, int high)
+{
+	//表a的两段a[low...mid]和a[mid+1...high]各自有序,将它们合并成一个有序表
+	int i, j, k;
+	for (k = low; k <= high; k++)
+	{
+		b[k] = a[k];
+	}
+	for (i = low, j = mid + 1, k = i; i <= mid && j <= high; k++)
+	{
+		if (b[i] <= b[j])
+			a[k] = b[i++];
+		else
+			a[k] = b[j++];
+	}
+	while (i <= mid)
+		a[k++] = b[i++];
+	while (j <= high)
+		a[k++] = b[j++];
+}
+
+//2路归并排序
+//时间O(nlog2(n)),空间O(n)
+//稳定性：稳定
+//适用性：适用于顺序存储
+void MergeSort(ElemType a[], int low, int high)
+{
+	if (low < high)
+	{
+		int mid = (low + high) / 2;
+		MergeSort(a, low, mid);
+		MergeSort(a, mid + 1, high);
+		Merge(a, low, mid, high);
+	}
+}
 #pragma endregion
