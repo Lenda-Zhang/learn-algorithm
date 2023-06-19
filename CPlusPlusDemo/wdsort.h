@@ -193,9 +193,9 @@ void HeapSort(ElemType a[], int len)
 #pragma region 归并排序
 int n = 10;
 ElemType* b = (ElemType*)malloc((n + 1) * sizeof(ElemType));	//辅助数组B
+//表a的两段a[low...mid]和a[mid+1...high]各自有序,将它们合并成一个有序表
 void Merge(ElemType a[], int low, int mid, int high)
 {
-	//表a的两段a[low...mid]和a[mid+1...high]各自有序,将它们合并成一个有序表
 	int i, j, k;
 	for (k = low; k <= high; k++)
 	{
