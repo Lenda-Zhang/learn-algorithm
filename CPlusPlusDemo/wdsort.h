@@ -55,7 +55,7 @@ void InsertSort2(ElemType a[], int n)
 //希尔排序
 //时间O(n^2),空间O(1)
 //稳定性：不稳定
-//适用性：仅适用于顺序存储
+//适用性：仅适用于顺序存储，利用了顺序存储的随机访问特性
 void ShellSort(ElemType a[], int n)
 {
 	//a[0]只是暂存单元，不是哨兵。当j<=0时，插入位置已到
@@ -131,7 +131,7 @@ void QuickSort(ElemType a[], int low, int high)
 //简单选择排序
 //时间O(n^2),空间O(1)
 //稳定性：不稳定
-//适用性：适用于顺序存储
+//适用性：适用于顺序存储和链式存储
 void SelectSort(ElemType a[], int n)
 {
 	for (int i = 0; i < n - 1; i++)
@@ -178,7 +178,7 @@ void BuildMaxHeap(ElemType a[], int len)
 //堆排序
 //时间O(nlog2(n)),空间O(1)
 //稳定性：不稳定
-//适用性：适用于顺序存储
+//适用性：仅适用于顺序存储，利用了顺序存储的随机访问特性
 void HeapSort(ElemType a[], int len)
 {
 	BuildMaxHeap(a, len);
