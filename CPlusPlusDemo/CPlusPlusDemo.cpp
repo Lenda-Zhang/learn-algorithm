@@ -13,10 +13,20 @@
 #include "wdqueue.h"
 #include "wdtree.h"
 #include "wdsort.h"
-using namespace std;
+
+int get_cont(int* p1, int* p2)
+{
+	if (p1 > p2)
+		return *p2;
+	else
+		return *p1;
+}
 
 int main()
 {
+	/*int a[] = { 5, 4 };
+	cout << get_cont(a, a + 1) << endl;*/
+
 	ElemType a[] = { 0,49,38,65,97,76,13,27,49,55,4 };
 	int n = 10;
 	ShellSort(a, n);
