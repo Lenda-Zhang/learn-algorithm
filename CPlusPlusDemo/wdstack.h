@@ -1,12 +1,12 @@
-#pragma once
+ï»¿#pragma once
 #include "myinclude.h"
 
-#pragma region Ë³ĞòÕ»Êı¾İÀàĞÍ¶¨Òå¼°»ù±¾²Ù×÷
-#define MaxSize 50	//¶¨ÒåÕ»ÖĞÔªËØµÄ×î´ó¸öÊı
-//Ë³ĞòÕ»
+#pragma region é¡ºåºæ ˆæ•°æ®ç±»å‹å®šä¹‰åŠåŸºæœ¬æ“ä½œ
+#define MaxSize 50	//å®šä¹‰æ ˆä¸­å…ƒç´ çš„æœ€å¤§ä¸ªæ•°
+//é¡ºåºæ ˆ
 typedef struct {
-	int data[MaxSize];	//´æ·ÅÕ»ÖĞÔªËØ
-	int top;	//Õ»¶¥Ö¸Õë
+	int data[MaxSize];	//å­˜æ”¾æ ˆä¸­å…ƒç´ 
+	int top;	//æ ˆé¡¶æŒ‡é’ˆ
 }SqStack;
 
 void InitStack(SqStack& S)
@@ -31,7 +31,7 @@ bool StackOverflow(SqStack S)
 
 bool Push(SqStack& S, int x)
 {
-	if (S.top == MaxSize - 1)	//Õ»Âú
+	if (S.top == MaxSize - 1)	//æ ˆæ»¡
 		return false;
 	S.data[++S.top] = x;
 	return true;
@@ -59,10 +59,10 @@ void DestroyStack(SqStack& S)
 }
 #pragma endregion
 
-#pragma region Á´Õ»Êı¾İÀàĞÍ¶¨Òå¼°»ù±¾²Ù×÷
-//Á´Õ»,nodeĞ¡Ğ´ÊÇÎªÁË¸úÁ´±í½á¹¹¶¨ÒåÇø·Ö
-//ÕâÀï¹æ¶¨Á´Õ»Ã»ÓĞÍ·½áµã£¬LheadÖ¸ÏòÕ»¶¥½áµã
-//Õ»µ×½áµãÔÚÁ´Î²
+#pragma region é“¾æ ˆæ•°æ®ç±»å‹å®šä¹‰åŠåŸºæœ¬æ“ä½œ
+//é“¾æ ˆ,nodeå°å†™æ˜¯ä¸ºäº†è·Ÿé“¾è¡¨ç»“æ„å®šä¹‰åŒºåˆ†
+//è¿™é‡Œè§„å®šé“¾æ ˆæ²¡æœ‰å¤´ç»“ç‚¹ï¼ŒLheadæŒ‡å‘æ ˆé¡¶ç»“ç‚¹
+//æ ˆåº•ç»“ç‚¹åœ¨é“¾å°¾
 typedef struct Linknode
 {
 	int data;
@@ -84,7 +84,7 @@ bool StackEmpty(LinkStack Lhead)
 
 void Push(LinkStack& Lhead, int x)
 {
-	//Ã»ÓĞÕ»ÂúÉÏÒçÇé¿ö
+	//æ²¡æœ‰æ ˆæ»¡ä¸Šæº¢æƒ…å†µ
 	Linknode* n = (Linknode*)malloc(sizeof(Linknode));
 	n->data = x;
 	n->next = Lhead;
@@ -122,12 +122,12 @@ void DestroyStack(LinkStack& Lhead)
 }
 #pragma endregion
 
-#pragma region 3.1 ×ÛºÏÌâ
-//3 2)ÅĞ¶¨Ëù¸øµÄ²Ù×÷ĞòÁĞÊÇ·ñºÏ·¨
-//Ê±¼äÎªO(n),¿Õ¼äÎªO(1),nÎªĞòÁĞµÄ³¤¶È
+#pragma region 3.1 ç»¼åˆé¢˜
+//3 2)åˆ¤å®šæ‰€ç»™çš„æ“ä½œåºåˆ—æ˜¯å¦åˆæ³•
+//æ—¶é—´ä¸ºO(n),ç©ºé—´ä¸ºO(1),nä¸ºåºåˆ—çš„é•¿åº¦
 bool IsLegal(char seq[], int length)
 {
-	int stLen = 0;	//Õ»ÖĞÔªËØ¸öÊı
+	int stLen = 0;	//æ ˆä¸­å…ƒç´ ä¸ªæ•°
 	for (int i = 0; i < length; i++)
 	{
 		if (seq[i] == 'I')
@@ -149,7 +149,7 @@ typedef struct CharLinkNode {
 
 bool Push(CharLinkStack& Lhead, char c)
 {
-	//Ã»ÓĞÕ»ÂúÉÏÒçÇé¿ö
+	//æ²¡æœ‰æ ˆæ»¡ä¸Šæº¢æƒ…å†µ
 	CharLinkNode* n = (CharLinkNode*)malloc(sizeof(CharLinkNode));
 	n->data = c;
 	n->next = Lhead;
@@ -168,11 +168,11 @@ bool Pop(CharLinkStack& Lhead, char& c)
 	return true;
 }
 
-//4 ÅĞ¶ÏÁ´±íµÄÈ«²¿n¸ö×Ö·ûÊÇ·ñÖĞĞÄ¶Ô³Æ
-//Ê±¼äÎªO(n),¿Õ¼äÎªO(1)
+//4 åˆ¤æ–­é“¾è¡¨çš„å…¨éƒ¨nä¸ªå­—ç¬¦æ˜¯å¦ä¸­å¿ƒå¯¹ç§°
+//æ—¶é—´ä¸ºO(n),ç©ºé—´ä¸ºO(1)
 bool IsCentralSymmetry(CharLinkNode* L)
 {
-	if (L == nullptr || L->next == nullptr)	//¿Õ±í»òÖ»ÓĞÒ»¸öÔªËØ
+	if (L == nullptr || L->next == nullptr)	//ç©ºè¡¨æˆ–åªæœ‰ä¸€ä¸ªå…ƒç´ 
 		return true;
 	int n = 0;
 	CharLinkNode* p = L;
@@ -203,8 +203,8 @@ bool IsCentralSymmetry(CharLinkNode* L)
 	return true;
 }
 
-#pragma region 5 ¹²ÏíË³ĞòÕ»µÄ½øÕ»³öÕ»Ëã·¨
-//s1½øÕ»,³õÊ¼top1=-1
+#pragma region 5 å…±äº«é¡ºåºæ ˆçš„è¿›æ ˆå‡ºæ ˆç®—æ³•
+//s1è¿›æ ˆ,åˆå§‹top1=-1
 bool S1Push(int data[], int top1, int top2, int x)
 {
 	if (top2 - top1 == 1)
@@ -213,7 +213,7 @@ bool S1Push(int data[], int top1, int top2, int x)
 	return true;
 }
 
-//s1³öÕ»
+//s1å‡ºæ ˆ
 bool S1Pop(int data[], int top1, int& x)
 {
 	if (top1 == -1)
@@ -222,7 +222,7 @@ bool S1Pop(int data[], int top1, int& x)
 	return true;
 }
 
-//s2½øÕ»,³õÊ¼top2=MaxSize
+//s2è¿›æ ˆ,åˆå§‹top2=MaxSize
 bool S2Push(int data[], int top1, int top2, int x)
 {
 	if (top2 - top1 == 1)
@@ -231,7 +231,7 @@ bool S2Push(int data[], int top1, int top2, int x)
 	return true;
 }
 
-//s2³öÕ»
+//s2å‡ºæ ˆ
 bool S2Pop(int data[], int top2, int& x)
 {
 	if (top2 == MaxSize)

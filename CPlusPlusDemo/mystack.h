@@ -1,9 +1,9 @@
-#pragma once
+ï»¿#pragma once
 #include "myinclude.h"
 
 /**
-* @brief 36£ººó×º±í´ïÊ½
-* Ê±¼ä¸´ÔÓ¶ÈÎªO(n)£¬¿Õ¼ä¸´ÔÓ¶ÈÎªO(n)¡£
+* @brief 36ï¼šåç¼€è¡¨è¾¾å¼
+* æ—¶é—´å¤æ‚åº¦ä¸ºO(n)ï¼Œç©ºé—´å¤æ‚åº¦ä¸ºO(n)ã€‚
 */
 int evalRPN(vector<string>& tokens) {
 	stack<int> operands;
@@ -64,8 +64,8 @@ int evalRPNBetter(vector<string>& tokens) {
 }
 
 /**
-* @brief 37£ºĞ¡ĞĞĞÇÅö×²
-* Ê±¼ä¸´ÔÓ¶ÈÎªO(n)£¬¿Õ¼ä¸´ÔÓ¶ÈÎªO(1)£¬²»°üÀ¨·µ»ØÖµÄÚ´æ
+* @brief 37ï¼šå°è¡Œæ˜Ÿç¢°æ’
+* æ—¶é—´å¤æ‚åº¦ä¸ºO(n)ï¼Œç©ºé—´å¤æ‚åº¦ä¸ºO(1)ï¼Œä¸åŒ…æ‹¬è¿”å›å€¼å†…å­˜
 */
 vector<int> asteroidCollision(vector<int>& asteroids) {
 	vector<int> stack;
@@ -104,8 +104,8 @@ vector<int> asteroidCollision(vector<int>& asteroids) {
 }
 
 /**
-* @brief Âß¼­ÕûºÏºó´úÂë
-* Ê±¼ä¸´ÔÓ¶ÈÎªO(n)£¬¿Õ¼ä¸´ÔÓ¶ÈÎªO(1)£¬²»°üÀ¨·µ»ØÖµÄÚ´æ
+* @brief é€»è¾‘æ•´åˆåä»£ç 
+* æ—¶é—´å¤æ‚åº¦ä¸ºO(n)ï¼Œç©ºé—´å¤æ‚åº¦ä¸ºO(1)ï¼Œä¸åŒ…æ‹¬è¿”å›å€¼å†…å­˜
 */
 vector<int> asteroidCollision1(vector<int>& asteroids)
 {
@@ -126,13 +126,13 @@ vector<int> asteroidCollision1(vector<int>& asteroids)
 }
 
 /**
-* @brief 38£ºÃ¿ÈÕÎÂ¶È£¬±©Á¦·¨
-* Ê±¼ä¸´ÔÓ¶ÈÎªO(mn)£¬¿Õ¼ä¸´ÔÓ¶ÈÎªO(m)£¬ÆäÖĞmÎªÃ¿¸öÎÂ¶ÈÊ×´Î³öÏÖÏÂ±êµÄ»º´æ
+* @brief 38ï¼šæ¯æ—¥æ¸©åº¦ï¼Œæš´åŠ›æ³•
+* æ—¶é—´å¤æ‚åº¦ä¸ºO(mn)ï¼Œç©ºé—´å¤æ‚åº¦ä¸ºO(m)ï¼Œå…¶ä¸­mä¸ºæ¯ä¸ªæ¸©åº¦é¦–æ¬¡å‡ºç°ä¸‹æ ‡çš„ç¼“å­˜
 */
 vector<int> dailyTemperaturesForce(vector<int>& temperatures) {
 	int n = temperatures.size();
 	vector<int> waitingDays(n);
-	int next[101]{ 0 }; // Ã¿¸öÎÂ¶ÈµÚÒ»´Î³öÏÖµÄÏÂ±ê
+	int next[101]{ 0 }; // æ¯ä¸ªæ¸©åº¦ç¬¬ä¸€æ¬¡å‡ºç°çš„ä¸‹æ ‡
 	for (auto& t : next)
 		t = INT_MAX;
 	for (int i = n - 1; i >= 0; i--)
@@ -151,8 +151,8 @@ vector<int> dailyTemperaturesForce(vector<int>& temperatures) {
 }
 
 /**
-* @brief 38£ºÃ¿ÈÕÎÂ¶È£¬µ¥µ÷Õ»
-* Ê±¼ä¸´ÔÓ¶ÈÎªO(n)£¬ÆäÖĞnÊÇÎÂ¶ÈÁĞ±íµÄ³¤¶È¡£ÕıÏò±éÀúÎÂ¶ÈÁĞ±íÒ»±é£¬¶ÔÓÚÎÂ¶ÈÁĞ±íÖĞµÄÃ¿¸öÏÂ±ê£¬×î¶àÓĞÒ»´Î½øÕ»ºÍ³öÕ»µÄ²Ù×÷¡£¿Õ¼ä¸´ÔÓ¶ÈÎªO(n)¡£
+* @brief 38ï¼šæ¯æ—¥æ¸©åº¦ï¼Œå•è°ƒæ ˆ
+* æ—¶é—´å¤æ‚åº¦ä¸ºO(n)ï¼Œå…¶ä¸­næ˜¯æ¸©åº¦åˆ—è¡¨çš„é•¿åº¦ã€‚æ­£å‘éå†æ¸©åº¦åˆ—è¡¨ä¸€éï¼Œå¯¹äºæ¸©åº¦åˆ—è¡¨ä¸­çš„æ¯ä¸ªä¸‹æ ‡ï¼Œæœ€å¤šæœ‰ä¸€æ¬¡è¿›æ ˆå’Œå‡ºæ ˆçš„æ“ä½œã€‚ç©ºé—´å¤æ‚åº¦ä¸ºO(n)ã€‚
 */
 vector<int> dailyTemperatures(vector<int>& temperatures) {
 	int n = temperatures.size();
@@ -171,7 +171,7 @@ vector<int> dailyTemperatures(vector<int>& temperatures) {
 }
 
 /**
-* @note 38£ºÌá½»²»Í¨¹ı£¬Ô­Òò£º³¬³öÊ±¼äÏŞÖÆ
+* @note 38ï¼šæäº¤ä¸é€šè¿‡ï¼ŒåŸå› ï¼šè¶…å‡ºæ—¶é—´é™åˆ¶
 */
 vector<int> dailyTemperaturesTimeout(vector<int>& temperatures) {
 	vector<int> waitingDays;
@@ -190,32 +190,32 @@ vector<int> dailyTemperaturesTimeout(vector<int>& temperatures) {
 }
 
 /**
-* @brief 39£ºÌá½»²»Í¨¹ı£¬Ô­Òò£º³¬³öÊ±¼äÏŞÖÆ
-* Ê±¼ä¸´ÔÓ¶ÈÎªO(n^2)£¬¿Õ¼ä¸´ÔÓ¶ÈÎªO(1)¡£
+* @brief 39ï¼šæäº¤ä¸é€šè¿‡ï¼ŒåŸå› ï¼šè¶…å‡ºæ—¶é—´é™åˆ¶
+* æ—¶é—´å¤æ‚åº¦ä¸ºO(n^2)ï¼Œç©ºé—´å¤æ‚åº¦ä¸ºO(1)ã€‚
 */
 int largestRectangleAreaTimeout(vector<int>& heights) {
 	int n = heights.size();
 	int ans = 0;
 	for (int mid = 0; mid < n; ++mid) {
-		// Ã¶¾Ù¸ß
+		// æšä¸¾é«˜
 		int height = heights[mid];
 		int left = mid, right = mid;
-		// È·¶¨×óÓÒ±ß½ç
+		// ç¡®å®šå·¦å³è¾¹ç•Œ
 		while (left - 1 >= 0 && heights[left - 1] >= height) {
 			--left;
 		}
 		while (right + 1 < n && heights[right + 1] >= height) {
 			++right;
 		}
-		// ¼ÆËãÃæ»ı
+		// è®¡ç®—é¢ç§¯
 		ans = max(ans, (right - left + 1) * height);
 	}
 	return ans;
 }
 
 /**
-* @brief 39£ºÖ±·½Í¼×î´ó¾ØĞÎÃæ»ı
-* Ê±¼ä¸´ÔÓ¶ÈÎªO(n)£¬¿Õ¼ä¸´ÔÓ¶ÈÎªO(n)¡£
+* @brief 39ï¼šç›´æ–¹å›¾æœ€å¤§çŸ©å½¢é¢ç§¯
+* æ—¶é—´å¤æ‚åº¦ä¸ºO(n)ï¼Œç©ºé—´å¤æ‚åº¦ä¸ºO(n)ã€‚
 */
 int largestRectangleArea(vector<int>& heights) {
 	int n = heights.size();
@@ -245,17 +245,17 @@ int largestRectangleArea(vector<int>& heights) {
 }
 
 /**
-* @brief 40£º¾ØÕóÖĞ×î´óµÄ¾ØĞÎ
-* Ê±¼ä¸´ÔÓ¶ÈÎªO(m^2*n)£¬¿Õ¼ä¸´ÔÓ¶ÈÎªO(mn)£¬ÆäÖĞmÎªĞĞÊı£¬nÎªÁĞÊı¡£
+* @brief 40ï¼šçŸ©é˜µä¸­æœ€å¤§çš„çŸ©å½¢
+* æ—¶é—´å¤æ‚åº¦ä¸ºO(m^2*n)ï¼Œç©ºé—´å¤æ‚åº¦ä¸ºO(mn)ï¼Œå…¶ä¸­mä¸ºè¡Œæ•°ï¼Œnä¸ºåˆ—æ•°ã€‚
 */
 int maximalRectangle(vector<string>& matrix) {
-	// ¾ØÕó
+	// çŸ©é˜µ
 	int m = matrix.size();
 	if (m == 0)
 		return 0;
 	int	n = matrix[0].size();
 	vector<vector<int>> left(m, vector<int>(n));
-	// ÎÒÃÇÊ×ÏÈ¼ÆËã³ö¾ØÕóµÄÃ¿¸öÔªËØµÄ×ó±ßÁ¬Ğø 1 µÄÊıÁ¿£¬Ê¹ÓÃ¶şÎ¬Êı×é left ¼ÇÂ¼£¬ÆäÖĞ left[i][j] Îª¾ØÕóµÚ i ĞĞµÚ j ÁĞÔªËØµÄ×ó±ßÁ¬Ğø 1 µÄÊıÁ¿¡£
+	// æˆ‘ä»¬é¦–å…ˆè®¡ç®—å‡ºçŸ©é˜µçš„æ¯ä¸ªå…ƒç´ çš„å·¦è¾¹è¿ç»­ 1 çš„æ•°é‡ï¼Œä½¿ç”¨äºŒç»´æ•°ç»„ left è®°å½•ï¼Œå…¶ä¸­ left[i][j] ä¸ºçŸ©é˜µç¬¬ i è¡Œç¬¬ j åˆ—å…ƒç´ çš„å·¦è¾¹è¿ç»­ 1 çš„æ•°é‡ã€‚
 	for (int i = 0; i < m; ++i)
 	{
 		for (int j = 0; j < n; ++j)
@@ -264,7 +264,7 @@ int maximalRectangle(vector<string>& matrix) {
 				left[i][j] = (j == 0 ? 0 : left[i][j - 1]) + 1;
 		}
 	}
-	// ÇóÃæ»ı
+	// æ±‚é¢ç§¯
 	int ret = 0;
 	for (int i = 0; i < m; ++i)
 	{
@@ -286,17 +286,17 @@ int maximalRectangle(vector<string>& matrix) {
 }
 
 /**
-* @brief 40£º¾ØÕóÖĞ×î´óµÄ¾ØĞÎ
-* Ê¹ÓÃµ¥µ÷Õ»£¬Ê±¼ä¸´ÔÓ¶ÈÎªO(mn)£¬¿Õ¼ä¸´ÔÓ¶ÈÎªO(mn)£¬ÆäÖĞmÎªĞĞÊı£¬nÎªÁĞÊı¡£
+* @brief 40ï¼šçŸ©é˜µä¸­æœ€å¤§çš„çŸ©å½¢
+* ä½¿ç”¨å•è°ƒæ ˆï¼Œæ—¶é—´å¤æ‚åº¦ä¸ºO(mn)ï¼Œç©ºé—´å¤æ‚åº¦ä¸ºO(mn)ï¼Œå…¶ä¸­mä¸ºè¡Œæ•°ï¼Œnä¸ºåˆ—æ•°ã€‚
 */
 int maximalRectangleBetter(vector<string>& matrix) {
-	// ¾ØÕó
+	// çŸ©é˜µ
 	int m = matrix.size();
 	if (m == 0)
 		return 0;
 	int	n = matrix[0].size();
 	vector<vector<int>> left(m, vector<int>(n));
-	// ÎÒÃÇÊ×ÏÈ¼ÆËã³ö¾ØÕóµÄÃ¿¸öÔªËØµÄ×ó±ßÁ¬Ğø 1 µÄÊıÁ¿£¬Ê¹ÓÃ¶şÎ¬Êı×é left ¼ÇÂ¼£¬ÆäÖĞ left[i][j] Îª¾ØÕóµÚ i ĞĞµÚ j ÁĞÔªËØµÄ×ó±ßÁ¬Ğø 1 µÄÊıÁ¿¡£
+	// æˆ‘ä»¬é¦–å…ˆè®¡ç®—å‡ºçŸ©é˜µçš„æ¯ä¸ªå…ƒç´ çš„å·¦è¾¹è¿ç»­ 1 çš„æ•°é‡ï¼Œä½¿ç”¨äºŒç»´æ•°ç»„ left è®°å½•ï¼Œå…¶ä¸­ left[i][j] ä¸ºçŸ©é˜µç¬¬ i è¡Œç¬¬ j åˆ—å…ƒç´ çš„å·¦è¾¹è¿ç»­ 1 çš„æ•°é‡ã€‚
 	for (int i = 0; i < m; ++i)
 	{
 		for (int j = 0; j < n; ++j)
@@ -305,7 +305,7 @@ int maximalRectangleBetter(vector<string>& matrix) {
 				left[i][j] = (j == 0 ? 0 : left[i][j - 1]) + 1;
 		}
 	}
-	// ÀûÓÃµ¥µ÷Õ»ÇóÃæ»ı
+	// åˆ©ç”¨å•è°ƒæ ˆæ±‚é¢ç§¯
 	int ret = 0;
 	for (int j = 0; j < n; ++j)
 	{

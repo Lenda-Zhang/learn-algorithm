@@ -1,8 +1,8 @@
-#pragma once
+ï»¿#pragma once
 #include "myinclude.h"
 
 /**
-* @brief µ¥ÏòÁ´±í½Úµã
+* @brief å•å‘é“¾è¡¨èŠ‚ç‚¹
 */
 struct ListNode
 {
@@ -14,7 +14,7 @@ struct ListNode
 ListNode::ListNode(int val) : val(val), next(nullptr) { }
 
 /**
-* @brief ¶à¼¶Ë«ÏòÁ´±í½Úµã
+* @brief å¤šçº§åŒå‘é“¾è¡¨èŠ‚ç‚¹
 */
 class Node {
 public:
@@ -49,7 +49,7 @@ void print(ListNode* head)
 }
 
 /**
-* @brief ÔÚÎ²²¿Ìí¼ÓÒ»¸ö½Úµã
+* @brief åœ¨å°¾éƒ¨æ·»åŠ ä¸€ä¸ªèŠ‚ç‚¹
 */
 ListNode* append(ListNode* head, int val)
 {
@@ -66,7 +66,7 @@ ListNode* append(ListNode* head, int val)
 }
 
 /**
-* @brief Ê¹ÓÃÉÚ±ø½ÚµãÔÚÎ²²¿Ìí¼ÓÒ»¸ö½Úµã
+* @brief ä½¿ç”¨å“¨å…µèŠ‚ç‚¹åœ¨å°¾éƒ¨æ·»åŠ ä¸€ä¸ªèŠ‚ç‚¹
 */
 ListNode* appendWithDummy(ListNode* head, int val)
 {
@@ -95,7 +95,7 @@ Node* getLast(Node* head)
 }
 
 /**
-* Î´²âÊÔ
+* æœªæµ‹è¯•
 */
 Node* appendWithDummy(Node* head, int val)
 {
@@ -112,7 +112,7 @@ Node* appendWithDummy(Node* head, int val)
 }
 
 /**
-* @brief É¾³ıµÚÒ»¸öÖµÎªvalµÄ½Úµã
+* @brief åˆ é™¤ç¬¬ä¸€ä¸ªå€¼ä¸ºvalçš„èŠ‚ç‚¹
 */
 ListNode* deleteFirst(ListNode* head, int val)
 {
@@ -133,7 +133,7 @@ ListNode* deleteFirst(ListNode* head, int val)
 }
 
 /**
-* @brief Ê¹ÓÃÉÚ±ø½ÚµãÉ¾³ıµÚÒ»¸öÖµÎªvalµÄ½Úµã
+* @brief ä½¿ç”¨å“¨å…µèŠ‚ç‚¹åˆ é™¤ç¬¬ä¸€ä¸ªå€¼ä¸ºvalçš„èŠ‚ç‚¹
 */
 ListNode* deleteFirstWithDummy(ListNode* head, int val)
 {
@@ -153,7 +153,7 @@ ListNode* deleteFirstWithDummy(ListNode* head, int val)
 }
 
 /**
-* @brief 21£ºÉ¾³ıµ¹ÊıµÚk¸ö½Úµã£¬1¡Ük¡Ün
+* @brief 21ï¼šåˆ é™¤å€’æ•°ç¬¬kä¸ªèŠ‚ç‚¹ï¼Œ1â‰¤kâ‰¤n
 */
 ListNode* deleteNthFromEnd(ListNode* head, int n)
 {
@@ -176,7 +176,7 @@ ListNode* deleteNthFromEnd(ListNode* head, int n)
 }
 
 /**
-* @brief 21£ºÉ¾³ıµ¹ÊıµÚk¸ö½Úµã£¬1¡Ük¡Ün
+* @brief 21ï¼šåˆ é™¤å€’æ•°ç¬¬kä¸ªèŠ‚ç‚¹ï¼Œ1â‰¤kâ‰¤n
 */
 ListNode* deleteNthFromEndInBook(ListNode* head, int n)
 {
@@ -199,7 +199,7 @@ ListNode* deleteNthFromEndInBook(ListNode* head, int n)
 }
 
 /**
-* @brief 21Ä§¸Ä£ºÉ¾³ıµ¹ÊıµÚk¸ö½Úµã
+* @brief 21é­”æ”¹ï¼šåˆ é™¤å€’æ•°ç¬¬kä¸ªèŠ‚ç‚¹
 */
 ListNode* deleteNthFromEndHard(ListNode* head, int n)
 {
@@ -225,7 +225,7 @@ ListNode* deleteNthFromEndHard(ListNode* head, int n)
 }
 
 /**
-* @brief É¾³ıËùÓĞ½Úµã
+* @brief åˆ é™¤æ‰€æœ‰èŠ‚ç‚¹
 */
 ListNode* deleteAll(ListNode* head)
 {
@@ -242,7 +242,7 @@ ListNode* deleteAll(ListNode* head)
 }
 
 /**
-* @brief ÅĞ¶ÏÁ´±íÊÇ·ñ°üº¬»·£¬²¢Êä³ö»·ÖĞ½ÚµãÊı
+* @brief åˆ¤æ–­é“¾è¡¨æ˜¯å¦åŒ…å«ç¯ï¼Œå¹¶è¾“å‡ºç¯ä¸­èŠ‚ç‚¹æ•°
 */
 bool detectCycle(ListNode* head, int& ringNodeCount)
 {
@@ -265,7 +265,7 @@ bool detectCycle(ListNode* head, int& ringNodeCount)
 }
 
 /**
-* @brief 22£ºÁ´±íÖĞ»·µÄÈë¿Ú½Úµã
+* @brief 22ï¼šé“¾è¡¨ä¸­ç¯çš„å…¥å£èŠ‚ç‚¹
 */
 ListNode* getEntryOfRing(ListNode* head)
 {
@@ -284,7 +284,7 @@ ListNode* getEntryOfRing(ListNode* head)
 }
 
 /**
-* @brief 22£º²»ÖªµÀ»·ÖĞ½ÚµãÊıµÄ½â·¨
+* @brief 22ï¼šä¸çŸ¥é“ç¯ä¸­èŠ‚ç‚¹æ•°çš„è§£æ³•
 */
 ListNode* getEntryOfRing2(ListNode* head)
 {
@@ -314,8 +314,8 @@ ListNode* getEntryOfRing2(ListNode* head)
 }
 
 /**
-* @brief 23£ºÁ½¸öÁ´±íµÄµÚÒ»¸öÖØºÏ½Úµã
-* @note Ê¹ÓÃÕ»½øĞĞLIFO£¬Ê±¼ä¸´ÔÓ¶ÈO(m+n)£¬¿Õ¼ä¸´ÔÓ¶ÈO(m+n)
+* @brief 23ï¼šä¸¤ä¸ªé“¾è¡¨çš„ç¬¬ä¸€ä¸ªé‡åˆèŠ‚ç‚¹
+* @note ä½¿ç”¨æ ˆè¿›è¡ŒLIFOï¼Œæ—¶é—´å¤æ‚åº¦O(m+n)ï¼Œç©ºé—´å¤æ‚åº¦O(m+n)
 */
 ListNode* getIntersectionNode(ListNode* head1, ListNode* head2)
 {
@@ -347,19 +347,19 @@ ListNode* getIntersectionNode(ListNode* head1, ListNode* head2)
 }
 
 /**
-* ÉùÃ÷getLastº¯Êı
+* å£°æ˜getLastå‡½æ•°
 */
 ListNode* getLast(ListNode* head);
 
 /**
-* @brief 23£ºÁ½¸öÁ´±íµÄµÚÒ»¸öÖØºÏ½Úµã
-* @note ½«Á½¸öÁ´±í¸ÄÔì³ÉÒ»¸ö°üº¬»·µÄÁ´±í
+* @brief 23ï¼šä¸¤ä¸ªé“¾è¡¨çš„ç¬¬ä¸€ä¸ªé‡åˆèŠ‚ç‚¹
+* @note å°†ä¸¤ä¸ªé“¾è¡¨æ”¹é€ æˆä¸€ä¸ªåŒ…å«ç¯çš„é“¾è¡¨
 */
 ListNode* getIntersectionNode2(ListNode* head1, ListNode* head2)
 {
 	if (head1 == nullptr || head2 == nullptr)
 		return nullptr;
-	// ¹¹Ôì»·
+	// æ„é€ ç¯
 	ListNode* head = (head2 == nullptr ? head1 : head2);
 	ListNode* last = getLast(head);
 	last->next = head;
@@ -381,7 +381,7 @@ ListNode* getLast(ListNode* head)
 }
 
 /**
-* @brief 23£º±éÀúÁ´±í£¬Ç°ÒÆ½Ï³¤Á´±íµÄÖ¸Õë£¬Ê¹Á´±íºó¶Ë¶ÔÆë£¬Öğ²½ÒÆ¶¯½Úµã£¬ÕÒµ½µÚÒ»¸öÏàµÈµÄÕ»Ö¸Õë£¬ÎŞĞèÕ»¿Õ¼ä
+* @brief 23ï¼šéå†é“¾è¡¨ï¼Œå‰ç§»è¾ƒé•¿é“¾è¡¨çš„æŒ‡é’ˆï¼Œä½¿é“¾è¡¨åç«¯å¯¹é½ï¼Œé€æ­¥ç§»åŠ¨èŠ‚ç‚¹ï¼Œæ‰¾åˆ°ç¬¬ä¸€ä¸ªç›¸ç­‰çš„æ ˆæŒ‡é’ˆï¼Œæ— éœ€æ ˆç©ºé—´
 */
 ListNode* getIntersectionNodeInBook(ListNode* head1, ListNode* head2)
 {
@@ -405,7 +405,7 @@ ListNode* getIntersectionNodeInBook(ListNode* head1, ListNode* head2)
 }
 
 /**
-* @brief 23£º16ms£¬À´×Ôleetcode£¬Ã»Àí½â
+* @brief 23ï¼š16msï¼Œæ¥è‡ªleetcodeï¼Œæ²¡ç†è§£
 */
 ListNode* getIntersectionNodeBetter(ListNode* headA, ListNode* headB)
 {
@@ -423,8 +423,8 @@ ListNode* getIntersectionNodeBetter(ListNode* headA, ListNode* headB)
 }
 
 /**
-* @brief 24£º·´×ªÁ´±í
-* @note Ê±¼ä¸´ÔÓ¶ÈO(n)£¬¿Õ¼ä¸´ÔÓ¶ÈO(1)
+* @brief 24ï¼šåè½¬é“¾è¡¨
+* @note æ—¶é—´å¤æ‚åº¦O(n)ï¼Œç©ºé—´å¤æ‚åº¦O(1)
 */
 ListNode* reverseList(ListNode* head)
 {
@@ -442,28 +442,28 @@ ListNode* reverseList(ListNode* head)
 }
 
 /**
-* µİ¹é
+* é€’å½’
 */
 ListNode* reverseNext(ListNode* current, ListNode* prev)
 {
 	if (current == nullptr)
 		return prev;
-	// ×ÔĞ´
+	// è‡ªå†™
 	/*ListNode* next = current->next;
 	current->next = prev;
 	return reverseNext(next, current);*/
 
-	// ÍÆ¼ö£º
-	// recursion(1,null),recursion(2,1),recursion(3,2),recursion(4,3),recursion(5,4),recursion(null,5),µİÍÆ½áÊø¡£
-	// »ØËİ½×¶ÎĞŞ¸Ä½ÚµãµÄÖ¸Ïò£¬¼´·´×ª¡£
+	// æ¨èï¼š
+	// recursion(1,null),recursion(2,1),recursion(3,2),recursion(4,3),recursion(5,4),recursion(null,5),é€’æ¨ç»“æŸã€‚
+	// å›æº¯é˜¶æ®µä¿®æ”¹èŠ‚ç‚¹çš„æŒ‡å‘ï¼Œå³åè½¬ã€‚
 	ListNode* result = reverseNext(current->next, current);
 	current->next = prev;
 	return result;
 }
 
 /** @brief 24: 
-* Ê±¼ä¸´ÔÓ¶ÈÎªO(n)£¬Ã¿¸ö½Úµã·ÃÎÊÒ»´Î¡£
-* ¿Õ¼ä¸´ÔÓ¶ÈÎªO(n)£¬µİ¹éµÄÉî¶ÈÓëÁ´±í³¤¶ÈÏà¹Ø¡£
+* æ—¶é—´å¤æ‚åº¦ä¸ºO(n)ï¼Œæ¯ä¸ªèŠ‚ç‚¹è®¿é—®ä¸€æ¬¡ã€‚
+* ç©ºé—´å¤æ‚åº¦ä¸ºO(n)ï¼Œé€’å½’çš„æ·±åº¦ä¸é“¾è¡¨é•¿åº¦ç›¸å…³ã€‚
 */
 ListNode* reverseListRecursion(ListNode* head)
 {
@@ -471,7 +471,7 @@ ListNode* reverseListRecursion(ListNode* head)
 }
 
 /**
-* @brief 24£º0ms£¬À´×Ôleetcode
+* @brief 24ï¼š0msï¼Œæ¥è‡ªleetcode
 */
 ListNode* reverseListBetter(ListNode* head) {
 	if (head == nullptr || head->next == nullptr) {
@@ -491,7 +491,7 @@ void addToList(int val, int& carry, ListNode** head)
 }
 
 /**
-* @brief 25£ºµ¥ÏòÁ´±í×é³ÉµÄÁ½¸ö·Ç¸ºÕûÊıÏà¼Ó£¬ºÍÈÔÓÃµ¥ÏòÁ´±í±íÊ¾
+* @brief 25ï¼šå•å‘é“¾è¡¨ç»„æˆçš„ä¸¤ä¸ªéè´Ÿæ•´æ•°ç›¸åŠ ï¼Œå’Œä»ç”¨å•å‘é“¾è¡¨è¡¨ç¤º
 */
 ListNode* addTwoNumbers(ListNode* head1, ListNode* head2)
 {
@@ -542,7 +542,7 @@ ListNode* addReverse(ListNode* head1, ListNode* head2)
 }
 
 /**
-* @brief 25£ºÀ´×Ôleetcode£¬ÄÚ´æÕ¼ÓÃµÍ
+* @brief 25ï¼šæ¥è‡ªleetcodeï¼Œå†…å­˜å ç”¨ä½
 */
 ListNode* addTwoNumbersBetter(ListNode* head1, ListNode* head2)
 {
@@ -553,13 +553,13 @@ ListNode* addTwoNumbersBetter(ListNode* head1, ListNode* head2)
 }
 
 /**
-* @brief 26£ºÖØÅÅÁ´±í£ºL0->Ln->L1->Ln-1->L2->Ln-2->...
+* @brief 26ï¼šé‡æ’é“¾è¡¨ï¼šL0->Ln->L1->Ln-1->L2->Ln-2->...
 */
 void reorderList(ListNode* head)
 {
 	if (head == nullptr || head->next == nullptr)
 		return;
-	//¿ìÂıÖ¸Õë·¨°ÑÁ´±í·Ö³ÉÁ½°ë
+	//å¿«æ…¢æŒ‡é’ˆæ³•æŠŠé“¾è¡¨åˆ†æˆä¸¤åŠ
 	ListNode* prev = head, * slow = head->next, * fast = slow->next;
 	while (fast != nullptr && slow != nullptr)
 	{
@@ -586,7 +586,7 @@ void reorderList(ListNode* head)
 }
 
 /**
-* @brief 27£º»ØÎÄÁ´±í
+* @brief 27ï¼šå›æ–‡é“¾è¡¨
 */
 bool isPalindrome(ListNode* head)
 {
@@ -626,7 +626,7 @@ void print(Node* head)
 	std::cout << "<end>" << std::endl;
 }
 
-//´òÓ¡Ñ­»·Á´±í(²»´øÍ·½áµã)
+//æ‰“å°å¾ªç¯é“¾è¡¨(ä¸å¸¦å¤´ç»“ç‚¹)
 void printCircularList(Node* head)
 {
 	if (head != nullptr)
@@ -642,7 +642,7 @@ void printCircularList(Node* head)
 }
 
 /**
-* @brief 28£ºÕ¹Æ½¶à¼¶Ë«ÏòÁ´±í
+* @brief 28ï¼šå±•å¹³å¤šçº§åŒå‘é“¾è¡¨
 */
 Node* flatten(Node* head)
 {
@@ -667,7 +667,7 @@ Node* flatten(Node* head)
 }
 
 /**
-* @brief 29£º²åÈëÒ»¸öÖµ£¬Ê¹ÅÅĞòµÄÑ­»·Á´±íÈÔÈ»ÓĞĞò
+* @brief 29ï¼šæ’å…¥ä¸€ä¸ªå€¼ï¼Œä½¿æ’åºçš„å¾ªç¯é“¾è¡¨ä»ç„¶æœ‰åº
 */
 Node* insert(Node* head, int insertVal)
 {
@@ -681,28 +681,28 @@ Node* insert(Node* head, int insertVal)
 	Node* p = head->next, * min = head, * max = head;
 	do
 	{
-		if (p->val >= max->val) // ÕÒµ½×îºóÒ»¸öÖµ×î´óµÄ½Úµã
+		if (p->val >= max->val) // æ‰¾åˆ°æœ€åä¸€ä¸ªå€¼æœ€å¤§çš„èŠ‚ç‚¹
 			max = p;
 		p = p->next;
 	} while (p != head);
-	min = max->next; // ×îºóÒ»¸öÖµ×î´óµÄ½ÚµãµÄÏÂÒ»¸ö½Úµã¼´ÎªµÚÒ»¸öÖµ×îĞ¡µÄ½Úµã
-	if (insertVal <= min->val || insertVal >= max->val) // Èô²åÈëÖµ±ÈminĞ¡»ò±Èmax´ó£¬Ôò²åÈëminºÍmaxÖ®¼ä
+	min = max->next; // æœ€åä¸€ä¸ªå€¼æœ€å¤§çš„èŠ‚ç‚¹çš„ä¸‹ä¸€ä¸ªèŠ‚ç‚¹å³ä¸ºç¬¬ä¸€ä¸ªå€¼æœ€å°çš„èŠ‚ç‚¹
+	if (insertVal <= min->val || insertVal >= max->val) // è‹¥æ’å…¥å€¼æ¯”minå°æˆ–æ¯”maxå¤§ï¼Œåˆ™æ’å…¥minå’Œmaxä¹‹é—´
 	{
 		newNode->next = min;
 		max->next = newNode;
 	}
 	else
 	{
-		// ´ÓÖµ×îĞ¡µÄ½Úµã¿ªÊ¼ÕÒ£¬ÕÒµ½×îºóÒ»¸ö±ÈinvertValĞ¡µÄ£¬µÚÒ»¸ö±ÈinsertVal´óµÄ½Úµãp£¬²åÔÚÁ½ÕßÖ®¼ä
+		// ä»å€¼æœ€å°çš„èŠ‚ç‚¹å¼€å§‹æ‰¾ï¼Œæ‰¾åˆ°æœ€åä¸€ä¸ªæ¯”invertValå°çš„ï¼Œç¬¬ä¸€ä¸ªæ¯”insertValå¤§çš„èŠ‚ç‚¹pï¼Œæ’åœ¨ä¸¤è€…ä¹‹é—´
 		p = min;
 		Node* lastLessThan = nullptr, * firstMoreThan = nullptr;
 		do
 		{
-			if (p->val <= insertVal) // ÕÒµ½×îºóÒ»¸ö±ÈinvertValĞ¡µÄ
+			if (p->val <= insertVal) // æ‰¾åˆ°æœ€åä¸€ä¸ªæ¯”invertValå°çš„
 				lastLessThan = p;
 			p = p->next;
 		} while (p != min);
-		firstMoreThan = lastLessThan->next; // ×îºóÒ»¸ö±ÈinvertValĞ¡µÄ½ÚµãµÄÏÂÒ»¸ö½Úµã¼´ÎªµÚÒ»¸ö±ÈinsertVal´óµÄ½Úµã
+		firstMoreThan = lastLessThan->next; // æœ€åä¸€ä¸ªæ¯”invertValå°çš„èŠ‚ç‚¹çš„ä¸‹ä¸€ä¸ªèŠ‚ç‚¹å³ä¸ºç¬¬ä¸€ä¸ªæ¯”insertValå¤§çš„èŠ‚ç‚¹
 		newNode->next = firstMoreThan;
 		lastLessThan->next = newNode;
 	}

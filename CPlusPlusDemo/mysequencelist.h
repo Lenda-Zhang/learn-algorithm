@@ -1,14 +1,14 @@
-#pragma once
+ï»¿#pragma once
 #include "myinclude.h"
 #include "wdlinklist.h"
 
-#pragma region ¾²Ì¬·ÖÅä
-//¶¨ÒåÏßĞÔ±íµÄ×î´ó³¤¶È
+#pragma region é™æ€åˆ†é…
+//å®šä¹‰çº¿æ€§è¡¨çš„æœ€å¤§é•¿åº¦
 #define MaxSize 50
 typedef struct {
-	int data[MaxSize];	//Ë³Ğò±íµÄÔªËØ
-	int length;	//Ë³Ğò±íµÄµ±Ç°³¤¶È
-}MySqList;	//Ë³Ğò±íµÄÀàĞÍ¶¨Òå
+	int data[MaxSize];	//é¡ºåºè¡¨çš„å…ƒç´ 
+	int length;	//é¡ºåºè¡¨çš„å½“å‰é•¿åº¦
+}MySqList;	//é¡ºåºè¡¨çš„ç±»å‹å®šä¹‰
 
 void InitList(MySqList& L)
 {
@@ -27,12 +27,12 @@ void DestroyList(MySqList& L)
 	L.length = 0;
 }
 
-//ÔÚË³Ğò±íLµÄµÚi¸öÎ»ÖÃ²åÈëĞÂÔªËØe
+//åœ¨é¡ºåºè¡¨Lçš„ç¬¬iä¸ªä½ç½®æ’å…¥æ–°å…ƒç´ e
 bool ListInsert(MySqList& L, int i, int e)
 {
-	if (i<1 || i>L.length + 1)	// ÅĞ¶ÏiµÄ·¶Î§ÊÇ·ñÏàµÈ
+	if (i<1 || i>L.length + 1)	// åˆ¤æ–­içš„èŒƒå›´æ˜¯å¦ç›¸ç­‰
 		return false;
-	if (L.length >= MaxSize)	// µ±Ç°´æ´¢Î»ÖÃÒÑÂú£¬²»ÄÜ¼ÓÈë
+	if (L.length >= MaxSize)	// å½“å‰å­˜å‚¨ä½ç½®å·²æ»¡ï¼Œä¸èƒ½åŠ å…¥
 		return false;
 	for (int j = L.length; j >= i; j--)
 	{
@@ -43,7 +43,7 @@ bool ListInsert(MySqList& L, int i, int e)
 	return true;
 }
 
-//É¾³ıË³Ğò±íLÖĞµÚi¸öÎ»ÖÃµÄÔªËØ
+//åˆ é™¤é¡ºåºè¡¨Lä¸­ç¬¬iä¸ªä½ç½®çš„å…ƒç´ 
 bool ListDelete(MySqList& L, int i, int& e)
 {
 	if (i<1 || i>L.length)
@@ -57,7 +57,7 @@ bool ListDelete(MySqList& L, int i, int& e)
 	return true;
 }
 
-//ÔÚË³Ğò±íLÖĞ²éÕÒµÚÒ»¸öÔªËØÖµµÈÓÚeµÄÔªËØ£¬²¢·µ»ØÆäÎ»Ğò
+//åœ¨é¡ºåºè¡¨Lä¸­æŸ¥æ‰¾ç¬¬ä¸€ä¸ªå…ƒç´ å€¼ç­‰äºeçš„å…ƒç´ ï¼Œå¹¶è¿”å›å…¶ä½åº
 int LocateElem(MySqList L, int e)
 {
 	for (int i = 0; i < L.length; i++)
@@ -65,7 +65,7 @@ int LocateElem(MySqList L, int e)
 		if (L.data[i] == e)
 			return i + 1;
 	}
-	return 0;	//ËµÃ÷²éÕÒÊ§°Ü
+	return 0;	//è¯´æ˜æŸ¥æ‰¾å¤±è´¥
 }
 
 void PrintList(MySqList L)
@@ -78,7 +78,7 @@ void PrintList(MySqList L)
 }
 #pragma endregion
 
-#pragma region ¶¯Ì¬·ÖÅä
+#pragma region åŠ¨æ€åˆ†é…
 #define InitSize 100
 typedef struct {
 	int* data;
@@ -104,8 +104,8 @@ void DestroyListDA(MySqListDA& L)
 }
 #pragma endregion
 
-#pragma region 2.2 ×ÛºÏÌâ
-//01 Ê±¼äO(n),¿Õ¼äO(1)
+#pragma region 2.2 ç»¼åˆé¢˜
+//01 æ—¶é—´O(n),ç©ºé—´O(1)
 bool DeleteMin(MySqList& L, int& e)
 {
 	if (L.length <= 0)
@@ -125,7 +125,7 @@ bool DeleteMin(MySqList& L, int& e)
 	return true;
 }
 
-//02 Ê±¼äO(n),¿Õ¼äO(1)
+//02 æ—¶é—´O(n),ç©ºé—´O(1)
 void Reverse(MySqList& L)
 {
 	for (int i = 0; i < L.length / 2; i++)
@@ -136,12 +136,12 @@ void Reverse(MySqList& L)
 	}
 }
 
-//03 Ê±¼äO(n),¿Õ¼äO(1)
+//03 æ—¶é—´O(n),ç©ºé—´O(1)
 void RemoveAllElemsWithValX(MySqList& L, int x)
 {
 	if (L.length <= 0)
 		return;
-	int cnt = 0;	//ÖµÎªxµÄÔªËØ¸öÊı
+	int cnt = 0;	//å€¼ä¸ºxçš„å…ƒç´ ä¸ªæ•°
 	int firstPos = -1;
 	for (int i = 0; i < L.length; i++)
 	{
@@ -166,7 +166,7 @@ void RemoveAllElemsWithValX(MySqList& L, int x)
 	}
 }
 
-//04 Ê±¼äO(n),¿Õ¼äO(1)
+//04 æ—¶é—´O(n),ç©ºé—´O(1)
 bool RemoveFromOrderedList(MySqList& L, int s, int t)
 {
 	if (L.length <= 0 || s >= t)
@@ -189,7 +189,7 @@ bool RemoveFromOrderedList(MySqList& L, int s, int t)
 	return true;
 }
 
-//05 Ê±¼äO(n),¿Õ¼äO(1)
+//05 æ—¶é—´O(n),ç©ºé—´O(1)
 bool RemoveFromList(MySqList& L, int s, int t)
 {
 	if (L.length <= 0 || s >= t)
@@ -219,7 +219,7 @@ bool RemoveFromList(MySqList& L, int s, int t)
 	return true;
 }
 
-//06 ÓĞĞò±í,Ê±¼äO(n),¿Õ¼äO(1)
+//06 æœ‰åºè¡¨,æ—¶é—´O(n),ç©ºé—´O(1)
 void DeleteDuplicateFromSort(MySqList& L)
 {
 	if (L.length <= 0)
@@ -233,47 +233,47 @@ void DeleteDuplicateFromSort(MySqList& L)
 	L.length = i + 1;
 }
 
-//06 Ë¼¿¼:ÎŞĞò±í,Ê¹ÓÃÉ¢ÁĞ±íÀ­Á´·¨,Ê±¼äO(n),¿Õ¼äO(n)
+//06 æ€è€ƒ:æ— åºè¡¨,ä½¿ç”¨æ•£åˆ—è¡¨æ‹‰é“¾æ³•,æ—¶é—´O(n),ç©ºé—´O(n)
 void DeleteDuplicate(MySqList& L)
 {
 	int p = L.length, k = 0;
-	LNode* H[MaxSize], * S;//H[M]ÎªÉ¢ÁĞ±íµÄÊı×é²¿·Ö
+	LNode* H[MaxSize], * S;//H[M]ä¸ºæ•£åˆ—è¡¨çš„æ•°ç»„éƒ¨åˆ†
 	for (int i = 0; i < p; i++)
 		H[i] = NULL;
 	for (int i = 0, j; i < L.length; i++)
 	{
-		j = L.data[i] % p;//jÎªÔªËØ¶ÔÓ¦µÄÉ¢ÁĞ±íÊı×éµ¥Ôª
-		if (H[j] == NULL)//ÅĞ¶Ï¶ÔÓ¦Î»ÖÃÁ´±íÊÇ·ñÎª¿Õ
+		j = L.data[i] % p;//jä¸ºå…ƒç´ å¯¹åº”çš„æ•£åˆ—è¡¨æ•°ç»„å•å…ƒ
+		if (H[j] == NULL)//åˆ¤æ–­å¯¹åº”ä½ç½®é“¾è¡¨æ˜¯å¦ä¸ºç©º
 		{
-			S = (LNode*)malloc(sizeof(LNode));//´´½¨Í¬Òå´Ê½Úµã
+			S = (LNode*)malloc(sizeof(LNode));//åˆ›å»ºåŒä¹‰è¯èŠ‚ç‚¹
 			S->data = L.data[i];
 			S->next = NULL;
 			H[j] = S;
-			L.data[k++] = L.data[i];//½«ÓëÔªËØ·ÅÈëĞÂ±íÖĞ
+			L.data[k++] = L.data[i];//å°†ä¸å…ƒç´ æ”¾å…¥æ–°è¡¨ä¸­
 		}
-		else//¶ÔÓ¦Î»ÖÃÁ´±í²»Îª¿Õ
+		else//å¯¹åº”ä½ç½®é“¾è¡¨ä¸ä¸ºç©º
 		{
 			S = H[j];
-			while (S != NULL)//ÅĞ¶ÏÍ¬Òå´ÊÁ´±íÖĞÊÇ·ñÓĞÏàÍ¬ÔªËØ
+			while (S != NULL)//åˆ¤æ–­åŒä¹‰è¯é“¾è¡¨ä¸­æ˜¯å¦æœ‰ç›¸åŒå…ƒç´ 
 			{
 				if (S->data == L.data[i])
 					break;
 				S = S->next;
 			}
-			if (S == NULL)//Ã»ÓĞÏàÍ¬ÔªËØ
+			if (S == NULL)//æ²¡æœ‰ç›¸åŒå…ƒç´ 
 			{
-				S = (LNode*)malloc(sizeof(LNode)); // ´´½¨Í¬Òå´Ê½Úµã
+				S = (LNode*)malloc(sizeof(LNode)); // åˆ›å»ºåŒä¹‰è¯èŠ‚ç‚¹
 				S->data = L.data[i];
 				S->next = H[j];
 				H[j] = S;
-				L.data[k++] = L.data[i];//½«ÓëÔªËØ·ÅÈëĞÂ±íÖĞ
+				L.data[k++] = L.data[i];//å°†ä¸å…ƒç´ æ”¾å…¥æ–°è¡¨ä¸­
 			}
 		}
 	}
 	L.length = k;
 }
 
-//07 Ê±¼äO(a.length+b.length),¿Õ¼äO(1)
+//07 æ—¶é—´O(a.length+b.length),ç©ºé—´O(1)
 bool MergeSortList(MySqList a, MySqList b, MySqList& c)
 {
 	if (a.length + b.length > MaxSize)
@@ -303,7 +303,7 @@ void printArray(int a[], int arraySize)
 	cout << endl;
 }
 
-//08 ¸¨Öúº¯Êı:left,right·¶Î§:0~arraySize-1
+//08 è¾…åŠ©å‡½æ•°:left,rightèŒƒå›´:0~arraySize-1
 bool MyReverseList(int a[], int left, int right, int arraySize)
 {
 	if (arraySize <= 0 || left > right || right > arraySize - 1)
@@ -317,7 +317,7 @@ bool MyReverseList(int a[], int left, int right, int arraySize)
 	return true;
 }
 
-//08 Ê±¼äO(n),¿Õ¼äO(1)
+//08 æ—¶é—´O(n),ç©ºé—´O(1)
 void Exchange(int a[], int m, int n, int arraySize)
 {
 	MyReverseList(a, 0, m - 1, arraySize);
@@ -325,7 +325,7 @@ void Exchange(int a[], int m, int n, int arraySize)
 	MyReverseList(a, 0, m + n - 1, arraySize);
 }
 
-//09 ÓĞĞò±íÇÒÒªÇóÊ±¼ä×îÉÙ,ÔòÊ¹ÓÃÕÛ°ë²éÕÒ,Ê±¼äO(log2n),¿Õ¼äO(1)
+//09 æœ‰åºè¡¨ä¸”è¦æ±‚æ—¶é—´æœ€å°‘,åˆ™ä½¿ç”¨æŠ˜åŠæŸ¥æ‰¾,æ—¶é—´O(log2n),ç©ºé—´O(1)
 void FindOrInsert(int a[], int x, int& arraySize)
 {
 	int low = 0, high = arraySize - 1, mid;
@@ -339,13 +339,13 @@ void FindOrInsert(int a[], int x, int& arraySize)
 		else
 			low = mid + 1;
 	}
-	if (a[mid] == x && mid != (arraySize - 1))	//ÕÒµ½ÔòÓëºó¼ÌÔªËØ»¥»»
+	if (a[mid] == x && mid != (arraySize - 1))	//æ‰¾åˆ°åˆ™ä¸åç»§å…ƒç´ äº’æ¢
 	{
 		int temp = a[mid];
 		a[mid] = a[mid + 1];
 		a[mid + 1] = temp;
 	}
-	//Ã»ÕÒµ½£¬Ôò²åÈëÏßĞÔ±í
+	//æ²¡æ‰¾åˆ°ï¼Œåˆ™æ’å…¥çº¿æ€§è¡¨
 	if (low > high)
 	{
 		int i;
@@ -366,7 +366,7 @@ void Reverse(int a[], int from, int to)
 		a[from + i] = a[to - i];
 		a[to - i] = temp;
 	}
-	//×Ô×ö
+	//è‡ªåš
 	/*for (int i = from, j = to; i < j; i++, j--)
 	{
 		int temp = a[i];
@@ -375,8 +375,8 @@ void Reverse(int a[], int from, int to)
 	}*/
 }
 
-//10 Ñ­»·×óÒÆp¸öÔªËØ,0<p<n,Ê±¼ä¿Õ¼ä¶¼¾¡¿ÉÄÜ¸ßĞ§
-// Ê±¼äO(n),¿Õ¼äO(1)
+//10 å¾ªç¯å·¦ç§»pä¸ªå…ƒç´ ,0<p<n,æ—¶é—´ç©ºé—´éƒ½å°½å¯èƒ½é«˜æ•ˆ
+// æ—¶é—´O(n),ç©ºé—´O(1)
 void Converse(int a[], int n, int p)
 {
 	Reverse(a, 0, p - 1);
@@ -384,10 +384,10 @@ void Converse(int a[], int n, int p)
 	Reverse(a, 0, n - 1);
 }
 
-//11 ÕÒ³öµÈ³¤ÉıĞòĞòÁĞaºÍbµÄÖĞÎ»Êı,³¤¶È>=1,Ê±¼ä¿Õ¼ä¶¼¾¡¿ÉÄÜ¸ßĞ§,Ê±¼äO(n),¿Õ¼äO(1)
+//11 æ‰¾å‡ºç­‰é•¿å‡åºåºåˆ—aå’Œbçš„ä¸­ä½æ•°,é•¿åº¦>=1,æ—¶é—´ç©ºé—´éƒ½å°½å¯èƒ½é«˜æ•ˆ,æ—¶é—´O(n),ç©ºé—´O(1)
 int FindMedian(int a[], int b[], int arraySize)
 {
-	int i = 0, j = 0, k = 0, median = a[0];	//ÖĞÎ»ÊıÓ¦Îª°üº¬aºÍbËùÓĞÔªËØµÄÉıĞòĞòÁĞÖĞµÄµÚarraySize¸öÊı£¬median¼ÇÂ¼ÖĞÎ»Êı£¬k¼ÇÂ¼µ±Ç°ÊÇµÚ¼¸¸öÊı
+	int i = 0, j = 0, k = 0, median = a[0];	//ä¸­ä½æ•°åº”ä¸ºåŒ…å«aå’Œbæ‰€æœ‰å…ƒç´ çš„å‡åºåºåˆ—ä¸­çš„ç¬¬arraySizeä¸ªæ•°ï¼Œmedianè®°å½•ä¸­ä½æ•°ï¼Œkè®°å½•å½“å‰æ˜¯ç¬¬å‡ ä¸ªæ•°
 	while (i < arraySize && j < arraySize)
 	{
 		if (a[i] > b[j])
@@ -401,7 +401,7 @@ int FindMedian(int a[], int b[], int arraySize)
 	return median;
 }
 
-//12 ÕÒ³öÖ÷ÔªËØ,0<=ai<n,Ê±¼ä¿Õ¼ä¶¼¾¡¿ÉÄÜ¸ßĞ§,Ê±¼äO(n),¿Õ¼äO(n)
+//12 æ‰¾å‡ºä¸»å…ƒç´ ,0<=ai<n,æ—¶é—´ç©ºé—´éƒ½å°½å¯èƒ½é«˜æ•ˆ,æ—¶é—´O(n),ç©ºé—´O(n)
 int FindMajorElement(int a[], int n)
 {
 	if (n < 1)
@@ -426,10 +426,10 @@ int FindMajorElement(int a[], int n)
 	return -1;
 }
 
-//13 ÕÒ³öÊı×éÖĞÎ´³öÏÖµÄ×îĞ¡ÕıÕûÊı,ÔÚÊ±¼äÉÏ¾¡¿ÉÄÜ¸ßĞ§,Òò´Ë²ÉÓÃ¿Õ¼ä»»Ê±¼ä,Ê±¼äO(n),¿Õ¼äO(n)
+//13 æ‰¾å‡ºæ•°ç»„ä¸­æœªå‡ºç°çš„æœ€å°æ­£æ•´æ•°,åœ¨æ—¶é—´ä¸Šå°½å¯èƒ½é«˜æ•ˆ,å› æ­¤é‡‡ç”¨ç©ºé—´æ¢æ—¶é—´,æ—¶é—´O(n),ç©ºé—´O(n)
 int FindMinPositiveInt(int a[], int n)
 {
-	int* const b = new int[n] {0};	//ÒÀ´Î´æ´¢Êı×Ö1~nÊÇ·ñ³öÏÖ£¬Èç£ºb[0]=1±íÊ¾Êı×Ö1³öÏÖ£¬b[n-1]±íÊ¾Êı×Ön³öÏÖ
+	int* const b = new int[n] {0};	//ä¾æ¬¡å­˜å‚¨æ•°å­—1~næ˜¯å¦å‡ºç°ï¼Œå¦‚ï¼šb[0]=1è¡¨ç¤ºæ•°å­—1å‡ºç°ï¼Œb[n-1]è¡¨ç¤ºæ•°å­—nå‡ºç°
 	for (int i = 0; i < n; i++)
 	{
 		if (a[i] > 0 && a[i] <= n)
@@ -454,15 +454,15 @@ void sortThreeInts(int& a, int& b, int& c)
 		swap(b, c);
 }
 
-//aÊÇ·ñÎªÈı¸öÊıÖĞµÄ×îĞ¡Öµ
+//aæ˜¯å¦ä¸ºä¸‰ä¸ªæ•°ä¸­çš„æœ€å°å€¼
 bool xls_min(int a, int b, int c)
 {
 	if (a <= b && a <= c) return true;
 	return false;
 }
 
-//14 ¼ÆËã²¢Êä³öËùÓĞÈıÔª×éÖĞµÄ×îĞ¡¾àÀë,D=|a-b|+|b-c|+|c-a|,Ê±¼ä¿Õ¼ä¶¼¾¡¿ÉÄÜ¸ßĞ§,
-//Ê±¼äO(n),¿Õ¼äO(1),nÎªÈı¸öÊı×é³¤¶ÈÖ®ºÍ
+//14 è®¡ç®—å¹¶è¾“å‡ºæ‰€æœ‰ä¸‰å…ƒç»„ä¸­çš„æœ€å°è·ç¦»,D=|a-b|+|b-c|+|c-a|,æ—¶é—´ç©ºé—´éƒ½å°½å¯èƒ½é«˜æ•ˆ,
+//æ—¶é—´O(n),ç©ºé—´O(1),nä¸ºä¸‰ä¸ªæ•°ç»„é•¿åº¦ä¹‹å’Œ
 int GetTripleMinDistance(int A[], int n, int B[], int m, int C[], int p)
 {
 	int dMin = INT_MAX;
@@ -472,7 +472,7 @@ int GetTripleMinDistance(int A[], int n, int B[], int m, int C[], int p)
 		int d = abs(A[i] - B[j]) + abs(B[j] - C[k]) + abs(C[k] - A[i]);
 		if (d < dMin)
 			dMin = d;
-		if (xls_min(A[i], B[j], C[k]))	//¸üĞÂa
+		if (xls_min(A[i], B[j], C[k]))	//æ›´æ–°a
 			i++;
 		else if (xls_min(B[j], A[i], C[k]))
 			j++;

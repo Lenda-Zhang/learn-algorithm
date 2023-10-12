@@ -1,36 +1,36 @@
-#pragma warning(disable:4996)	//ÆÁ±Îerror C4996: 'scanf': This function or variable may be unsafe
+ï»¿#pragma warning(disable:4996)	//å±è”½error C4996: 'scanf': This function or variable may be unsafe
 #pragma once
 #include "myinclude.h"
 
-//µ¥Á´±í
+//å•é“¾è¡¨
 typedef struct LNode
 {
 	int data;
 	struct LNode* next;
 }LNode, * LinkList;
 
-//Ë«Á´±í
+//åŒé“¾è¡¨
 typedef struct DNode {
 	int data;
 	struct DNode* prior, * next;
 } DNode, * DLinkList;
 
 #define MaxSize 50
-//¾²Ì¬Á´±í
+//é™æ€é“¾è¡¨
 typedef struct
 {
 	int data;
 	int next;
 } SLinkList[MaxSize];
 
-#pragma region µ¥Á´±íµÄ»ù±¾²Ù×÷
-//Í·²å·¨ÄæÏò½¨Á¢µ¥Á´±í
-//Ã¿¸ö½áµã²åÈëÊ±¼äÎªO(1)£¬Éèµ¥Á´±í±í³¤Îªn£¬Ôò×ÜÊ±¼äÎªO(n)
+#pragma region å•é“¾è¡¨çš„åŸºæœ¬æ“ä½œ
+//å¤´æ’æ³•é€†å‘å»ºç«‹å•é“¾è¡¨
+//æ¯ä¸ªç»“ç‚¹æ’å…¥æ—¶é—´ä¸ºO(1)ï¼Œè®¾å•é“¾è¡¨è¡¨é•¿ä¸ºnï¼Œåˆ™æ€»æ—¶é—´ä¸ºO(n)
 LinkList HeadInsert(LinkList& L)
 {
 	LNode* s;
 	int x;
-	L = (LinkList)malloc(sizeof(LNode));	//´´½¨Í·½áµã
+	L = (LinkList)malloc(sizeof(LNode));	//åˆ›å»ºå¤´ç»“ç‚¹
 	L->next = nullptr;
 	scanf("%d", &x);
 	while (x != 9999)
@@ -44,13 +44,13 @@ LinkList HeadInsert(LinkList& L)
 	return L;
 }
 
-//Î²²å·¨ÕıÏò½¨Á¢µ¥Á´±í
-//Ã¿¸ö½áµã²åÈëÊ±¼äÎªO(1)£¬Éèµ¥Á´±í±í³¤Îªn£¬Ôò×ÜÊ±¼äÎªO(n)
+//å°¾æ’æ³•æ­£å‘å»ºç«‹å•é“¾è¡¨
+//æ¯ä¸ªç»“ç‚¹æ’å…¥æ—¶é—´ä¸ºO(1)ï¼Œè®¾å•é“¾è¡¨è¡¨é•¿ä¸ºnï¼Œåˆ™æ€»æ—¶é—´ä¸ºO(n)
 LinkList TailInsert(LinkList& L)
 {
 	int x;
 	L = (LinkList)malloc(sizeof(LNode));
-	LNode* s, * r = L;	//rÎªÎ²Ö¸Õë
+	LNode* s, * r = L;	//rä¸ºå°¾æŒ‡é’ˆ
 	scanf("%d", &x);
 	while (x != 9999)
 	{
@@ -60,12 +60,12 @@ LinkList TailInsert(LinkList& L)
 		r = s;
 		scanf("%d", &x);
 	}
-	r->next = nullptr;	//Î²½áµãÖ¸ÕëÖÃ¿Õ£¬Â©Ğ´Ôò±éÀú½áµãÊ±ÕÒ²»µ½½áÊø±êÖ¾nullptr
+	r->next = nullptr;	//å°¾ç»“ç‚¹æŒ‡é’ˆç½®ç©ºï¼Œæ¼å†™åˆ™éå†ç»“ç‚¹æ—¶æ‰¾ä¸åˆ°ç»“æŸæ ‡å¿—nullptr
 	return L;
 }
 
-//°´ĞòºÅ²éÕÒ½áµã£¬²éÕÒµÚi¸ö½áµã
-//Ê±¼äÎªO(n)
+//æŒ‰åºå·æŸ¥æ‰¾ç»“ç‚¹ï¼ŒæŸ¥æ‰¾ç¬¬iä¸ªç»“ç‚¹
+//æ—¶é—´ä¸ºO(n)
 LNode* GetItemByIndex(LinkList L, int i)
 {
 	if (i < 1)
@@ -80,8 +80,8 @@ LNode* GetItemByIndex(LinkList L, int i)
 	return p;
 }
 
-//°´Öµ²éÕÒ½áµã
-//Ê±¼äÎªO(n)
+//æŒ‰å€¼æŸ¥æ‰¾ç»“ç‚¹
+//æ—¶é—´ä¸ºO(n)
 LNode* GetItemByVal(LinkList L, int val)
 {
 	LNode* p = L->next;
@@ -94,8 +94,8 @@ LNode* GetItemByVal(LinkList L, int val)
 	return p;
 }
 
-//Çó±í³¤
-//Ê±¼äÎªO(n)
+//æ±‚è¡¨é•¿
+//æ—¶é—´ä¸ºO(n)
 int GetLength(LinkList L)
 {
 	int cnt = 0;
@@ -108,9 +108,9 @@ int GetLength(LinkList L)
 	return cnt;
 }
 
-//²åÈë½áµã£º½«ÖµÎªxµÄĞÂ½áµã²åÈëµ½µ¥Á´±íµÄµÚi¸öÎ»ÖÃÉÏ
-//·½·¨1£ºÕÒµ½µÚ(i-1)¸ö½áµã£¬ÔÙÔÚÆäºó²åÈëĞÂ½áµã
-//Ê±¼äÎªO(n)
+//æ’å…¥ç»“ç‚¹ï¼šå°†å€¼ä¸ºxçš„æ–°ç»“ç‚¹æ’å…¥åˆ°å•é“¾è¡¨çš„ç¬¬iä¸ªä½ç½®ä¸Š
+//æ–¹æ³•1ï¼šæ‰¾åˆ°ç¬¬(i-1)ä¸ªç»“ç‚¹ï¼Œå†åœ¨å…¶åæ’å…¥æ–°ç»“ç‚¹
+//æ—¶é—´ä¸ºO(n)
 bool InsertBefore(LinkList L, int i, int val)
 {
 	if (i<1 || i > GetLength(L) + 1)
@@ -123,12 +123,12 @@ bool InsertBefore(LinkList L, int i, int val)
 	return true;
 }
 
-//·½·¨2£ºÕÒµ½µÚi¸ö½áµã£¬ÔÙÆäÇ°²åÈëĞÂ½áµã
-//Ë¼Â·£ºÕÒµ½µÚi¸ö½áµã£¬ÔÚiºó²åÈëĞÂ½áµã£¬ÔÙ½»»»i½áµãºÍĞÂ½áµãµÄÖµ
-//Ê±¼äÎªO(n)
+//æ–¹æ³•2ï¼šæ‰¾åˆ°ç¬¬iä¸ªç»“ç‚¹ï¼Œå†å…¶å‰æ’å…¥æ–°ç»“ç‚¹
+//æ€è·¯ï¼šæ‰¾åˆ°ç¬¬iä¸ªç»“ç‚¹ï¼Œåœ¨iåæ’å…¥æ–°ç»“ç‚¹ï¼Œå†äº¤æ¢iç»“ç‚¹å’Œæ–°ç»“ç‚¹çš„å€¼
+//æ—¶é—´ä¸ºO(n)
 bool InsertAfter(LinkList L, int i, int val)
 {
-	if (i<1 || i > GetLength(L))	//²»¿¼ÂÇµÚ(n+1)¸ö½áµã£¬´ËÊ±GetItemByIndex()Îªnullptr£¬´ËÊ±½»»»Á½½áµãµÄÖµĞèÒª¶îÍâ¿¼ÂÇ
+	if (i<1 || i > GetLength(L))	//ä¸è€ƒè™‘ç¬¬(n+1)ä¸ªç»“ç‚¹ï¼Œæ­¤æ—¶GetItemByIndex()ä¸ºnullptrï¼Œæ­¤æ—¶äº¤æ¢ä¸¤ç»“ç‚¹çš„å€¼éœ€è¦é¢å¤–è€ƒè™‘
 		return false;
 	LNode* iNode = GetItemByIndex(L, i);
 	LNode* s = (LNode*)malloc(sizeof(LNode));
@@ -138,11 +138,11 @@ bool InsertAfter(LinkList L, int i, int val)
 	iNode->data = val;
 }
 
-//É¾³ı½áµã£¬½«µÚi¸ö½áµãÉ¾³ı
-//Ê±¼äÎªO(n)
+//åˆ é™¤ç»“ç‚¹ï¼Œå°†ç¬¬iä¸ªç»“ç‚¹åˆ é™¤
+//æ—¶é—´ä¸ºO(n)
 bool Delete(LinkList L, int i)
 {
-	if (i<1 || i>GetLength(L))	//¼ì²éÉ¾³ıÎ»ÖÃµÄºÏ·¨ĞÔ
+	if (i<1 || i>GetLength(L))	//æ£€æŸ¥åˆ é™¤ä½ç½®çš„åˆæ³•æ€§
 		return false;
 	LNode* p = (i - 1) < 1 ? L : GetItemByIndex(L, i - 1);
 	LNode* q = p->next;
@@ -151,8 +151,8 @@ bool Delete(LinkList L, int i)
 	return true;
 }
 
-//´òÓ¡µ¥Á´±í
-//Ê±¼äÎªO(n)
+//æ‰“å°å•é“¾è¡¨
+//æ—¶é—´ä¸ºO(n)
 void PrintLinkList(LinkList L)
 {
 	LNode* p = L->next;
@@ -165,9 +165,9 @@ void PrintLinkList(LinkList L)
 }
 #pragma endregion
 
-#pragma region Ë«Á´±íµÄ»ù±¾²Ù×÷
-//Î²²å·¨½¨Á¢Ë«Á´±í
-//Ê±¼äO(n)
+#pragma region åŒé“¾è¡¨çš„åŸºæœ¬æ“ä½œ
+//å°¾æ’æ³•å»ºç«‹åŒé“¾è¡¨
+//æ—¶é—´O(n)
 DLinkList TailInsert(DLinkList& DL)
 {
 	DL = (DLinkList)malloc(sizeof(DNode));
@@ -188,8 +188,8 @@ DLinkList TailInsert(DLinkList& DL)
 	return DL;
 }
 
-//Ë«Á´±í°´ĞòºÅ²éÕÒ½áµã£¬²éÕÒµÚi¸ö½áµã
-//Ê±¼äÎªO(n)
+//åŒé“¾è¡¨æŒ‰åºå·æŸ¥æ‰¾ç»“ç‚¹ï¼ŒæŸ¥æ‰¾ç¬¬iä¸ªç»“ç‚¹
+//æ—¶é—´ä¸ºO(n)
 DNode* GetItemByIndex(DLinkList DL, int i)
 {
 	if (i < 1)
@@ -204,8 +204,8 @@ DNode* GetItemByIndex(DLinkList DL, int i)
 	return d;
 }
 
-//Ë«Á´±íÇó±í³¤
-//Ê±¼äÎªO(n)
+//åŒé“¾è¡¨æ±‚è¡¨é•¿
+//æ—¶é—´ä¸ºO(n)
 int GetLength(DLinkList DL)
 {
 	int cnt = 0;
@@ -218,11 +218,11 @@ int GetLength(DLinkList DL)
 	return cnt;
 }
 
-//Ë«Á´±í²åÈë£¬½«ÖµÎªxµÄĞÂ½áµã²åÈëµ½Ë«Á´±íµÄµÚi¸öÎ»ÖÃÉÏ
-//Ê±¼äO(n)
+//åŒé“¾è¡¨æ’å…¥ï¼Œå°†å€¼ä¸ºxçš„æ–°ç»“ç‚¹æ’å…¥åˆ°åŒé“¾è¡¨çš„ç¬¬iä¸ªä½ç½®ä¸Š
+//æ—¶é—´O(n)
 bool InsertDNode(DLinkList DL, int i, int val)
 {
-	if (i<1 || i>GetLength(DL) + 1)	//ÓĞĞ§Î»ÖÃÎª1~(n+1)
+	if (i<1 || i>GetLength(DL) + 1)	//æœ‰æ•ˆä½ç½®ä¸º1~(n+1)
 		return false;
 	DNode* prior = (i - 1) < 1 ? DL : GetItemByIndex(DL, i - 1);
 	DNode* s = (DNode*)malloc(sizeof(DNode));
@@ -231,15 +231,15 @@ bool InsertDNode(DLinkList DL, int i, int val)
 	s->prior = prior;	//3
 	if (prior->next)
 		prior->next->prior = s;	//2
-	prior->next = s;	//4,×¢£º1,2±ØĞëÔÚ4Ö®Ç°
+	prior->next = s;	//4,æ³¨ï¼š1,2å¿…é¡»åœ¨4ä¹‹å‰
 	return true;
 }
 
-//Ë«Á´±íÉ¾³ı
-//Ê±¼äO(n)
+//åŒé“¾è¡¨åˆ é™¤
+//æ—¶é—´O(n)
 bool DeleteDNode(DLinkList DL, int i)
 {
-	if (i<1 || i>GetLength(DL))	//¼ì²éÉ¾³ıÎ»ÖÃµÄºÏ·¨ĞÔ
+	if (i<1 || i>GetLength(DL))	//æ£€æŸ¥åˆ é™¤ä½ç½®çš„åˆæ³•æ€§
 		return false;
 	DNode* prior = (i - 1) < 1 ? DL : GetItemByIndex(DL, i - 1);
 	DNode* p = prior->next;
@@ -250,8 +250,8 @@ bool DeleteDNode(DLinkList DL, int i)
 	return true;
 }
 
-//´òÓ¡Ë«Á´±í
-//Ê±¼äO(n)
+//æ‰“å°åŒé“¾è¡¨
+//æ—¶é—´O(n)
 void PrintDLinkList(DLinkList DL)
 {
 	DNode* p = DL->next;
@@ -264,14 +264,14 @@ void PrintDLinkList(DLinkList DL)
 }
 #pragma endregion
 
-#pragma region Ñ­»·µ¥Á´±íµÄ»ù±¾²Ù×÷
-//Î²²å·¨ÕıÏò½¨Á¢Ñ­»·µ¥Á´±í
-//Ã¿¸ö½áµã²åÈëÊ±¼äÎªO(1)£¬Éèµ¥Á´±í±í³¤Îªn£¬Ôò×ÜÊ±¼äÎªO(n)
+#pragma region å¾ªç¯å•é“¾è¡¨çš„åŸºæœ¬æ“ä½œ
+//å°¾æ’æ³•æ­£å‘å»ºç«‹å¾ªç¯å•é“¾è¡¨
+//æ¯ä¸ªç»“ç‚¹æ’å…¥æ—¶é—´ä¸ºO(1)ï¼Œè®¾å•é“¾è¡¨è¡¨é•¿ä¸ºnï¼Œåˆ™æ€»æ—¶é—´ä¸ºO(n)
 LinkList CLTailInsert(LinkList& CL)
 {
 	int x;
 	CL = (LinkList)malloc(sizeof(LNode));
-	LNode* s, * r = CL;	//rÎªÎ²Ö¸Õë
+	LNode* s, * r = CL;	//rä¸ºå°¾æŒ‡é’ˆ
 	scanf("%d", &x);
 	while (x != 9999)
 	{
@@ -281,12 +281,12 @@ LinkList CLTailInsert(LinkList& CL)
 		r = s;
 		scanf("%d", &x);
 	}
-	r->next = CL;	//Î²½áµãÖ¸ÕëÖ¸ÏòÍ·Ö¸Õë
+	r->next = CL;	//å°¾ç»“ç‚¹æŒ‡é’ˆæŒ‡å‘å¤´æŒ‡é’ˆ
 	return CL;
 }
 
-//´øÍ·½áµãµÄÑ­»·µ¥Á´±íÅĞ¿Õ
-//Ê±¼äO(1)
+//å¸¦å¤´ç»“ç‚¹çš„å¾ªç¯å•é“¾è¡¨åˆ¤ç©º
+//æ—¶é—´O(1)
 bool IsCircularListEmpty(LinkList CL)
 {
 	if (CL->next == CL)
@@ -294,8 +294,8 @@ bool IsCircularListEmpty(LinkList CL)
 	return false;
 }
 
-//´øÍ·½áµãµÄÑ­»·µ¥Á´±í´òÓ¡(±éÀú)
-//Ê±¼äO(n)
+//å¸¦å¤´ç»“ç‚¹çš„å¾ªç¯å•é“¾è¡¨æ‰“å°(éå†)
+//æ—¶é—´O(n)
 void PrintCircularList(LinkList CL)
 {
 	if (IsCircularListEmpty(CL))
@@ -309,7 +309,7 @@ void PrintCircularList(LinkList CL)
 	cout << endl;
 }
 
-//´øÍ·½áµãµÄÑ­»·µ¥Á´±íµÄ×îºóÒ»¸ö½áµã
+//å¸¦å¤´ç»“ç‚¹çš„å¾ªç¯å•é“¾è¡¨çš„æœ€åä¸€ä¸ªç»“ç‚¹
 LNode* GetLast(LinkList CL)
 {
 	if (IsCircularListEmpty(CL))
@@ -323,13 +323,13 @@ LNode* GetLast(LinkList CL)
 }
 #pragma endregion
 
-#pragma region Ñ­»·Ë«Á´±íµÄ»ù±¾²Ù×÷
-//Î²²å·¨ÕıÏò½¨Á¢Ñ­»·Ë«Á´±í
-//Ê±¼äO(n)
+#pragma region å¾ªç¯åŒé“¾è¡¨çš„åŸºæœ¬æ“ä½œ
+//å°¾æ’æ³•æ­£å‘å»ºç«‹å¾ªç¯åŒé“¾è¡¨
+//æ—¶é—´O(n)
 DLinkList CDLTailInsert(DLinkList& CDL)
 {
 	CDL = (DLinkList)malloc(sizeof(DNode));
-	DNode* s, * r = CDL;	//rÎªÎ²Ö¸Õë
+	DNode* s, * r = CDL;	//rä¸ºå°¾æŒ‡é’ˆ
 	int x;
 	scanf("%d", &x);
 	while (x != 9999)
@@ -346,8 +346,8 @@ DLinkList CDLTailInsert(DLinkList& CDL)
 	return CDL;
 }
 
-//´øÍ·½áµãµÄÑ­»·Ë«Á´±íÅĞ¿Õ
-//Ê±¼äO(1)
+//å¸¦å¤´ç»“ç‚¹çš„å¾ªç¯åŒé“¾è¡¨åˆ¤ç©º
+//æ—¶é—´O(1)
 bool IsCDLEmpty(DLinkList CDL)
 {
 	if (CDL->prior == CDL && CDL->next == CDL)
@@ -355,8 +355,8 @@ bool IsCDLEmpty(DLinkList CDL)
 	return false;
 }
 
-//´øÍ·½áµãµÄÑ­»·Ë«Á´±í´òÓ¡(±éÀú)
-//Ê±¼äO(n)
+//å¸¦å¤´ç»“ç‚¹çš„å¾ªç¯åŒé“¾è¡¨æ‰“å°(éå†)
+//æ—¶é—´O(n)
 void PrintCDL(DLinkList CDL)
 {
 	if (IsCDLEmpty(CDL))
@@ -371,12 +371,12 @@ void PrintCDL(DLinkList CDL)
 }
 #pragma endregion
 
-#pragma region 2.3 ×ÛºÏÌâ
-//01 Éè¼ÆÒ»¸öµİ¹éËã·¨,É¾³ı²»´øÍ·½áµãµÄµ¥Á´±íLÖĞËùÓĞÖµÎªxµÄ½áµã
-//Ê±¼äO(n),nÎªµ¥Á´±íµÄ³¤¶È
+#pragma region 2.3 ç»¼åˆé¢˜
+//01 è®¾è®¡ä¸€ä¸ªé€’å½’ç®—æ³•,åˆ é™¤ä¸å¸¦å¤´ç»“ç‚¹çš„å•é“¾è¡¨Lä¸­æ‰€æœ‰å€¼ä¸ºxçš„ç»“ç‚¹
+//æ—¶é—´O(n),nä¸ºå•é“¾è¡¨çš„é•¿åº¦
 void DeleteRecursion(LinkList& L, int x)
 {
-	if (L == nullptr)	//µİ¹é³ö¿Ú
+	if (L == nullptr)	//é€’å½’å‡ºå£
 		return;
 	if (L->data == x)
 	{
@@ -391,8 +391,8 @@ void DeleteRecursion(LinkList& L, int x)
 	}
 }
 
-//02 ÔÚ´øÍ·½áµãµÄµ¥Á´±í£¬É¾³ıËùÓĞÖµÎªxµÄ½áµã£¬²¢ÊÍ·ÅÆä¿Õ¼ä
-//Ê±¼äO(n),nÎªµ¥Á´±íµÄ³¤¶È£¬¿Õ¼äO(1)
+//02 åœ¨å¸¦å¤´ç»“ç‚¹çš„å•é“¾è¡¨ï¼Œåˆ é™¤æ‰€æœ‰å€¼ä¸ºxçš„ç»“ç‚¹ï¼Œå¹¶é‡Šæ”¾å…¶ç©ºé—´
+//æ—¶é—´O(n),nä¸ºå•é“¾è¡¨çš„é•¿åº¦ï¼Œç©ºé—´O(1)
 void DeleteNodeWithValX(LinkList& L, int x)
 {
 	LNode* prior = L, * p = L->next;
@@ -412,14 +412,14 @@ void DeleteNodeWithValX(LinkList& L, int x)
 }
 
 #pragma region 03 
-//´øÍ·½áµãµÄµ¥Á´±í£¬´ÓÎ²µ½Í··´ÏòÊä³öÃ¿¸ö½áµãµÄÖµ
-//½â·¨1£º·´×ªÁ´±íºóÔÙÊä³ö
-//Ê±¼äO(n),¿Õ¼äO(1)
+//å¸¦å¤´ç»“ç‚¹çš„å•é“¾è¡¨ï¼Œä»å°¾åˆ°å¤´åå‘è¾“å‡ºæ¯ä¸ªç»“ç‚¹çš„å€¼
+//è§£æ³•1ï¼šåè½¬é“¾è¡¨åå†è¾“å‡º
+//æ—¶é—´O(n),ç©ºé—´O(1)
 void OutputInversion(LinkList L)
 {
 	if (L->next == nullptr)
 		return;
-	//ÏÈ·´×ªÁ´±í
+	//å…ˆåè½¬é“¾è¡¨
 	LNode* prior = nullptr, * p = L->next;
 	while (p != nullptr)
 	{
@@ -429,12 +429,12 @@ void OutputInversion(LinkList L)
 		p = next;
 	}
 	L->next = prior;
-	//ÔÙÊä³öÃ¿¸ö½áµãµÄÖµ
+	//å†è¾“å‡ºæ¯ä¸ªç»“ç‚¹çš„å€¼
 	PrintLinkList(L);
 }
 
-//½â·¨2£ºÀûÓÃµİ¹éÕ»£¨ÖØµãÕÆÎÕ£©
-//Ê±¼äO(n),¿Õ¼äO(1)
+//è§£æ³•2ï¼šåˆ©ç”¨é€’å½’æ ˆï¼ˆé‡ç‚¹æŒæ¡ï¼‰
+//æ—¶é—´O(n),ç©ºé—´O(1)
 void OutputInversion2(LinkList L)
 {
 	if (L->next != nullptr)
@@ -445,8 +445,8 @@ void OutputInversion2(LinkList L)
 }
 #pragma endregion
 
-//04 ÔÚ´øÍ·½áµãµÄµ¥Á´±íLÖĞÉ¾³ıÒ»¸ö×îĞ¡Öµ½áµã(Î¨Ò»)µÄ¸ßĞ§Ëã·¨
-//Ê±¼äO(n),¿Õ¼äO(1)
+//04 åœ¨å¸¦å¤´ç»“ç‚¹çš„å•é“¾è¡¨Lä¸­åˆ é™¤ä¸€ä¸ªæœ€å°å€¼ç»“ç‚¹(å”¯ä¸€)çš„é«˜æ•ˆç®—æ³•
+//æ—¶é—´O(n),ç©ºé—´O(1)
 bool DeleteMin(LinkList L)
 {
 	if (L->next == nullptr)
@@ -467,9 +467,9 @@ bool DeleteMin(LinkList L)
 	return true;
 }
 
-//05 ½«´øÍ·½áµãµÄµ¥Á´±í¾ÍµØÄæÖÃ
-//Ê±¼äO(n),¿Õ¼äO(1)
-//×¢£ºÒ²¿ÉÓÃÍ·²å·¨¡£
+//05 å°†å¸¦å¤´ç»“ç‚¹çš„å•é“¾è¡¨å°±åœ°é€†ç½®
+//æ—¶é—´O(n),ç©ºé—´O(1)
+//æ³¨ï¼šä¹Ÿå¯ç”¨å¤´æ’æ³•ã€‚
 void ReverseList(LinkList L)
 {
 	LNode* prior = nullptr, * p = L->next;
@@ -483,14 +483,14 @@ void ReverseList(LinkList L)
 	L->next = prior;
 }
 
-//06 ´øÍ·½áµãµÄµ¥Á´±í£¬Ê¹ÆäÔªËØµİÔöÓĞĞò
-//Ê¹ÓÃÖ±½Ó²åÈëÅÅĞòËã·¨,Ê±¼äO(n^2),¿Õ¼äO(1)
+//06 å¸¦å¤´ç»“ç‚¹çš„å•é“¾è¡¨ï¼Œä½¿å…¶å…ƒç´ é€’å¢æœ‰åº
+//ä½¿ç”¨ç›´æ¥æ’å…¥æ’åºç®—æ³•,æ—¶é—´O(n^2),ç©ºé—´O(1)
 void SortIncreasing(LinkList L)
 {
 	if (L->next == nullptr)
 		return;
 	LNode* p = L->next->next;
-	L->next->next = nullptr;	//ÏÈ¹¹³ÉÖ»º¬ÓĞÒ»¸öÊı¾İ½áµãµÄµ¥Á´±í
+	L->next->next = nullptr;	//å…ˆæ„æˆåªå«æœ‰ä¸€ä¸ªæ•°æ®ç»“ç‚¹çš„å•é“¾è¡¨
 	while (p != nullptr)
 	{
 		LNode* prior = L;
@@ -504,8 +504,8 @@ void SortIncreasing(LinkList L)
 	}
 }
 
-//07 ´øÍ·½áµãµÄµ¥Á´±íÎŞĞò£¬É¾³ı±íÖĞËùÓĞ½éÓÚ¸ø¶¨µÄÁ½¸öÖµÖ®¼äµÄÔªËØ£¨Èô´æÔÚ£©
-//Ê±¼äO(n),¿Õ¼äO(1)
+//07 å¸¦å¤´ç»“ç‚¹çš„å•é“¾è¡¨æ— åºï¼Œåˆ é™¤è¡¨ä¸­æ‰€æœ‰ä»‹äºç»™å®šçš„ä¸¤ä¸ªå€¼ä¹‹é—´çš„å…ƒç´ ï¼ˆè‹¥å­˜åœ¨ï¼‰
+//æ—¶é—´O(n),ç©ºé—´O(1)
 void DeleteBetweenXAndY(LinkList L, int x, int y)
 {
 	if (L->next == nullptr)
@@ -528,8 +528,8 @@ void DeleteBetweenXAndY(LinkList L, int x, int y)
 	}
 }
 
-//08 ÕÒ³öÁ½¸öµ¥Á´±íµÄ¹«¹²½áµã(²»´øÍ·½áµã)
-//Ê±¼äO(max(len1,len2)),¿Õ¼äO(1),len1,len2·Ö±ğÎªµ¥Á´±íL1,L2µÄ³¤¶È
+//08 æ‰¾å‡ºä¸¤ä¸ªå•é“¾è¡¨çš„å…¬å…±ç»“ç‚¹(ä¸å¸¦å¤´ç»“ç‚¹)
+//æ—¶é—´O(max(len1,len2)),ç©ºé—´O(1),len1,len2åˆ†åˆ«ä¸ºå•é“¾è¡¨L1,L2çš„é•¿åº¦
 LinkList FindCommon(LinkList L1, LinkList L2)
 {
 	if (L1 == nullptr || L2 == nullptr)
@@ -552,17 +552,17 @@ LinkList FindCommon(LinkList L1, LinkList L2)
 	return shortL;
 }
 
-//09 ´øÍ·½áµãµÄµ¥Á´±í£¬°´µİÔö´ÎĞòÊä³öµ¥Á´±íÖĞ¸÷½áµãµÄÊı¾İÔªËØ£¬²¢ÊÍ·Å½áµãËùÕ¼µÄ´æ´¢¿Õ¼ä
-//£¨ÒªÇó£º²»ÔÊĞíÊ¹ÓÃÊı×é×÷Îª¸¨Öú¿Õ¼ä£©
-//×¢£º²ÉÓÃµÚ06ÌâË¼Ïë£¬ÏÈÖ±½Ó²åÈëÅÅĞò£¬ÔÙÊä³ö²¢ÊÍ·ÅÄÚ´æ¿Õ¼ä
-//»òÕßÃ¿´Î±éÀúÕÒ³ö×îĞ¡Öµ½áµã£¬Êä³ö²¢É¾³ı¡£Ê±¼äÒ²ÎªO(n^2)
-//Ê±¼äO(n^2),¿Õ¼äO(1)
+//09 å¸¦å¤´ç»“ç‚¹çš„å•é“¾è¡¨ï¼ŒæŒ‰é€’å¢æ¬¡åºè¾“å‡ºå•é“¾è¡¨ä¸­å„ç»“ç‚¹çš„æ•°æ®å…ƒç´ ï¼Œå¹¶é‡Šæ”¾ç»“ç‚¹æ‰€å çš„å­˜å‚¨ç©ºé—´
+//ï¼ˆè¦æ±‚ï¼šä¸å…è®¸ä½¿ç”¨æ•°ç»„ä½œä¸ºè¾…åŠ©ç©ºé—´ï¼‰
+//æ³¨ï¼šé‡‡ç”¨ç¬¬06é¢˜æ€æƒ³ï¼Œå…ˆç›´æ¥æ’å…¥æ’åºï¼Œå†è¾“å‡ºå¹¶é‡Šæ”¾å†…å­˜ç©ºé—´
+//æˆ–è€…æ¯æ¬¡éå†æ‰¾å‡ºæœ€å°å€¼ç»“ç‚¹ï¼Œè¾“å‡ºå¹¶åˆ é™¤ã€‚æ—¶é—´ä¹Ÿä¸ºO(n^2)
+//æ—¶é—´O(n^2),ç©ºé—´O(1)
 void OutputIncreasing(LinkList& L)
 {
 	if (L->next == nullptr)
 		return;
 	LNode* p = L->next->next;
-	L->next->next = nullptr;	//ÏÈ¹¹³ÉÖ»º¬ÓĞÒ»¸öÊı¾İ½áµãµÄµ¥Á´±í
+	L->next->next = nullptr;	//å…ˆæ„æˆåªå«æœ‰ä¸€ä¸ªæ•°æ®ç»“ç‚¹çš„å•é“¾è¡¨
 	while (p != nullptr)
 	{
 		LNode* prior = L;
@@ -585,11 +585,11 @@ void OutputIncreasing(LinkList& L)
 	L->next = nullptr;
 }
 
-//10 °ÑÒ»¸ö´øÍ·½áµãµÄµ¥Á´±í·Ö½â³ÉÁ½¸ö´øÍ·½áµãµÄAºÍB£º
-//Ö»º¬Ô­±íÖĞĞòºÅÎªÆæÊıµÄÔªËØµÄµ¥Á´±íºÍ
-//Ö»º¬Ô­±íÖĞĞòºÅÎªÅ¼ÊıµÄÔªËØµÄµ¥Á´±í
-//ÇÒ±£³ÖÏà¶ÔË³Ğò²»±ä
-//Ê±¼äO(n),¿Õ¼äO(1)
+//10 æŠŠä¸€ä¸ªå¸¦å¤´ç»“ç‚¹çš„å•é“¾è¡¨åˆ†è§£æˆä¸¤ä¸ªå¸¦å¤´ç»“ç‚¹çš„Aå’ŒBï¼š
+//åªå«åŸè¡¨ä¸­åºå·ä¸ºå¥‡æ•°çš„å…ƒç´ çš„å•é“¾è¡¨å’Œ
+//åªå«åŸè¡¨ä¸­åºå·ä¸ºå¶æ•°çš„å…ƒç´ çš„å•é“¾è¡¨
+//ä¸”ä¿æŒç›¸å¯¹é¡ºåºä¸å˜
+//æ—¶é—´O(n),ç©ºé—´O(1)
 LinkList SplitList(LinkList& A)
 {
 	LinkList B = (LinkList)malloc(sizeof(LNode));
@@ -617,10 +617,10 @@ LinkList SplitList(LinkList& A)
 	return B;
 }
 
-//11 L={a1,b1,a2,b2,...,an,bn}¾ÍµØ²ğ·Ö³É
-//A={a1,a2,...,an}ºÍB={bn,...,b2,b1}
-//²ÉÓÃµÚ10ÌâË¼Â·£¬Çø±ğÔÚÓÚ£º1.¶ÔB±íµÄ½¨Á¢¸ÄÎªÍ·²å·¨£»2.²»Ê¹ÓÃĞòºÅ¡£
-//Ê±¼äO(n),¿Õ¼äO(1)
+//11 L={a1,b1,a2,b2,...,an,bn}å°±åœ°æ‹†åˆ†æˆ
+//A={a1,a2,...,an}å’ŒB={bn,...,b2,b1}
+//é‡‡ç”¨ç¬¬10é¢˜æ€è·¯ï¼ŒåŒºåˆ«åœ¨äºï¼š1.å¯¹Bè¡¨çš„å»ºç«‹æ”¹ä¸ºå¤´æ’æ³•ï¼›2.ä¸ä½¿ç”¨åºå·ã€‚
+//æ—¶é—´O(n),ç©ºé—´O(1)
 LinkList SplitList2(LinkList& A)
 {
 	LinkList B = (LinkList)malloc(sizeof(LNode));
@@ -645,8 +645,8 @@ LinkList SplitList2(LinkList& A)
 	return B;
 }
 
-//12 µİÔöÓĞĞòµÄµ¥Á´±í£¬È¥³ıÖØ¸´ÔªËØ
-//Ê±¼äO(n),¿Õ¼äO(1)
+//12 é€’å¢æœ‰åºçš„å•é“¾è¡¨ï¼Œå»é™¤é‡å¤å…ƒç´ 
+//æ—¶é—´O(n),ç©ºé—´O(1)
 void RemoveDuplicate(LinkList& L)
 {
 	if (L->next == nullptr)
@@ -669,9 +669,9 @@ void RemoveDuplicate(LinkList& L)
 	}
 }
 
-//13 ½«Á½¸öµİÔöÓĞĞòµÄµ¥Á´±í¹é²¢³ÉÒ»¸öµİ¼õµÄµ¥Á´±í£¬
-//²¢ÒªÇóÀûÓÃÔ­À´Á½¸öµ¥Á´±íµÄ¿Õ¼ä´æ·Å¹é²¢ºóµÄµ¥Á´±í
-//Ë¼Â·£ºÀûÓÃÍ·²å·¨·´×ªË³Ğò
+//13 å°†ä¸¤ä¸ªé€’å¢æœ‰åºçš„å•é“¾è¡¨å½’å¹¶æˆä¸€ä¸ªé€’å‡çš„å•é“¾è¡¨ï¼Œ
+//å¹¶è¦æ±‚åˆ©ç”¨åŸæ¥ä¸¤ä¸ªå•é“¾è¡¨çš„ç©ºé—´å­˜æ”¾å½’å¹¶åçš„å•é“¾è¡¨
+//æ€è·¯ï¼šåˆ©ç”¨å¤´æ’æ³•åè½¬é¡ºåº
 LinkList MergeIntoDecreasing(LinkList& A, LinkList& B)
 {
 	LNode* p1 = A->next, * p2 = B->next;
@@ -698,10 +698,10 @@ LinkList MergeIntoDecreasing(LinkList& A, LinkList& B)
 	return A;
 }
 
-//14 A,BÊÇÁ½¸ö´øÍ·½áµãµÄµ¥Á´±í£¬ÔªËØµİÔöÓĞĞò£¬
-//´ÓAºÍBÖĞµÄ¹«¹²ÔªËØ²úÉú´øÍ·½áµãµÄµ¥Á´±íC£¬
-//ÒªÇó²»ÆÆ»µA,BµÄ½áµã
-//Ê±¼äO(len1+len2),¿Õ¼äO(1),len1,len2·Ö±ğÎªµ¥Á´±íL1,L2µÄ³¤¶È
+//14 A,Bæ˜¯ä¸¤ä¸ªå¸¦å¤´ç»“ç‚¹çš„å•é“¾è¡¨ï¼Œå…ƒç´ é€’å¢æœ‰åºï¼Œ
+//ä»Aå’ŒBä¸­çš„å…¬å…±å…ƒç´ äº§ç”Ÿå¸¦å¤´ç»“ç‚¹çš„å•é“¾è¡¨Cï¼Œ
+//è¦æ±‚ä¸ç ´åA,Bçš„ç»“ç‚¹
+//æ—¶é—´O(len1+len2),ç©ºé—´O(1),len1,len2åˆ†åˆ«ä¸ºå•é“¾è¡¨L1,L2çš„é•¿åº¦
 LinkList FindCommon2(LinkList L1, LinkList L2)
 {
 	LinkList L3 = (LinkList)malloc(sizeof(LNode));
@@ -728,8 +728,8 @@ LinkList FindCommon2(LinkList L1, LinkList L2)
 	return L3;
 }
 
-//15 ´øÍ·½áµãµÄÁ½¸öµİÔöµÄÁ´±í£¬Çó½»¼¯²¢´æÈëµÚÒ»¸öÁ´±í
-//Ê±¼äO(len1+len2),¿Õ¼äO(1),len1,len2·Ö±ğÎªµ¥Á´±íL1,L2µÄ³¤¶È
+//15 å¸¦å¤´ç»“ç‚¹çš„ä¸¤ä¸ªé€’å¢çš„é“¾è¡¨ï¼Œæ±‚äº¤é›†å¹¶å­˜å…¥ç¬¬ä¸€ä¸ªé“¾è¡¨
+//æ—¶é—´O(len1+len2),ç©ºé—´O(1),len1,len2åˆ†åˆ«ä¸ºå•é“¾è¡¨L1,L2çš„é•¿åº¦
 void FindCommon3(LinkList& L1, LinkList& L2)
 {
 	LNode* p1 = L1->next, * p2 = L2->next, * p1Prior = L1;
@@ -737,10 +737,10 @@ void FindCommon3(LinkList& L1, LinkList& L2)
 	{
 		if (p1->data == p2->data)
 		{
-			p1Prior->next = p1;	//L1ÖĞ½áµã·ÅÈë½á¹û¼¯
+			p1Prior->next = p1;	//L1ä¸­ç»“ç‚¹æ”¾å…¥ç»“æœé›†
 			p1Prior = p1;
 			p1 = p1->next;
-			LNode* p = p2;	//L2ÖĞ½áµãÊÍ·Å
+			LNode* p = p2;	//L2ä¸­ç»“ç‚¹é‡Šæ”¾
 			p2 = p2->next;
 			free(p);
 		}
@@ -757,13 +757,13 @@ void FindCommon3(LinkList& L1, LinkList& L2)
 			free(p);
 		}
 	}
-	while (p1 != nullptr)	//L2ÒÑ±éÀúÍê£¬L1Î´±éÀúÍê
+	while (p1 != nullptr)	//L2å·²éå†å®Œï¼ŒL1æœªéå†å®Œ
 	{
 		LNode* p = p1;
 		p1 = p1->next;
 		free(p);
 	}
-	while (p2 != nullptr)	//L1ÒÑ±éÀúÍê£¬L2Î´±éÀúÍê
+	while (p2 != nullptr)	//L1å·²éå†å®Œï¼ŒL2æœªéå†å®Œ
 	{
 		LNode* p = p2;
 		p2 = p2->next;
@@ -773,11 +773,11 @@ void FindCommon3(LinkList& L1, LinkList& L2)
 	free(L2);
 }
 
-//16 Á½¸öÕûÊıĞòÁĞA,BÒÑ´æÈëµ¥Á´±í£¬ÅĞ¶ÏBÊÇ·ñÎªAµÄÁ¬Ğø×ÓĞòÁĞ
-//Ê±¼äO(len1*len2),¿Õ¼äO(1)
+//16 ä¸¤ä¸ªæ•´æ•°åºåˆ—A,Bå·²å­˜å…¥å•é“¾è¡¨ï¼Œåˆ¤æ–­Bæ˜¯å¦ä¸ºAçš„è¿ç»­å­åºåˆ—
+//æ—¶é—´O(len1*len2),ç©ºé—´O(1)
 bool IsSubsequence(LinkList A, LinkList B)
 {
-	if (B->next == nullptr)	//¿Õ±íÊÇÈÎºÎĞòÁĞµÄÁ¬Ğø×ÓĞòÁĞ
+	if (B->next == nullptr)	//ç©ºè¡¨æ˜¯ä»»ä½•åºåˆ—çš„è¿ç»­å­åºåˆ—
 		return true;
 	LNode* p1 = A->next, * firstP1 = p1;
 	while (p1 != nullptr)
@@ -803,8 +803,8 @@ bool IsSubsequence(LinkList A, LinkList B)
 	return false;
 }
 
-//17 ÅĞ¶Ï´øÍ·½áµãµÄÑ­»·Ë«Á´±íÊÇ·ñ¶Ô³Æ
-//Ê±¼äO(n),¿Õ¼äO(1)
+//17 åˆ¤æ–­å¸¦å¤´ç»“ç‚¹çš„å¾ªç¯åŒé“¾è¡¨æ˜¯å¦å¯¹ç§°
+//æ—¶é—´O(n),ç©ºé—´O(1)
 bool IsCDLSymmetry(DLinkList CDL)
 {
 	if (CDL->next == CDL && CDL->prior == CDL)
@@ -820,15 +820,15 @@ bool IsCDLSymmetry(DLinkList CDL)
 	return true;
 }
 
-//18 ²»´øÍ·½áµãµÄÑ­»·µ¥Á´±íh1ºÍh2£¬½«h2Á´½Óµ½h1Ö®ºó£¬
-//ÒªÇóÁ´½ÓºóµÄÁ´±íÈÔ±£³ÖÑ­»·Á´±íĞÎÊ½
-//Ê±¼äO(len1+len2),¿Õ¼äO(1),len1,len2·Ö±ğÎªµ¥Á´±íL1,L2µÄ³¤¶È
+//18 ä¸å¸¦å¤´ç»“ç‚¹çš„å¾ªç¯å•é“¾è¡¨h1å’Œh2ï¼Œå°†h2é“¾æ¥åˆ°h1ä¹‹åï¼Œ
+//è¦æ±‚é“¾æ¥åçš„é“¾è¡¨ä»ä¿æŒå¾ªç¯é“¾è¡¨å½¢å¼
+//æ—¶é—´O(len1+len2),ç©ºé—´O(1),len1,len2åˆ†åˆ«ä¸ºå•é“¾è¡¨L1,L2çš„é•¿åº¦
 void Link(LinkList& h1, LinkList& h2)
 {
-	if (h2->next == h2)	//Èôh2Îª¿Õ£¬ÔòÎŞĞèÁ´½Ó
+	if (h2->next == h2)	//è‹¥h2ä¸ºç©ºï¼Œåˆ™æ— éœ€é“¾æ¥
 		return;
 	LNode* r1 = h1, * r2 = h2;
-	while (r1->next != h1)	//Èôh1Îª¿ÕÇÒh2²»Îª¿Õ£¬Ôò½«h2Á´½Óµ½h1Ö®ºó£¬²¢½«h2Î²½áµãµÄÖ¸ÕëÓòÖ¸Ïòh1
+	while (r1->next != h1)	//è‹¥h1ä¸ºç©ºä¸”h2ä¸ä¸ºç©ºï¼Œåˆ™å°†h2é“¾æ¥åˆ°h1ä¹‹åï¼Œå¹¶å°†h2å°¾ç»“ç‚¹çš„æŒ‡é’ˆåŸŸæŒ‡å‘h1
 	{
 		r1 = r1->next;
 	}
@@ -840,8 +840,8 @@ void Link(LinkList& h1, LinkList& h2)
 	r2->next = h1;
 }
 
-//19 ´øÍ·½áµãµÄÑ­»·µ¥Á´±í£¬·´¸´ÕÒ³ö×îĞ¡µÄ½áµã£¬É¾³ı£¬Ö±µ½Á´±íÎª¿Õ£¬ÔÙÉ¾³ıÍ·½áµã
-//Ê±¼äO(n^2),¿Õ¼äO(1)
+//19 å¸¦å¤´ç»“ç‚¹çš„å¾ªç¯å•é“¾è¡¨ï¼Œåå¤æ‰¾å‡ºæœ€å°çš„ç»“ç‚¹ï¼Œåˆ é™¤ï¼Œç›´åˆ°é“¾è¡¨ä¸ºç©ºï¼Œå†åˆ é™¤å¤´ç»“ç‚¹
+//æ—¶é—´O(n^2),ç©ºé—´O(1)
 void DeleteIncreasing(LinkList& CL)
 {
 	while (CL->next != CL)
@@ -864,7 +864,7 @@ void DeleteIncreasing(LinkList& CL)
 	free(CL);
 }
 
-//´øÍ·½áµãµÄ´ø·ÃÎÊÆµ¶ÈµÄË«Á´±í
+//å¸¦å¤´ç»“ç‚¹çš„å¸¦è®¿é—®é¢‘åº¦çš„åŒé“¾è¡¨
 typedef struct FreqDNode {
 	int data;
 	int freq = 0;
@@ -878,9 +878,9 @@ bool IsFreqDLEmpty(FreqDLinkList FDL)
 	return false;
 }
 
-//20 ±àĞ´Locate(L,x)£¬Ã¿´Î·ÃÎÊÆµ¶È¼Ó1£¬²¢Ê¹Á´±íÖĞ½áµã±£³Ö°´Æµ¶Èµİ¼õÅÅÁĞ£¬
-//Í¬Ê±×î½ü·ÃÎÊµÄ½áµãÅÅÔÚÏàÍ¬Æµ¶ÈµÄ½áµãÇ°Ãæ
-//Ê±¼äO(n),¿Õ¼äO(1)
+//20 ç¼–å†™Locate(L,x)ï¼Œæ¯æ¬¡è®¿é—®é¢‘åº¦åŠ 1ï¼Œå¹¶ä½¿é“¾è¡¨ä¸­ç»“ç‚¹ä¿æŒæŒ‰é¢‘åº¦é€’å‡æ’åˆ—ï¼Œ
+//åŒæ—¶æœ€è¿‘è®¿é—®çš„ç»“ç‚¹æ’åœ¨ç›¸åŒé¢‘åº¦çš„ç»“ç‚¹å‰é¢
+//æ—¶é—´O(n),ç©ºé—´O(1)
 FreqDNode* Locate(FreqDLinkList FDL, int x)
 {
 	if (IsFreqDLEmpty(FDL))
@@ -890,18 +890,18 @@ FreqDNode* Locate(FreqDLinkList FDL, int x)
 	{
 		p = p->next;
 	}
-	//ÈôÕÒµ½ÖµÎªxµÄ½áµã£¬Ôò½«Ëü´ÓÁ´±íÉÏÕªÏÂ
-	//²¢´ÓÍ·¿ªÊ¼É¨Ãè£¬²åÈëµ½Æµ¶ÈÏàÍ¬µÄ½áµãÇ°Ãæ
+	//è‹¥æ‰¾åˆ°å€¼ä¸ºxçš„ç»“ç‚¹ï¼Œåˆ™å°†å®ƒä»é“¾è¡¨ä¸Šæ‘˜ä¸‹
+	//å¹¶ä»å¤´å¼€å§‹æ‰«æï¼Œæ’å…¥åˆ°é¢‘åº¦ç›¸åŒçš„ç»“ç‚¹å‰é¢
 	if (p != nullptr)
 	{
 		p->freq++;
 		if (p->pre == FDL || p->pre->freq > p->freq)
 			return p;
-		p->pre->next = p->next;	//½«Ëü´ÓÁ´±íÉÏÕªÏÂ
+		p->pre->next = p->next;	//å°†å®ƒä»é“¾è¡¨ä¸Šæ‘˜ä¸‹
 		if (p->next != nullptr)
 			p->next->pre = p->pre;
 		FreqDNode* q = p->pre;
-		while (q != FDL && q->freq <= p->freq)	//²éÕÒÇ°Çı½áµã
+		while (q != FDL && q->freq <= p->freq)	//æŸ¥æ‰¾å‰é©±ç»“ç‚¹
 		{
 			q = q->pre;
 		}
@@ -914,9 +914,9 @@ FreqDNode* Locate(FreqDLinkList FDL, int x)
 	return p;
 }
 
-//21 ÅĞ¶Ïµ¥Á´±íÊÇ·ñ´æÔÚ»·£¨²»´øÍ·½áµã£©
-//Ë¼Â·£º¿ìÂıÖ¸Õë·¨£¬ÂıÖ¸ÕëÃ¿´Î×ßÒ»²½£¬¿ìÖ¸ÕëÃ¿´Î×ßÁ½²½
-//Ê±¼äO(n),¿Õ¼äO(1)
+//21 åˆ¤æ–­å•é“¾è¡¨æ˜¯å¦å­˜åœ¨ç¯ï¼ˆä¸å¸¦å¤´ç»“ç‚¹ï¼‰
+//æ€è·¯ï¼šå¿«æ…¢æŒ‡é’ˆæ³•ï¼Œæ…¢æŒ‡é’ˆæ¯æ¬¡èµ°ä¸€æ­¥ï¼Œå¿«æŒ‡é’ˆæ¯æ¬¡èµ°ä¸¤æ­¥
+//æ—¶é—´O(n),ç©ºé—´O(1)
 bool DoesLHasARing(LinkList L)
 {
 	if (L == nullptr || L->next == nullptr)
@@ -934,9 +934,9 @@ bool DoesLHasARing(LinkList L)
 	return false;
 }
 
-//22 ²éÕÒ´øÍ·½áµãµÄµ¥Á´±íÖĞµ¹ÊıµÚk¸ö½áµãµÄÖµ
-//Ë¼Â·£ºÇ°ºóÖ¸Õë·¨£¬Ç°Ö¸ÕëÌáÇ°×ßk²½£¬È»ºóÁ½¸öÖ¸ÕëÒ»ÆğÃ¿´Î×ßÒ»²½
-//Ê±¼äO(n),¿Õ¼äO(1)
+//22 æŸ¥æ‰¾å¸¦å¤´ç»“ç‚¹çš„å•é“¾è¡¨ä¸­å€’æ•°ç¬¬kä¸ªç»“ç‚¹çš„å€¼
+//æ€è·¯ï¼šå‰åæŒ‡é’ˆæ³•ï¼Œå‰æŒ‡é’ˆæå‰èµ°kæ­¥ï¼Œç„¶åä¸¤ä¸ªæŒ‡é’ˆä¸€èµ·æ¯æ¬¡èµ°ä¸€æ­¥
+//æ—¶é—´O(n),ç©ºé—´O(1)
 int GetKthToLast(LinkList L, int k)
 {
 	LNode* front = L, * rear = front;
@@ -957,8 +957,8 @@ int GetKthToLast(LinkList L, int k)
 	return 1;
 }
 
-//23 ´øÍ·½áµãµÄµ¥Á´±í²éÕÒ¹«¹²ºó×ºµÄÆğÊ¼Î»ÖÃ
-//Ê±¼äO(n),¿Õ¼äO(1)
+//23 å¸¦å¤´ç»“ç‚¹çš„å•é“¾è¡¨æŸ¥æ‰¾å…¬å…±åç¼€çš„èµ·å§‹ä½ç½®
+//æ—¶é—´O(n),ç©ºé—´O(1)
 LNode* FindCommon4(LinkList L1, LinkList L2)
 {
 	if (L1->next == nullptr || L2->next == nullptr)
@@ -981,15 +981,15 @@ LNode* FindCommon4(LinkList L1, LinkList L2)
 }
 
 #pragma region 24
-//µ¥Á´±í½áµãµÄÊı¾İÀàĞÍ¶¨Òå
+//å•é“¾è¡¨ç»“ç‚¹çš„æ•°æ®ç±»å‹å®šä¹‰
 typedef struct LinkNode
 {
 	int data;	//abs(data)<=n
 	struct LinkNode* link;
 }LinkNode;
 
-//(´øÍ·½áµãµÄµ¥Á´±í)½ö±£ÁôµÚÒ»´Î³öÏÖµÄ½áµã¶øÉ¾³ıÆäÓà¾ø¶ÔÖµÏàÍ¬µÄ½áµã
-//Ê±¼äO(n),¿Õ¼äO(n)
+//(å¸¦å¤´ç»“ç‚¹çš„å•é“¾è¡¨)ä»…ä¿ç•™ç¬¬ä¸€æ¬¡å‡ºç°çš„ç»“ç‚¹è€Œåˆ é™¤å…¶ä½™ç»å¯¹å€¼ç›¸åŒçš„ç»“ç‚¹
+//æ—¶é—´O(n),ç©ºé—´O(n)
 void DeleteElemWithSameAbs(LinkList L, int n)
 {
 	int* map = new int[n + 1] {0};
@@ -1018,10 +1018,10 @@ void DeleteElemWithSameAbs(LinkList L, int n)
 #pragma endregion
 
 //25 a1,a2,...,a(n-1),an->a1,an,a2,a(n-1),...
-//Ê±¼äO(n),¿Õ¼äO(1)
-//Ë¼Â·£º1.²ğ·Ö³ÉÁ½¸öÁ´±í£¬ºó°ë²¿·ÖÁ´±í´ÓµÚ(ÖĞµãÏòÉÏÈ¡Õû+1)¸ö½áµã¿ªÊ¼£»
-//2.µ¹ÖÃºó°ë²¿·ÖÁ´±í£»
-//3.½«µ¹ÖÃºóµÄÁ´±í½áµãÒÀ´Î²åÈëÇ°°ë²¿·ÖÁ´±í¡£
+//æ—¶é—´O(n),ç©ºé—´O(1)
+//æ€è·¯ï¼š1.æ‹†åˆ†æˆä¸¤ä¸ªé“¾è¡¨ï¼ŒååŠéƒ¨åˆ†é“¾è¡¨ä»ç¬¬(ä¸­ç‚¹å‘ä¸Šå–æ•´+1)ä¸ªç»“ç‚¹å¼€å§‹ï¼›
+//2.å€’ç½®ååŠéƒ¨åˆ†é“¾è¡¨ï¼›
+//3.å°†å€’ç½®åçš„é“¾è¡¨ç»“ç‚¹ä¾æ¬¡æ’å…¥å‰åŠéƒ¨åˆ†é“¾è¡¨ã€‚
 void Reorder(LinkList L)
 {
 	int len = GetLength(L);
@@ -1032,7 +1032,7 @@ void Reorder(LinkList L)
 		rearFirstNo = (len + 1) / 2;
 	else
 		rearFirstNo = len / 2;
-	//²ğ·Ö³ÉÁ½¸öÁ´±í£¬ºó°ë²¿·ÖÁ´±í´ÓµÚ(ÖĞµãÏòÉÏÈ¡Õû+1)¸ö½áµã¿ªÊ¼£»
+	//æ‹†åˆ†æˆä¸¤ä¸ªé“¾è¡¨ï¼ŒååŠéƒ¨åˆ†é“¾è¡¨ä»ç¬¬(ä¸­ç‚¹å‘ä¸Šå–æ•´+1)ä¸ªç»“ç‚¹å¼€å§‹ï¼›
 	LNode* rearFirst = L->next, * prior = L;
 	while (rearFirstNo > 0)
 	{
@@ -1041,7 +1041,7 @@ void Reorder(LinkList L)
 		rearFirstNo--;
 	}
 	prior->next = nullptr;
-	//µ¹ÖÃºó°ë²¿·ÖÁ´±í
+	//å€’ç½®ååŠéƒ¨åˆ†é“¾è¡¨
 	prior = nullptr;
 	while (rearFirst != nullptr)
 	{
@@ -1051,7 +1051,7 @@ void Reorder(LinkList L)
 		rearFirst = next;
 	}
 	rearFirst = prior;
-	//½«µ¹ÖÃºóµÄÁ´±í½áµãÒÀ´Î²åÈëÇ°°ë²¿·ÖÁ´±í
+	//å°†å€’ç½®åçš„é“¾è¡¨ç»“ç‚¹ä¾æ¬¡æ’å…¥å‰åŠéƒ¨åˆ†é“¾è¡¨
 	prior = L->next;
 	while (rearFirst != nullptr)
 	{

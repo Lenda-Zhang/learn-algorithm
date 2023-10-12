@@ -1,13 +1,13 @@
-#pragma once
+ï»¿#pragma once
 #include "myinclude.h"
 
 /**
-* @brief 30£º²åÈë¡¢É¾³ı¡¢Ëæ»ú·ÃÎÊ¶¼ÊÇO(1)µÄÈİÆ÷
+* @brief 30ï¼šæ’å…¥ã€åˆ é™¤ã€éšæœºè®¿é—®éƒ½æ˜¯O(1)çš„å®¹å™¨
 */
 class RandomizedSet {
 public:
-	unordered_map<int, int> indices; // ÔªËØÓë¶ÔÓ¦Î»ÖÃµÄ¼¯ºÏ
-	vector<int> nums; // ´æ´¢ÔªËØ
+	unordered_map<int, int> indices; // å…ƒç´ ä¸å¯¹åº”ä½ç½®çš„é›†åˆ
+	vector<int> nums; // å­˜å‚¨å…ƒç´ 
 	bool insert(int val) {
 		if (indices.count(val))
 			return false;
@@ -19,7 +19,7 @@ public:
 	bool remove(int val) {
 		if (!indices.count(val))
 			return false;
-		// ½«´ıÉ¾³ıÔªËØÓëÄ©Î²ÔªËØ½»»»Î»ÖÃ£¬ÔÙÉ¾³ı
+		// å°†å¾…åˆ é™¤å…ƒç´ ä¸æœ«å°¾å…ƒç´ äº¤æ¢ä½ç½®ï¼Œå†åˆ é™¤
 		int index = indices[val];
 		int lastVal = nums.back();
 		nums[index] = lastVal;
@@ -42,7 +42,7 @@ struct DLinkedNode {
 };
 
 /**
-* @brief 31£ºLRU»º´æ»úÖÆ
+* @brief 31ï¼šLRUç¼“å­˜æœºåˆ¶
 * Your LRUCache object will be instantiated and called as such:
 * LRUCache* obj = new LRUCache(capacity);
 * int param_1 = obj->get(key);
@@ -53,13 +53,13 @@ private:
 	unordered_map<int, DLinkedNode*> cache;
 	DLinkedNode* head, * tail; // dummy head, dummy tail
 	int capacity, size;
-	// °Ñ±íÖĞ½ÚµãÒÆ¶¯µ½headºó
+	// æŠŠè¡¨ä¸­èŠ‚ç‚¹ç§»åŠ¨åˆ°headå
 	void update(DLinkedNode* node)
 	{
-		// ÏÈ°Ñ½ÚµãÕªÏÂÀ´
+		// å…ˆæŠŠèŠ‚ç‚¹æ‘˜ä¸‹æ¥
 		node->next->prev = node->prev;
 		node->prev->next = node->next;
-		// ÔÙ°Ñ½Úµã·Åµ½Í·½Úµãºó
+		// å†æŠŠèŠ‚ç‚¹æ”¾åˆ°å¤´èŠ‚ç‚¹å
 		node->next = head->next;
 		node->prev = head;
 		head->next->prev = node;
@@ -67,8 +67,8 @@ private:
 	}
 public:
 	LRUCache(int _capacity) : capacity(_capacity), size(0) {
-		head = new DLinkedNode(); // È·±£node->prevÊ¼ÖÕ²»Îªnullptr
-		tail = new DLinkedNode(); // È·±£node->nextÊ¼ÖÕ²»Îªnullptr
+		head = new DLinkedNode(); // ç¡®ä¿node->prevå§‹ç»ˆä¸ä¸ºnullptr
+		tail = new DLinkedNode(); // ç¡®ä¿node->nextå§‹ç»ˆä¸ä¸ºnullptr
 		head->next = tail;
 		tail->prev = head;
 	}
@@ -91,7 +91,7 @@ public:
 		}
 		if (size >= capacity)
 		{
-			DLinkedNode* realTail = tail->prev; // ¡ß 1 <= capacity <= 3000 ¡à realTail != head
+			DLinkedNode* realTail = tail->prev; // âˆµ 1 <= capacity <= 3000 âˆ´ realTail != head
 			cache.erase(realTail->key);
 			realTail->key = key;
 			realTail->value = value;
@@ -112,14 +112,14 @@ public:
 };
 
 /**
-* @brief 32£ºÓĞĞ§µÄ±äÎ»´Ê
+* @brief 32ï¼šæœ‰æ•ˆçš„å˜ä½è¯
 */
 bool isAnagram(string s, string t)
 {
 	if (s == t || s.size() != t.size())
 		return false;
-	int cnt[26]{ 0 }; // sÖĞ×Ö·û³öÏÖ´ÎÊı
-	// memset(cnt, 0, sizeof(cnt)); // ³õÊ¼»¯È«²¿Êı×éÔªËØ
+	int cnt[26]{ 0 }; // sä¸­å­—ç¬¦å‡ºç°æ¬¡æ•°
+	// memset(cnt, 0, sizeof(cnt)); // åˆå§‹åŒ–å…¨éƒ¨æ•°ç»„å…ƒç´ 
 	for (auto c : s)
 	{
 		++cnt[c - 'a'];
@@ -134,8 +134,8 @@ bool isAnagram(string s, string t)
 }
 
 /**
-* @brief 33£º±äÎ»´Ê×é
-* Ê±¼ä¸´ÔÓ¶ÈÎªO(nklogk)£¬¿Õ¼ä¸´ÔÓ¶ÈÎªO(nk)£¬ÆäÖĞnÎªstrsÖĞstr¸öÊı£¬kÎª×î´óstr³¤¶È¡£
+* @brief 33ï¼šå˜ä½è¯ç»„
+* æ—¶é—´å¤æ‚åº¦ä¸ºO(nklogk)ï¼Œç©ºé—´å¤æ‚åº¦ä¸ºO(nk)ï¼Œå…¶ä¸­nä¸ºstrsä¸­strä¸ªæ•°ï¼Œkä¸ºæœ€å¤§stré•¿åº¦ã€‚
 */
 vector<vector<string>> groupAnagrams(vector<string>& strs) {
 	unordered_map<string, vector<string>> map;
@@ -167,7 +167,7 @@ bool compareByOrder(string s, string t, int map[]) {
 }
 
 /**
-* @brief 34£ºÍâĞÇÓïÑÔÊÇ·ñÅÅĞò
+* @brief 34ï¼šå¤–æ˜Ÿè¯­è¨€æ˜¯å¦æ’åº
 */
 bool isAlienSorted(vector<string>& words, string order) {
 	if (words.size() < 2)
@@ -189,11 +189,11 @@ int getMinutes(string &s)
 }
 
 /**
-* @brief 35£º×îĞ¡Ê±¼ä²î
+* @brief 35ï¼šæœ€å°æ—¶é—´å·®
 */
 int findMinDifference(vector<string>& timePoints) {
-	// ¸ë³²Ô­Àí£ºÈôÓĞn¸ö¸ëÁıºÍn+1Ö»¸ë×Ó£¬ÇÒËùÓĞ¸ë×Ó¶¼¹ØÔÚ¸ëÁıÖĞ£¬ÔòÖÁÉÙÓĞÒ»¸ö¸ëÁıÖĞÓĞÁ½Ö»¸ë×Ó¡£
-	// ¸ù¾İ¸ë³²Ô­Àí£¬24*60=1440£¬Ôò±ØÓĞÁ½¸öÊ±¼äÏàµÈ£¬ËùÒÔ×îĞ¡Ê±¼ä²îÎª0.
+	// é¸½å·¢åŸç†ï¼šè‹¥æœ‰nä¸ªé¸½ç¬¼å’Œn+1åªé¸½å­ï¼Œä¸”æ‰€æœ‰é¸½å­éƒ½å…³åœ¨é¸½ç¬¼ä¸­ï¼Œåˆ™è‡³å°‘æœ‰ä¸€ä¸ªé¸½ç¬¼ä¸­æœ‰ä¸¤åªé¸½å­ã€‚
+	// æ ¹æ®é¸½å·¢åŸç†ï¼Œ24*60=1440ï¼Œåˆ™å¿…æœ‰ä¸¤ä¸ªæ—¶é—´ç›¸ç­‰ï¼Œæ‰€ä»¥æœ€å°æ—¶é—´å·®ä¸º0.
 	if (timePoints.size() > 1440)
 		return 0;
 	sort(timePoints.begin(), timePoints.end());

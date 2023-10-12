@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "myinclude.h"
 
 /*
@@ -14,7 +14,7 @@ struct TreeNode {
 };
 
 /**
-* �������������
+* 二叉树层序遍历
 */
 void levelOrder(TreeNode* root)
 {
@@ -36,7 +36,7 @@ void levelOrder(TreeNode* root)
 }
 
 /**
-* �������������
+* 二叉树先序遍历
 */
 void preOrder(TreeNode* root)
 {
@@ -47,13 +47,13 @@ void preOrder(TreeNode* root)
 	preOrder(root->right);
 }
 
-/** @brief ���ı�����BFS(Breadth first search)��DFS(Depth first search)��
-* ����DFS��Ϊǰ�������������������������������ʽ��Ϊ�ݹ顢������������ʽһ�����ջ��
-* BFSһ����ö���ʵ�ֲ��������
+/** @brief 树的遍历：BFS(Breadth first search)、DFS(Depth first search)。
+* 其中DFS分为前序遍历、中序遍历、后序遍历。处理方式分为递归、迭代，迭代方式一般采用栈。
+* BFS一般采用队列实现层序遍历。
 */
 class MyBinaryTree {
 public:
-	// ����������ݹ飩
+	// 先序遍历（递归）
 	void preOrderTraverseRecursion(TreeNode* root)
 	{
 		if (root == nullptr)
@@ -62,10 +62,10 @@ public:
 		//cout << root->val << " ";
 		preOrderTraverseRecursion(root->left);
 		preOrderTraverseRecursion(root->right);
-		//cout << endl;	// ��ͨ��������з�����ݹ�ջ����
+		//cout << endl;	// 可通过输出换行符理解递归栈过程
 	}
 
-	// ���������������
+	// 先序遍历（迭代）
 	void preOrderTraverseIteration(TreeNode* root)
 	{
 		if (root == nullptr)
@@ -86,7 +86,7 @@ public:
 		}
 	}
 
-	// ����������ݹ飩
+	// 中序遍历（递归）
 	void inOrderTraverseRecursion(TreeNode* root)
 	{
 		if (!root)
@@ -96,7 +96,7 @@ public:
 		inOrderTraverseRecursion(root->right);
 	}
 
-	// ���������������
+	// 中序遍历（迭代）
 	void inOrderTraverseIteration(TreeNode* root)
 	{
 		if (root == nullptr)
@@ -117,7 +117,7 @@ public:
 		}
 	}
 
-	// ����������ݹ飩
+	// 后序遍历（递归）
 	void postOrderTraverseRecursion(TreeNode* root)
 	{
 		if (root == nullptr)
@@ -127,14 +127,14 @@ public:
 		cout << unitbuf << root->val << " " << nounitbuf;
 	}
 
-	// ���������������
+	// 后序遍历（迭代）
 	void postOrderTraverseIteration(TreeNode* root)
 	{
 		if (root == nullptr)
 			return;
 		stack<TreeNode*> s;
 		auto node = root;
-		TreeNode* prev = nullptr;	//�����ж��Һ����Ƿ��ѱ���
+		TreeNode* prev = nullptr;	//用于判断右孩子是否已遍历
 		while (!s.empty() || node)
 		{
 			while (node)
@@ -147,7 +147,7 @@ public:
 			{
 				cout << unitbuf << node->val << " " << nounitbuf;
 				prev = node;
-				node = nullptr;	// node�ÿգ�ʹ������ջ�д�ŵĽڵ�
+				node = nullptr;	// node置空，使得消耗栈中存放的节点
 				s.pop();
 			}
 			else
@@ -157,7 +157,7 @@ public:
 		}
 	}
 
-	// �������
+	// 层序遍历
 	void bfs(TreeNode* root)
 	{
 		if (root == nullptr)
@@ -177,8 +177,8 @@ public:
 	}
 };
 
-/** @brief 43������ȫ���������ӽڵ�
-* ����
+/** @brief 43：往完全二叉树添加节点
+* 队列
  * Your CBTInserter object will be instantiated and called as such:
  * CBTInserter* obj = new CBTInserter(root);
  * int param_1 = obj->insert(v);
@@ -226,8 +226,8 @@ public:
 	}
 };
 
-/** @brief 43������ȫ���������ӽڵ�
-* �����Ʊ�ʾ
+/** @brief 43：往完全二叉树添加节点
+* 二进制表示
 */
 class CBTInserter {
 private:
@@ -275,8 +275,8 @@ public:
 	}
 };
 
-/** @brief 44��������ÿ������ֵ
- * ������������������ʱ�临�Ӷ�ΪO(n)���ռ临�Ӷ�ΪO(height)������nΪ�������ڵ������height��ʾ�������ĸ߶ȡ�
+/** @brief 44：二叉树每层的最大值
+ * 深度优先中先序遍历，时间复杂度为O(n)，空间复杂度为O(height)，其中n为二叉树节点个数，height表示二叉树的高度。
  */
 class Solution1 {
 public:
@@ -301,8 +301,8 @@ public:
 	}
 };
 
-/** @brief 44��������ÿ������ֵ
- * ������ȱ�����ʱ�临�Ӷ�ΪO(n)���ռ临�Ӷ�ΪO(n)���洢�������ڵ�Ŀռ俪����
+/** @brief 44：二叉树每层的最大值
+ * 广度优先遍历，时间复杂度为O(n)，空间复杂度为O(n)，存储二叉树节点的空间开销。
  */
 class Solution2 {
 public:
@@ -333,8 +333,8 @@ public:
 	}
 };
 
-/** @brief ��û������45����������ײ�����ߵ�ֵ
-* ������ȱ�����ʱ�临�Ӷ�ΪO(n)���ռ临�Ӷ�ΪO(n)��
+/** @brief （没看懂）45：二叉树最底层最左边的值
+* 深度优先遍历，时间复杂度为O(n)，空间复杂度为O(n)。
 */
 class Solution3 {
 public:
@@ -359,10 +359,10 @@ public:
 	}
 };
 
-/** @brief 45��
-* ������ȱ���
-* ʱ�临�Ӷ�ΪO(n)
-* �ռ临�Ӷ�ΪO(n)�����������Ϊ���������������q��ౣ��n/2(����ȡ��)���ڵ㡣
+/** @brief 45：
+* 广度优先遍历
+* 时间复杂度为O(n)
+* 空间复杂度为O(n)。如果二叉树为满二叉树，则队列q最多保存n/2(向上取整)个节点。
 */
 class Solution4
 {
@@ -385,12 +385,12 @@ public:
 	}
 };
 
-/** @brief 46:���������Ҳ���ͼ
+/** @brief 46:二叉树的右侧视图
 */
 class Solution5 {
 public:
-	// ������ȱ���
-	// ʱ�临�Ӷ�ΪO(n)��ÿ���ڵ���ӳ���һ�Σ��ռ临�Ӷ�ΪO(n)�����г�����󲻳���n������nΪ�ڵ�����
+	// 广度优先遍历
+	// 时间复杂度为O(n)，每个节点入队出队一次，空间复杂度为O(n)，队列长度最大不超过n，其中n为节点总数
 	vector<int> rightSideViewBFS(TreeNode* root) {
 		if (root == nullptr)
 			return {};
@@ -401,7 +401,7 @@ public:
 		{
 			auto nodeInfo = q.front();
 			q.pop();
-			rightmostValAtDepth[nodeInfo.second] = nodeInfo.first->val; //ÿ�������ʵļ�Ϊ�ò����Ҳ�ڵ�
+			rightmostValAtDepth[nodeInfo.second] = nodeInfo.first->val; //每层最后访问的即为该层最右侧节点
 			if (nodeInfo.first->left)
 				q.push(make_pair(nodeInfo.first->left, nodeInfo.second + 1));
 			if (nodeInfo.first->right)
@@ -413,8 +413,8 @@ public:
 		return res;
 	}
 
-	// ������ȱ���
-	// ʱ�临�Ӷ�ΪO(n)���ռ临�Ӷ�ΪO(n)�����������߶ȵ����ܽڵ���n
+	// 深度优先遍历
+	// 时间复杂度为O(n)，空间复杂度为O(n)，最坏情况下树高度等于总节点数n
 	vector<int> rightSideView(TreeNode* root)
 	{
 		if (root == nullptr)
@@ -439,8 +439,8 @@ public:
 	}
 };
 
-/** @brief 47:��������֦���Լ�д
-* ʱ�临�Ӷ�ΪO(n)���ռ临�Ӷ�ΪO(n)��
+/** @brief 47:二叉树剪枝，自己写
+* 时间复杂度为O(n)，空间复杂度为O(n)。
 */
 class Solution6 {
 public:
@@ -450,7 +450,7 @@ public:
 			return nullptr;
 		if (isTreeAllVal0(root->left))
 		{
-			root->left = nullptr;	// ��֦
+			root->left = nullptr;	// 剪枝
 		}
 		else
 		{
@@ -458,7 +458,7 @@ public:
 		}
 		if (isTreeAllVal0(root->right))
 		{
-			root->right = nullptr;	// ��֦
+			root->right = nullptr;	// 剪枝
 		}
 		else
 		{
@@ -467,7 +467,7 @@ public:
 		return root;
 	}
 private:
-	// ʱ�临�Ӷ�ΪO(n)���ռ临�Ӷ�ΪO(n)��
+	// 时间复杂度为O(n)，空间复杂度为O(n)。
 	bool isTreeAllVal0(TreeNode* root)
 	{
 		if (root == nullptr)
@@ -478,8 +478,8 @@ private:
 	}
 };
 
-/** @brief 47:��������֦
-* ʱ�临�Ӷ�ΪO(n)���ռ临�Ӷ�ΪO(n)��
+/** @brief 47:二叉树剪枝
+* 时间复杂度为O(n)，空间复杂度为O(n)。
 */
 class Solution7 {
 public:
@@ -495,10 +495,10 @@ public:
 	}
 };
 
-/** @brief 48:���л��뷴���л�������
-* ʹ��dfs�е�preorder��
-* ÿ���ڵ�ֻ����һ�Σ�ʱ�临�Ӷ�ΪO(n)��
-* �ݹ�����л�ʹ��ջ�ռ䣬�ռ临�Ӷ�ΪO(n)��
+/** @brief 48:序列化与反序列化二叉树
+* 使用dfs中的preorder。
+* 每个节点只访问一次，时间复杂度为O(n)。
+* 递归过程中会使用栈空间，空间复杂度为O(n)。
 * Your Codec object will be instantiated and called as such:
 * Codec ser, deser;
 * TreeNode* ans = deser.deserialize(ser.serialize(root));
@@ -512,7 +512,7 @@ public:
 			str += "None,";
 		else
 		{
-			// dfs��preOrder
+			// dfs中preOrder
 			str += to_string(root->val) + ",";
 			str += serialize(root->left);
 			str += serialize(root->right);
@@ -561,10 +561,10 @@ private:
 	}
 };
 
-/** @brief 49:�Ӹ��ڵ㵽Ҷ�ڵ��·������֮�ͣ��Լ�д��
-* ʹ��dfs�е�preorder��
-* ʱ�临�Ӷ�ΪO(n)��
-* �ռ临�Ӷ�ΪO(n)��
+/** @brief 49:从根节点到叶节点的路径数字之和（自己写）
+* 使用dfs中的preorder。
+* 时间复杂度为O(n)。
+* 空间复杂度为O(n)。
 */
 class Solution8 {
 public:
@@ -594,10 +594,10 @@ public:
 	}
 };
 
-/** @brief 49:�Ӹ��ڵ㵽Ҷ�ڵ��·������֮�ͣ�Leetcode-dfs��
-* ʹ��dfs�е�preorder��
-* ʱ�临�Ӷ�ΪO(n)����ÿ���ڵ����һ�Ρ�
-* �ռ临�Ӷ�ΪO(n)���ռ临�Ӷ���Ҫȡ���ڵݹ���õ�ջ�ռ䣬�ݹ�ջ����ȵ��ڶ������ĸ߶ȡ������£��������ĸ߶ȵ��ڽڵ������
+/** @brief 49:从根节点到叶节点的路径数字之和（Leetcode-dfs）
+* 使用dfs中的preorder。
+* 时间复杂度为O(n)，对每个节点访问一次。
+* 空间复杂度为O(n)。空间复杂度主要取决于递归调用的栈空间，递归栈的深度等于二叉树的高度。最坏情况下，二叉树的高度等于节点个数。
 */
 class Solution9 {
 public:
@@ -617,18 +617,18 @@ public:
 	}
 };
 
-/** @brief 49:�Ӹ��ڵ㵽Ҷ�ڵ��·������֮�ͣ�Leetcode-bfs��
-* ʹ��bfs��
-* ʱ�临�Ӷ�ΪO(n)����ÿ���ڵ����һ�Ρ�
-* �ռ临�Ӷ�ΪO(n)���ռ临�Ӷ���Ҫȡ���ڶ��У�ÿ�������е�Ԫ�ظ������ᳬ��n��
+/** @brief 49:从根节点到叶节点的路径数字之和（Leetcode-bfs）
+* 使用bfs。
+* 时间复杂度为O(n)，对每个节点访问一次。
+* 空间复杂度为O(n)。空间复杂度主要取决于队列，每个队列中的元素个数不会超过n。
 */
 class Solution10 {
 public:
 	int sumNumbers(TreeNode* root) {
 		if (root == nullptr)
 			return 0;
-		queue<TreeNode*> nodeQueue;	// �ڵ�
-		queue<int> numQueue;	// �ڵ��Ӧ·����������ɵ�ֵ
+		queue<TreeNode*> nodeQueue;	// 节点
+		queue<int> numQueue;	// 节点对应路径上数字组成的值
 		nodeQueue.push(root);
 		numQueue.push(root->val);
 		int sum = 0;
@@ -658,10 +658,10 @@ public:
 	}
 };
 
-/** @brief 50:���µ�·���ڵ�֮��
+/** @brief 50:向下的路径节点之和
 *
-* ʱ�临�Ӷ�ΪO()
-* �ռ临�Ӷ�ΪO()
+* 时间复杂度为O()
+* 空间复杂度为O()
 */
 class Solution {
 public:

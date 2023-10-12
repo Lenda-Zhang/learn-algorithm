@@ -1,9 +1,9 @@
-#pragma once
+ï»¿#pragma once
 #include "myinclude.h"
 #include "wdtree.h"
 
-#pragma region ¶ş²æÅÅĞòÊ÷(Binary Sort Tree)
-//²éÕÒ(µİ¹é)
+#pragma region äºŒå‰æ’åºæ ‘(Binary Sort Tree)
+//æŸ¥æ‰¾(é€’å½’)
 BSTNode* BST_Search_Recursion(BiTree T, ElemType key)
 {
 	if (T == nullptr)
@@ -16,7 +16,7 @@ BSTNode* BST_Search_Recursion(BiTree T, ElemType key)
 		return BST_Search_Recursion(T->rchild, key);
 }
 
-//²éÕÒ(·Çµİ¹é)
+//æŸ¥æ‰¾(éé€’å½’)
 BSTNode* BST_Search_Iteration(BiTree T, ElemType key)
 {
 	while (T && key != T->data)
@@ -29,7 +29,7 @@ BSTNode* BST_Search_Iteration(BiTree T, ElemType key)
 	return T;
 }
 
-//²åÈë£¬×¢£º·µ»ØÖµ0±íÊ¾Ê÷ÖĞ´æÔÚÏàÍ¬¹Ø¼ü×ÖµÄ½áµã£¬²åÈëÊ§°Ü£»1±íÊ¾²åÈë³É¹¦
+//æ’å…¥ï¼Œæ³¨ï¼šè¿”å›å€¼0è¡¨ç¤ºæ ‘ä¸­å­˜åœ¨ç›¸åŒå…³é”®å­—çš„ç»“ç‚¹ï¼Œæ’å…¥å¤±è´¥ï¼›1è¡¨ç¤ºæ’å…¥æˆåŠŸ
 int BST_Insert(BiTree& T, ElemType key)
 {
 	if (T == nullptr)
@@ -54,10 +54,10 @@ int BST_Insert(BiTree& T, ElemType key)
 	}
 }
 
-//¹¹Ôì
+//æ„é€ 
 void Create_BST(BiTree& T, ElemType str[], int n)
 {
-	T = nullptr;	//³õÊ¼Ê±TÎª¿ÕÊ÷
+	T = nullptr;	//åˆå§‹æ—¶Tä¸ºç©ºæ ‘
 	int i = 0;
 	while (i < n)
 	{
@@ -65,11 +65,11 @@ void Create_BST(BiTree& T, ElemType str[], int n)
 	}
 }
 
-//É¾³ı£¬ÔİÎŞ´úÂë
-//Ë¼Ïë£º·Ö3ÖÖÇé¿ö¿¼ÂÇ£º
-//1.Èô±»É¾³ı½áµãzÊÇÒ¶½Úµã£¬ÔòÖ±½ÓÉ¾³ı£¬²»»áÆÆ»µ¶ş²æÅÅĞòÊ÷µÄĞÔÖÊ¡£
-//2.Èô½áµãzÖ»ÓĞÒ»¿Ã×ó×ÓÊ÷»òÓÒ×ÓÊ÷£¬ÔòÈÃzµÄ×ÓÊ÷³ÉÎªz¸¸½áµãµÄ×ÓÊ÷£¬Ìæ´úzµÄÎ»ÖÃ¡£
-//3.Èô½áµãzÓĞ×ó¡¢ÓÒÁ½¿Ã×ÓÊ÷£¬ÔòÁîzµÄÖ±½Óºó¼Ì(»òÖ±½ÓÇ°Çı)Ìæ´úz£¬È»ºó´Ó¶ş²æÅÅĞòÊ÷ÖĞÉ¾È¥Õâ¸öÖ±½Óºó¼Ì(»òÖ±½ÓÇ°Çı)£¬ÕâÑù¾Í×ª»»³ÉÁËµÚÒ»»òµÚ¶şÖÖÇé¿ö¡£
+//åˆ é™¤ï¼Œæš‚æ— ä»£ç 
+//æ€æƒ³ï¼šåˆ†3ç§æƒ…å†µè€ƒè™‘ï¼š
+//1.è‹¥è¢«åˆ é™¤ç»“ç‚¹zæ˜¯å¶èŠ‚ç‚¹ï¼Œåˆ™ç›´æ¥åˆ é™¤ï¼Œä¸ä¼šç ´åäºŒå‰æ’åºæ ‘çš„æ€§è´¨ã€‚
+//2.è‹¥ç»“ç‚¹zåªæœ‰ä¸€æ£µå·¦å­æ ‘æˆ–å³å­æ ‘ï¼Œåˆ™è®©zçš„å­æ ‘æˆä¸ºzçˆ¶ç»“ç‚¹çš„å­æ ‘ï¼Œæ›¿ä»£zçš„ä½ç½®ã€‚
+//3.è‹¥ç»“ç‚¹zæœ‰å·¦ã€å³ä¸¤æ£µå­æ ‘ï¼Œåˆ™ä»¤zçš„ç›´æ¥åç»§(æˆ–ç›´æ¥å‰é©±)æ›¿ä»£zï¼Œç„¶åä»äºŒå‰æ’åºæ ‘ä¸­åˆ å»è¿™ä¸ªç›´æ¥åç»§(æˆ–ç›´æ¥å‰é©±)ï¼Œè¿™æ ·å°±è½¬æ¢æˆäº†ç¬¬ä¸€æˆ–ç¬¬äºŒç§æƒ…å†µã€‚
 
 
 #pragma endregion

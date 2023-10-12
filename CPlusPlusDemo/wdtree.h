@@ -1,14 +1,14 @@
-#pragma once
+﻿#pragma once
 #include "myinclude.h"
 #include "wdstack.h"
 
 typedef int ElemType;
 
-//����������ʽ�洢�ṹ
+//二叉树的链式存储结构
 typedef struct BiTNode
 {
-	ElemType data;	//������
-	struct BiTNode* lchild, * rchild;	//���Һ���ָ��
+	ElemType data;	//数据域
+	struct BiTNode* lchild, * rchild;	//左右孩子指针
 }BiTNode, BSTNode, * BiTree;
 
 BiTNode* rdeserialize(list<string>& dataArray, BiTNode* parent)
@@ -35,7 +35,7 @@ string Serialize(BiTNode* root) {
 		str += "None,";
 	else
 	{
-		// dfs��preOrder
+		// dfs中preOrder
 		str += to_string(root->data) + ",";
 		str += Serialize(root->lchild);
 		str += Serialize(root->rchild);
@@ -67,7 +67,7 @@ BiTNode* Deserialize(string data) {
 	return rdeserialize(dataArray, nullptr);
 }
 
-//�����������Ĵ洢�ṹ
+//线索二叉树的存储结构
 typedef struct ThreadNode
 {
 	int data;
@@ -75,7 +75,7 @@ typedef struct ThreadNode
 	int ltag, rtag;
 }ThreadNode, * ThreadTree;
 
-//���л��뷴���л�����������
+//序列化与反序列化线索二叉树
 class WdCodec {
 public:
 	// Encodes a tree to a single string.
@@ -85,7 +85,7 @@ public:
 			str += "None,";
 		else
 		{
-			// dfs��preOrder
+			// dfs中preOrder
 			str += to_string(root->data) + ",";
 			str += serialize(root->lchild);
 			str += serialize(root->rchild);
@@ -138,7 +138,7 @@ private:
 	}
 };
 
-#pragma region ��������������
+#pragma region 中序线索二叉树
 void InThread(ThreadTree& p, ThreadTree& pre)
 {
 	if (p != nullptr)
@@ -159,7 +159,7 @@ void InThread(ThreadTree& p, ThreadTree& pre)
 	}
 }
 
-//�������������������������
+//中序遍历建立中序线索二叉树
 void CreateInThread(ThreadTree T)
 {
 	ThreadTree pre = nullptr;
@@ -171,7 +171,7 @@ void CreateInThread(ThreadTree T)
 	}
 }
 
-//�ҵ����������еĵ�һ�����
+//找到中序序列中的第一个结点
 ThreadNode* LNRFirstnode(ThreadTree T)
 {
 	ThreadNode* p = T;
@@ -180,7 +180,7 @@ ThreadNode* LNRFirstnode(ThreadTree T)
 	return p;
 }
 
-//���������������н��p�ĺ��
+//中序线索二叉树中结点p的后继
 ThreadNode* LNRNextnode(ThreadNode* p)
 {
 	if (p->rtag == 0)
@@ -188,7 +188,7 @@ ThreadNode* LNRNextnode(ThreadNode* p)
 	return p->rchild;
 }
 
-//�ҵ����������е����һ�����
+//找到中序序列中的最后一个结点
 ThreadNode* LNRLastnode(ThreadTree T)
 {
 	ThreadNode* p = T;
@@ -197,7 +197,7 @@ ThreadNode* LNRLastnode(ThreadTree T)
 	return p;
 }
 
-//���������������н��p��ǰ��
+//中序线索二叉树中结点p的前驱
 ThreadNode* LNRPrevnode(ThreadNode* p)
 {
 	if (p->ltag == 0)
@@ -220,12 +220,12 @@ void InOrderReverse(ThreadTree T)
 }
 #pragma endregion
 
-#pragma region ��������������
+#pragma region 先序线索二叉树
 void PreThread(ThreadTree& p, ThreadTree& pre)
 {
 	if (p != nullptr)
 	{
-		//solve error: ���ڽ���lchild����ǰ����Ϣ���޷��жϺ��������ݹ��ˣ�����Ҫ�Ȼ���
+		//solve error: 由于结点的lchild存入前驱信息，无法判断合适跳出递归了，所以要先缓存
 		ThreadNode* lchild = p->lchild;
 		ThreadNode* rchild = p->rchild;
 		if (p->lchild == nullptr)
@@ -244,7 +244,7 @@ void PreThread(ThreadTree& p, ThreadTree& pre)
 	}
 }
 
-//�������������������������
+//先序遍历建立先序线索二叉树
 void CreatePreThread(ThreadTree T)
 {
 	ThreadTree pre = nullptr;
@@ -256,13 +256,13 @@ void CreatePreThread(ThreadTree T)
 	}
 }
 
-//�ҵ����������еĵ�һ�����
+//找到先序序列中的第一个结点
 ThreadNode* NLRFirstnode(ThreadTree T)
 {
 	return T;
 }
 
-//���������������н��p�ĺ��
+//先序线索二叉树中结点p的后继
 ThreadNode* NLRNextnode(ThreadNode* p)
 {
 	if (p->ltag == 0)
@@ -270,7 +270,7 @@ ThreadNode* NLRNextnode(ThreadNode* p)
 	return p->rchild;
 }
 
-//�ҵ����������е����һ�����
+//找到先序序列中的最后一个结点
 ThreadNode* NLRLastnode(ThreadTree T)
 {
 	ThreadNode* p = T;
@@ -283,17 +283,17 @@ ThreadNode* NLRLastnode(ThreadTree T)
 	return p;
 }
 
-//���������������н��p��ǰ��
+//先序线索二叉树中结点p的前驱
 ThreadNode* NLRPrevnode(ThreadNode* p)
 {
-	if (p->ltag == 1)	//��p������Ϊǰ�����
+	if (p->ltag == 1)	//若p的左孩子为前驱结点
 		return p->lchild;
-	if (p->parent == nullptr)	//��pΪ���ڵ�
+	if (p->parent == nullptr)	//若p为根节点
 		return nullptr;
-	else if ((p->parent->ltag == 0 && p == p->parent->lchild) || (p->parent->rtag == 0 && p == p->parent->rchild && p->parent->ltag == 1))	//��pΪ˫�׵����ӻ�˫�׵��Һ�����˫�׵�����Ϊ��
+	else if ((p->parent->ltag == 0 && p == p->parent->lchild) || (p->parent->rtag == 0 && p == p->parent->rchild && p->parent->ltag == 1))	//若p为双亲的左孩子或双亲的右孩子且双亲的左孩子为空
 		return p->parent;
 	else
-		return LNRLastnode(p->parent->lchild);	//��pΪ˫�׵��Һ�����˫�׵����Ӳ�Ϊ��
+		return LNRLastnode(p->parent->lchild);	//若p为双亲的右孩子且双亲的左孩子不为空
 }
 
 void PreOrder(ThreadTree T)
@@ -311,7 +311,7 @@ void PreOrderReverse(ThreadTree T)
 }
 #pragma endregion
 
-#pragma region ��������������
+#pragma region 后序线索二叉树
 void PostThread(ThreadTree& p, ThreadTree& pre)
 {
 	if (p != nullptr)
@@ -332,7 +332,7 @@ void PostThread(ThreadTree& p, ThreadTree& pre)
 	}
 }
 
-//�������������������������
+//后序遍历建立后序线索二叉树
 void CreatePostThread(ThreadTree T)
 {
 	ThreadTree pre = nullptr;
@@ -344,7 +344,7 @@ void CreatePostThread(ThreadTree T)
 	}
 }
 
-//�ҵ����������еĵ�һ�����
+//找到后序序列中的第一个结点
 ThreadNode* LRNFirstnode(ThreadTree T)
 {
 	ThreadNode* p = T;
@@ -356,7 +356,7 @@ ThreadNode* LRNFirstnode(ThreadTree T)
 		return p;
 }
 
-//���������������н��p�ĺ��
+//后序线索二叉树中结点p的后继
 ThreadNode* LRNNextnode(ThreadNode* p)
 {
 	if (p->parent == nullptr)
@@ -367,26 +367,26 @@ ThreadNode* LRNNextnode(ThreadNode* p)
 		return LRNFirstnode(p->parent->rchild);
 }
 
-//�ҵ����������е����һ�����
+//找到后序序列中的最后一个结点
 ThreadNode* LRNLastnode(ThreadTree T)
 {
 	return T;
 }
 
-//���������������н��p��ǰ��
+//后序线索二叉树中结点p的前驱
 ThreadNode* LRNPrevnode(ThreadTree T)
 {
 	ThreadNode* p = T;
-	//��pΪҶ�ӽڵ�
+	//若p为叶子节点
 	if (p->ltag == 1 && p->rtag == 1)
 	{
 		return p->lchild;
 	}
-	else if (p->rtag == 0)	//��p���Һ���
+	else if (p->rtag == 0)	//若p有右孩子
 	{
 		return p->rchild;
 	}
-	else	//��pû���Һ��ӣ���������
+	else	//若p没有右孩子，但有左孩子
 	{
 		return p->lchild;
 	}
@@ -407,7 +407,7 @@ void PostOrderReverse(ThreadTree T)
 }
 #pragma endregion
 
-#pragma region 5.3 �ۺ���
+#pragma region 5.3 综合题
 void PreOrderRecursion(BiTree T)
 {
 	if (T)
@@ -428,8 +428,8 @@ void InOrderRecursion(BiTree T)
 	}
 }
 
-//3 ��������������ķǵݹ��㷨
-//ʱ��O(n),�ռ�O(n),nΪ�������������
+//3 后序遍历二叉树的非递归算法
+//时间O(n),空间O(n),n为二叉树结点总数
 void PostOrderIteration(BiTree T)
 {
 	stack<BiTNode*> s;
@@ -447,7 +447,7 @@ void PostOrderIteration(BiTree T)
 		{
 			cout << unitbuf << node->data << " " << nounitbuf;
 			prev = node;
-			node = nullptr;	//node�ÿգ�ʹ������ջ�н��
+			node = nullptr;	//node置空，使得消耗栈中结点
 			s.pop();
 		}
 		else
@@ -457,9 +457,9 @@ void PostOrderIteration(BiTree T)
 	}
 }
 
-//4 ���������µ��ϣ����ҵ����α����㷨
-//˼·����ԭ��BFS�㷨�м�һ��ջ��ԭ���ʴ���ĳ���ջ���룬�����н����ջ���ٳ�ջ
-//ʱ��O(n),�ռ�O(n),nΪ�������������
+//4 二叉树从下到上，从右到左层次遍历算法
+//思路：在原有BFS算法中加一个栈，原访问代码改成入栈代码，待所有结点入栈后再出栈
+//时间O(n),空间O(n),n为二叉树结点总数
 void BFSReverse(BiTree T)
 {
 	if (T == nullptr)
@@ -485,9 +485,9 @@ void BFSReverse(BiTree T)
 	}
 }
 
-//5 �ǵݹ��㷨��������߶�
-//˼·��ʹ��DFS�к��������ջ��󳤶ȼ�Ϊ�������߶�
-//ʱ��O(n),�ռ�O(n),nΪ�������������
+//5 非递归算法求二叉树高度
+//思路：使用DFS中后序遍历，栈最大长度即为二叉树高度
+//时间O(n),空间O(n),n为二叉树结点总数
 int GetHeight(BiTree T)
 {
 	stack<BiTNode*> s;
@@ -518,10 +518,10 @@ int GetHeight(BiTree T)
 	return height;
 }
 
-//*5 �ο��𰸣��ǵݹ��㷨��������߶�
-//˼·��BFS�����ݵ�ǰ����Ƿ�Ϊ��ǰ�����ҽ�㣬�ж�һ���Ƿ������ɣ��Ӷ�ȷ��������
-//ʱ��ռ临�ӶȲο�BFS��
-//ע�⣺��ĳ���������ÿ������������������ȣ����ɲ�����������Ƶ�˼�롣
+//*5 参考答案：非递归算法求二叉树高度
+//思路：BFS，根据当前结点是否为当前层最右结点，判断一层是否遍历完成，从而确定层数。
+//时间空间复杂度参考BFS。
+//注意：求某层结点个数、每层结点个数、树的最大宽度，都可采用与此题类似的思想。
 int GetHeight2(BiTree T)
 {
 	if (!T)
@@ -529,7 +529,7 @@ int GetHeight2(BiTree T)
 	int level = 0;
 	queue<BiTNode*> q;
 	q.push(T);
-	BiTNode* lastOfTheLevel = q.back();	//��ǰ������ҽ��
+	BiTNode* lastOfTheLevel = q.back();	//当前层的最右结点
 	while (!q.empty())
 	{
 		auto node = q.front();
@@ -548,7 +548,7 @@ int GetHeight2(BiTree T)
 	return level;
 }
 
-//*5 ��չ���ݹ��㷨��������߶�
+//*5 拓展：递归算法求二叉树高度
 int GetHeightRecursion(BiTree T)
 {
 	if (T == nullptr)
@@ -556,14 +556,14 @@ int GetHeightRecursion(BiTree T)
 	int lHeight = GetHeightRecursion(T->lchild);
 	int rHeight = GetHeightRecursion(T->rchild);
 	if (rHeight > lHeight)
-		return rHeight + 1;	//���ĸ߶�Ϊ�������߶ȼӸ��ڵ�
+		return rHeight + 1;	//树的高度为子树最大高度加根节点
 	else
 		return lHeight + 1;
 }
 
-//6 �����������ֵ������ͬ�������������������������н����ö������Ķ�������
-//ע�⣺ʹ��llen,rlen���±���㣬�����ж��Ƿ��к���
-//ʱ��O(n),�ռ�O(1),nΪ�������������
+//6 二叉树各结点值互不相同，根据先序遍历、中序遍历序列建立该二叉树的二叉链表
+//注意：使用llen,rlen简化下标计算，可以判断是否有孩子
+//时间O(n),空间O(1),n为二叉树结点总数
 BiTNode* Deserialize(int l1, int h1, int l2, int h2, int preOrder[], int inOrder[])
 {
 	BiTNode* root = (BiTNode*)malloc(sizeof(BiTNode));
@@ -586,11 +586,11 @@ BiTNode* Deserialize(int l1, int h1, int l2, int h2, int preOrder[], int inOrder
 	return root;
 }
 
-//7 �б�����������Ƿ�Ϊ��ȫ������
-//˼·������BFS�������н��������(�����ս��)��
-//�����ս��ʱ���鿴����Ƿ��зǿս�㡣
-//���У�������ȫ��������
-//ʱ��O(n),ÿ�������ӳ���һ��,�ռ�O(n)
+//7 判别给定二叉树是否为完全二叉树
+//思路：采用BFS，将所有结点加入队列(包括空结点)。
+//遇到空结点时，查看其后是否有非空结点。
+//若有，则不是完全二叉树。
+//时间O(n),每个结点进队出队一次,空间O(n)
 bool IsFBT(BiTree T)
 {
 	if (!T)
@@ -619,7 +619,7 @@ bool IsFBT(BiTree T)
 	return true;
 }
 
-//8 ���������������˫��֧���ĸ���
+//8 计算二叉树中所有双分支结点的个数
 //
 int NumOfDoubleBranchNode(BiTree T)
 {
@@ -631,9 +631,9 @@ int NumOfDoubleBranchNode(BiTree T)
 		return NumOfDoubleBranchNode(T->lchild) + NumOfDoubleBranchNode(T->rchild);
 }
 
-//9 �������������н�����������
-//˼·��DFS���������LRN��
-//ʱ��ռ临�Ӷ�ͬ�������(�ݹ�)�㷨��
+//9 交换二叉树所有结点的左、右子树
+//思路：DFS，这里采用LRN。
+//时间空间复杂度同后序遍历(递归)算法。
 void SwapLRChild(BiTree T)
 {
 	if (T)
@@ -646,13 +646,13 @@ void SwapLRChild(BiTree T)
 	}
 }
 
-int i = 1;	//������ŵ�ȫ�ֱ���
-//10 ��������������е�k������ֵ��1<=k<=�������
-//ʱ��ռ临�Ӷ�ͬ�������(�ݹ�)
+int i = 1;	//遍历序号的全局变量
+//10 求先序遍历序列中第k个结点的值，1<=k<=结点总数
+//时间空间复杂度同先序遍历(递归)
 string GetKthOfPreOrder(BiTree T, int k)
 {
 	if (T == nullptr)
-		return "#";	//�����־
+		return "#";	//特殊标志
 	else if (i == k)
 	{
 		return to_string(T->data);
@@ -665,7 +665,7 @@ string GetKthOfPreOrder(BiTree T, int k)
 	}
 }
 
-//�ͷſռ䣺�Ⱥ��Ӻ����ʹ��LRN
+//释放空间：先孩子后根，使用LRN
 void DeleteXTree(BiTree& T)
 {
 	if (T)
@@ -678,9 +678,9 @@ void DeleteXTree(BiTree& T)
 	}
 }
 
-//11 ��������ÿ��ֵΪx�Ľ�㣬ɾ������Ϊ�������������ͷ���Ӧ�Ŀռ�
-//�ͷſռ䣺�Ⱥ��Ӻ����ʹ��LRN��ɾ����������Ҫ��˫�׽���Ӧ�ĺ��ӽ���ÿգ�ʹ��BFS
-//ʱ��O(n),ÿ��������һ��,�ռ�O(n),û��ֵΪx�Ľ��,���൱�ڲ������
+//11 对于树中每个值为x的结点，删除以它为根的子树，并释放相应的空间
+//释放空间：先孩子后根，使用LRN；删除子树，需要将双亲结点对应的孩子结点置空，使用BFS
+//时间O(n),每个结点访问一次,空间O(n),没有值为x的结点,则相当于层序遍历
 void Search(BiTree& T, int x)
 {
 	if (!T)
@@ -724,8 +724,8 @@ void Search(BiTree& T, int x)
 	}
 }
 
-//12 ��ӡֵΪx�Ľ����������ȣ�����ֵΪx�Ľ�㲻����һ��
-//˼·����������ķǵݹ�ʵ��
+//12 打印值为x的结点的所有祖先，假设值为x的结点不多于一个
+//思路：后序遍历的非递归实现
 void PrintXAncestor(BiTree T, int x)
 {
 	BiTNode* node = T, * prev = nullptr;
@@ -763,13 +763,13 @@ void PrintXAncestor(BiTree T, int x)
 typedef struct
 {
 	BiTree t;
-	int tag;	//tag=0��ʾ�����ѱ����ʣ�tag=1��ʾ�Һ����ѱ�����
+	int tag;	//tag=0表示左孩子已被访问，tag=1表示右孩子已被访问
 }stackWithTag;
 
-stackWithTag s[MaxSize], s1[MaxSize];	//ջ�����㹻��
+stackWithTag s[MaxSize], s1[MaxSize];	//栈容量足够大
 
-//13 �ҳ������������������������������
-//ʱ��ռ临�Ӷ�ͬ�������(�ǵݹ�)
+//13 找出二叉树中任意两结点的最近公共祖先
+//时间空间复杂度同后序遍历(非递归)
 BiTree NearestCommonAncestor(BiTree T, BiTNode* p, BiTNode* q)
 {
 	int top = 0, top1 = 0;
@@ -784,7 +784,7 @@ BiTree NearestCommonAncestor(BiTree T, BiTNode* p, BiTNode* q)
 		}
 		while (top != 0 && s[top].tag == 1)
 		{
-			//�ٶ�p��q����࣬����pʱ��ջ��Ԫ�ؾ�Ϊp������
+			//假定p在q的左侧，遇到p时，栈中元素均为p的祖先
 			if (s[top].t == p)
 			{
 				for (int i = 1; i <= top; i++)
@@ -809,7 +809,7 @@ BiTree NearestCommonAncestor(BiTree T, BiTNode* p, BiTNode* q)
 	return nullptr;
 }
 
-//14 ��ǿն������Ŀ���
+//14 求非空二叉树的宽度
 //BFS
 int GetWidth(BiTree T)
 {
@@ -871,8 +871,8 @@ string GetPostByPre(vector<ElemType> data, int begin, int end)
 	return to_string(root);
 }
 
-//15 ������������(���н��ֵ����ͬ),��֪����������,��������С�
-//dataΪԪ���Զ��ŷָ������������ַ���
+//15 根据满二叉树(所有结点值均不同),已知其先序序列,求后序序列。
+//data为元素以逗号分隔的先序序列字符串
 //
 string GetPostByPreStr(string data)
 {
@@ -882,9 +882,9 @@ string GetPostByPreStr(string data)
 	return "";
 }
 
-//16 ����������Ҷ�ӽ�㰴�����ҵ�˳������һ��������
-//ʱ��ռ临�Ӷ�ͬ�������
-//headΪͷ��㣬prevΪǰ�����
+//16 将二叉树的叶子结点按从左到右的顺序连成一个单链表
+//时间空间复杂度同先序遍历
+//head为头结点，prev为前驱结点
 BiTNode* LinkListOfLeafNodes(BiTree T, BiTNode* head, BiTNode*& prev)
 {
 	if (T)
@@ -903,7 +903,7 @@ BiTNode* LinkListOfLeafNodes(BiTree T, BiTNode* head, BiTNode*& prev)
 	return head;
 }
 
-//17 �ж����ö������Ƿ�����
+//17 判断两棵二叉树是否相似
 //
 bool IsSimilar(BiTree T1, BiTree T2)
 {
@@ -915,33 +915,33 @@ bool IsSimilar(BiTree T1, BiTree T2)
 		return IsSimilar(T1->lchild, T2->lchild) && IsSimilar(T1->rchild, T2->rchild);
 }
 
-//18 ����������������t�У���ָ�����p�ں����µ�ǰ�����q
+//18 在中序线索二叉树t中，求指定结点p在后序下的前驱结点q
 //
 ThreadTree InPostPre(ThreadTree t, ThreadNode* p)
 {
 	ThreadNode* q;
-	if (p->rtag == 0)	//��p������Ů��������ŮΪ�����ǰ��
+	if (p->rtag == 0)	//若p有右子女，则右子女为其后序前驱
 		q = p->rchild;
-	else if (p->ltag == 0)	//��pֻ������Ů��������ŮΪ�����ǰ��
+	else if (p->ltag == 0)	//若p只有左子女，则左子女为其后序前驱
 		q = p->lchild;
-	else if (p->lchild == nullptr)	//��p���������еĵ�һ��㣬���޺���ǰ��
+	else if (p->lchild == nullptr)	//若p是中序序列的第一结点，则无后序前驱
 		q = nullptr;
 	else
 	{
-		//˳���������ϲ���p�����ȣ������ڣ��������ȵ�����Ů
+		//顺左线索向上查找p的祖先，若存在，再找祖先的左子女
 		while (p->ltag == 1 && p->lchild != nullptr)
 			p = p->lchild;
 		if (p->ltag == 0)
-			q = p->lchild;	//p�������ȵ�����Ů�������ǰ��
+			q = p->lchild;	//p结点的祖先的左子女是其后序前驱
 		else
-			q = nullptr;	//���е�֧����p��Ҷ�ӣ����ѵ�����㣬p�޺���ǰ��
+			q = nullptr;	//仅有单支树（p是叶子），已到根结点，p无后序前驱
 	}
 	return q;
 }
 #pragma endregion
 
-#pragma region ��ĩ�����ܽ᣺��д�йض������ĵݹ��㷨
-//1 ͳ�ƶ������ж�Ϊ1�Ľ�����
+#pragma region 章末归纳总结：编写有关二叉树的递归算法
+//1 统计二叉树中度为1的结点个数
 //NLR
 int NodeOfDegree1(BiTree T)
 {
@@ -955,7 +955,7 @@ int NodeOfDegree1(BiTree T)
 	return cnt;
 }
 
-//2 ͳ�ƶ������ж�Ϊ2�Ľ�����
+//2 统计二叉树中度为2的结点个数
 //NLR
 int NodeOfDegree2(BiTree T)
 {
@@ -969,7 +969,7 @@ int NodeOfDegree2(BiTree T)
 	return cnt;
 }
 
-//3 ͳ�ƶ������ж�Ϊ0�Ľ�����
+//3 统计二叉树中度为0的结点个数
 //NLR
 int NodeOfDegree0(BiTree T)
 {
@@ -983,7 +983,7 @@ int NodeOfDegree0(BiTree T)
 	return cnt;
 }
 
-//4 ͳ�ƶ������ĸ߶�
+//4 统计二叉树的高度
 //LRN
 int BiTreeHeight(BiTree T)
 {
@@ -997,7 +997,7 @@ int BiTreeHeight(BiTree T)
 		return lHeight + 1;
 }
 
-//����ÿ����ȣ��±��1��ʼ����width[1]��¼��1����ȣ��ر�أ�width[0]��¼������
+//计算每层宽度，下标从1开始，即width[1]记录第1层宽度，特别地，width[0]记录最大层数
 //NLR
 void CalculateWidth(BiTree T, int width[], int level)
 {
@@ -1010,7 +1010,7 @@ void CalculateWidth(BiTree T, int width[], int level)
 	CalculateWidth(T->rchild, width, level + 1);
 }
 
-//5 ͳ�ƶ������Ŀ���
+//5 统计二叉树的宽度
 //
 int BiTreeBreadth(BiTree T)
 {
@@ -1026,7 +1026,7 @@ int BiTreeBreadth(BiTree T)
 	return breadth;
 }
 
-//6 �Ӷ�������ɾȥ����Ҷ�ڵ�
+//6 从二叉树中删去所有叶节点
 //NLR
 void DeleteAllLeaves(BiTree& T, BiTNode* prev)
 {
@@ -1035,7 +1035,7 @@ void DeleteAllLeaves(BiTree& T, BiTNode* prev)
 	if (!T->lchild && !T->rchild)
 	{
 		auto temp = T;
-		if (prev == nullptr)	//����ֻ��һ�����ڵ�
+		if (prev == nullptr)	//树中只有一个根节点
 		{
 			T = nullptr;
 		}
@@ -1055,7 +1055,7 @@ void DeleteAllLeaves(BiTree& T, BiTNode* prev)
 	}
 }
 
-//*7 ����ָ�����*p���ڵĲ��
+//*7 计算指定结点*p所在的层次
 int GetLayer(BiTree T, BiTNode* p)
 {
 	if (T == nullptr)
@@ -1064,7 +1064,7 @@ int GetLayer(BiTree T, BiTNode* p)
 		return 1;
 	int lLayer = GetLayer(T->lchild, p);
 	int rLayer = GetLayer(T->rchild, p);
-	if (lLayer || rLayer)	//1��ʾ�ҵ�p�ˣ��ӵݹ�ջ���ص�ջ������Ϊp���ڲ��
+	if (lLayer || rLayer)	//1表示找到p了，从递归栈返回的栈层数即为p所在层次
 	{
 		if (rLayer > lLayer)
 			return rLayer + 1;
@@ -1074,7 +1074,7 @@ int GetLayer(BiTree T, BiTNode* p)
 	return 0;
 }
 
-//8 ����������и���������Ԫ�ص�ֵ
+//8 计算二叉树中各结点中最大元素的值
 int MaxVal(BiTree T)
 {
 	if (T == nullptr)
@@ -1085,7 +1085,7 @@ int MaxVal(BiTree T)
 	return childMax > T->data ? childMax : T->data;
 }
 
-//9 ���������������н���������Ů
+//9 交换二叉树中所有结点的两个子女
 //LRN
 void ExchangeChild(BiTree T)
 {
@@ -1098,7 +1098,7 @@ void ExchangeChild(BiTree T)
 	T->rchild = temp;
 }
 
-//10 ������������һ�ö����������н�������ֵ��������ڵĲ��
+//10 以先序次序输出一棵二叉树中所有结点的数据值及结点所在的层次
 void PreOrderAndLevel(BiTree T, int level)
 {
 	if (T != nullptr)

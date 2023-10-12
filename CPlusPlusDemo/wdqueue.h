@@ -1,17 +1,17 @@
-#pragma once
+ï»¿#pragma once
 #include "myinclude.h"
 #include "wdstack.h"
 
-#pragma region ¶ÓÁĞµÄË³Ğò´æ´¢
+#pragma region é˜Ÿåˆ—çš„é¡ºåºå­˜å‚¨
 #define MaxSize 50
-//¶ÓÁĞµÄË³Ğò´æ´¢ÀàĞÍ
+//é˜Ÿåˆ—çš„é¡ºåºå­˜å‚¨ç±»å‹
 typedef struct
 {
 	int data[MaxSize];
-	int front, rear;	//frontÖ¸Ïò¶ÓÍ·ÔªËØ£¬rearÖ¸Ïò¶ÓÎ²ÔªËØµÄÏÂÒ»¸öÎ»ÖÃ
+	int front, rear;	//frontæŒ‡å‘é˜Ÿå¤´å…ƒç´ ï¼ŒrearæŒ‡å‘é˜Ÿå°¾å…ƒç´ çš„ä¸‹ä¸€ä¸ªä½ç½®
 }SqQueue;
 
-#pragma region Ë³Ğò¶ÓÁĞÖ®ÆÕÍ¨¶ÓÁĞµÄ»ù±¾²Ù×÷
+#pragma region é¡ºåºé˜Ÿåˆ—ä¹‹æ™®é€šé˜Ÿåˆ—çš„åŸºæœ¬æ“ä½œ
 void InitQueue(SqQueue& Q)
 {
 	Q.front = Q.rear = 0;
@@ -24,7 +24,7 @@ bool QueueEmpty(SqQueue Q)
 	return false;
 }
 
-//¶ÓÂú£¬¿ÉÄÜ³öÏÖ¼ÙÒç³öÏÖÏó
+//é˜Ÿæ»¡ï¼Œå¯èƒ½å‡ºç°å‡æº¢å‡ºç°è±¡
 bool QueueOverflow(SqQueue Q)
 {
 	if (Q.rear == MaxSize)
@@ -34,7 +34,7 @@ bool QueueOverflow(SqQueue Q)
 
 bool EnQueue(SqQueue& Q, int x)
 {
-	if (Q.rear == MaxSize)	//¶ÓÂú£¬¿ÉÄÜ³öÏÖ¼ÙÒç³öÏÖÏó
+	if (Q.rear == MaxSize)	//é˜Ÿæ»¡ï¼Œå¯èƒ½å‡ºç°å‡æº¢å‡ºç°è±¡
 		return false;
 	Q.data[Q.rear++] = x;
 	return true;
@@ -42,7 +42,7 @@ bool EnQueue(SqQueue& Q, int x)
 
 bool DeQueue(SqQueue& Q, int& x)
 {
-	if (Q.rear == 0 && Q.front == Q.rear)	//¶Ó¿Õ
+	if (Q.rear == 0 && Q.front == Q.rear)	//é˜Ÿç©º
 		return false;
 	x = Q.data[Q.front++];
 	return true;
@@ -50,14 +50,14 @@ bool DeQueue(SqQueue& Q, int& x)
 
 bool GetHead(SqQueue Q, int& x)
 {
-	if (Q.rear == 0 && Q.front == Q.rear)	//¶Ó¿Õ
+	if (Q.rear == 0 && Q.front == Q.rear)	//é˜Ÿç©º
 		return false;
 	x = Q.data[Q.front];
 	return true;
 }
 #pragma endregion
 
-#pragma region Ë³Ğò¶ÓÁĞÖ®Ñ­»·¶ÓÁĞµÄ»ù±¾²Ù×÷
+#pragma region é¡ºåºé˜Ÿåˆ—ä¹‹å¾ªç¯é˜Ÿåˆ—çš„åŸºæœ¬æ“ä½œ
 void InitCQueue(SqQueue& CQ)
 {
 	CQ.front = CQ.rear = 0;
@@ -79,7 +79,7 @@ bool CQueueOverflow(SqQueue CQ)
 
 bool EnCQueue(SqQueue& CQ, int x)
 {
-	if ((CQ.rear + 1) % MaxSize == CQ.front)	//¶ÓÂú
+	if ((CQ.rear + 1) % MaxSize == CQ.front)	//é˜Ÿæ»¡
 		return false;
 	CQ.data[CQ.rear] = x;
 	CQ.rear = (CQ.rear + 1) % MaxSize;
@@ -88,7 +88,7 @@ bool EnCQueue(SqQueue& CQ, int x)
 
 bool DeCQueue(SqQueue& CQ, int& x)
 {
-	if (CQ.front == CQ.rear)	//¶Ó¿Õ
+	if (CQ.front == CQ.rear)	//é˜Ÿç©º
 		return false;
 	x = CQ.data[CQ.front];
 	CQ.front = (CQ.front + 1) % MaxSize;
@@ -97,17 +97,17 @@ bool DeCQueue(SqQueue& CQ, int& x)
 #pragma endregion
 #pragma endregion
 
-#pragma region ¶ÓÁĞµÄÁ´Ê½´æ´¢
-//Á´¶Ó
+#pragma region é˜Ÿåˆ—çš„é“¾å¼å­˜å‚¨
+//é“¾é˜Ÿ
 typedef struct
 {
-	LNode* front, * rear;	//Í·Ö¸ÕëÖ¸Ïò¶ÓÍ·½áµã£¬Î²Ö¸ÕëÖ¸Ïò¶ÓÎ²½áµã
+	LNode* front, * rear;	//å¤´æŒ‡é’ˆæŒ‡å‘é˜Ÿå¤´ç»“ç‚¹ï¼Œå°¾æŒ‡é’ˆæŒ‡å‘é˜Ÿå°¾ç»“ç‚¹
 }LinkQueue;
 
-#pragma region Á´¶ÓÖ®ÆÕÍ¨¶ÓÁĞµÄ»ù±¾²Ù×÷
+#pragma region é“¾é˜Ÿä¹‹æ™®é€šé˜Ÿåˆ—çš„åŸºæœ¬æ“ä½œ
 void InitQueue(LinkQueue& Q)
 {
-	Q.front = Q.rear = (LNode*)malloc(sizeof(LNode));	  //½¨Á¢Í·½áµã
+	Q.front = Q.rear = (LNode*)malloc(sizeof(LNode));	  //å»ºç«‹å¤´ç»“ç‚¹
 	Q.front->next = nullptr;
 }
 
@@ -118,7 +118,7 @@ bool QueueEmpty(LinkQueue Q)
 	return false;
 }
 
-//¼Ù¶¨ÄÚ´æÎŞÏŞ´ó£¬ÔòÓÀÔ¶²»¿ÉÄÜ³öÏÖÄÚ´æÂú
+//å‡å®šå†…å­˜æ— é™å¤§ï¼Œåˆ™æ°¸è¿œä¸å¯èƒ½å‡ºç°å†…å­˜æ»¡
 bool QueueOverflow(LinkQueue Q)
 {
 	return false;
@@ -135,7 +135,7 @@ void EnQueue(LinkQueue& Q, int x)
 
 bool DeQueue(LinkQueue& Q, int& x)
 {
-	if (Q.front == Q.rear)	//¿Õ¶Ó
+	if (Q.front == Q.rear)	//ç©ºé˜Ÿ
 		return false;
 	LNode* p = Q.front->next;
 	x = p->data;
@@ -165,10 +165,10 @@ void PrintQueue(LinkQueue Q)
 }
 #pragma endregion
 
-#pragma region Á´¶ÓÖ®Ñ­»·¶ÓÁĞµÄ»ù±¾²Ù×÷
+#pragma region é“¾é˜Ÿä¹‹å¾ªç¯é˜Ÿåˆ—çš„åŸºæœ¬æ“ä½œ
 void InitCQueue(LinkQueue& CQ)
 {
-	CQ.front = CQ.rear = (LNode*)malloc(sizeof(LNode));	//½¨Á¢Í·½áµã,frontÖ¸Ïò¶ÓÍ·½áµã,rearÖ¸Ïò¶ÓÎ²½áµãµÄÏÂÒ»¸öÎ»ÖÃ
+	CQ.front = CQ.rear = (LNode*)malloc(sizeof(LNode));	//å»ºç«‹å¤´ç»“ç‚¹,frontæŒ‡å‘é˜Ÿå¤´ç»“ç‚¹,rearæŒ‡å‘é˜Ÿå°¾ç»“ç‚¹çš„ä¸‹ä¸€ä¸ªä½ç½®
 	CQ.rear->next = CQ.front;
 }
 
@@ -190,7 +190,7 @@ void EnCQueue(LinkQueue& CQ, int x)
 {
 	if (CQueueOverflow(CQ))
 	{
-		//ÔÚrearºó²åÈëÒ»¸öĞÂµÄ¿ÕÏĞ½áµã
+		//åœ¨rearåæ’å…¥ä¸€ä¸ªæ–°çš„ç©ºé—²ç»“ç‚¹
 		auto s = (LNode*)malloc(sizeof(LNode));
 		s->next = CQ.rear->next;
 		CQ.rear->next = s;
@@ -211,12 +211,12 @@ bool DeCQueue(LinkQueue& CQ, int& x)
 
 #pragma endregion
 
-#pragma region 3.2 ×ÛºÏÌâ
-#pragma region 1 Ñ­»·¶ÓÁĞÖĞÔªËØÈ«²¿ÀûÓÃ£¬ÉèÖÃ±êÖ¾Óòtag£¬²¢ÒÔtagµÄÖµÎª0»ò1À´Çø·Öfront=rearÊ±¶ÓÁĞ×´Ì¬ÊÇ¿Õ»¹ÊÇÂú
+#pragma region 3.2 ç»¼åˆé¢˜
+#pragma region 1 å¾ªç¯é˜Ÿåˆ—ä¸­å…ƒç´ å…¨éƒ¨åˆ©ç”¨ï¼Œè®¾ç½®æ ‡å¿—åŸŸtagï¼Œå¹¶ä»¥tagçš„å€¼ä¸º0æˆ–1æ¥åŒºåˆ†front=rearæ—¶é˜Ÿåˆ—çŠ¶æ€æ˜¯ç©ºè¿˜æ˜¯æ»¡
 typedef struct
 {
 	int data[MaxSize];
-	int front, rear;	//frontÖ¸Ïò¶ÓÍ·ÔªËØ£¬rearÖ¸Ïò¶ÓÎ²ÔªËØµÄÏÂÒ»¸öÎ»ÖÃ
+	int front, rear;	//frontæŒ‡å‘é˜Ÿå¤´å…ƒç´ ï¼ŒrearæŒ‡å‘é˜Ÿå°¾å…ƒç´ çš„ä¸‹ä¸€ä¸ªä½ç½®
 	int tag;
 }SqQueueWithTag;
 
@@ -227,7 +227,7 @@ void InitCQueue(SqQueueWithTag& CQ)
 
 bool EnCQueue(SqQueueWithTag& CQ, int x)
 {
-	if (CQ.tag == 1 && CQ.front == CQ.rear)	//¶ÓÂú
+	if (CQ.tag == 1 && CQ.front == CQ.rear)	//é˜Ÿæ»¡
 		return false;
 	CQ.data[CQ.rear] = x;
 	CQ.rear = (CQ.rear + 1) % MaxSize;
@@ -236,7 +236,7 @@ bool EnCQueue(SqQueueWithTag& CQ, int x)
 
 bool DeCQueue(SqQueueWithTag& CQ, int& x)
 {
-	if (CQ.tag == 0 && CQ.front == CQ.rear)	//¶Ó¿Õ
+	if (CQ.tag == 0 && CQ.front == CQ.rear)	//é˜Ÿç©º
 		return false;
 	x = CQ.data[CQ.front];
 	CQ.front = (CQ.front + 1) % MaxSize;
@@ -244,11 +244,11 @@ bool DeCQueue(SqQueueWithTag& CQ, int& x)
 }
 #pragma endregion
 
-//2 Ê¹ÓÃ¿ÕÕ»S½«¶ÓÁĞQÖĞµÄÔªËØÄæÖÃ
-//Ê±¼äO(n),¿Õ¼äO(1),nÎª¶ÓÁĞ³¤¶È
+//2 ä½¿ç”¨ç©ºæ ˆSå°†é˜Ÿåˆ—Qä¸­çš„å…ƒç´ é€†ç½®
+//æ—¶é—´O(n),ç©ºé—´O(1),nä¸ºé˜Ÿåˆ—é•¿åº¦
 void QueueReverse(SqQueue& Q)
 {
-	if (Q.front == Q.rear)	//¶Ó¿Õ
+	if (Q.front == Q.rear)	//é˜Ÿç©º
 		return;
 	SqStack S;
 	InitStack(S);
@@ -266,10 +266,10 @@ void QueueReverse(SqQueue& Q)
 	}
 }
 
-#pragma region 3 ÀûÓÃÁ½¸öÕ»À´Ä£ÄâÒ»¸ö¶ÓÁĞ
+#pragma region 3 åˆ©ç”¨ä¸¤ä¸ªæ ˆæ¥æ¨¡æ‹Ÿä¸€ä¸ªé˜Ÿåˆ—
 typedef struct
 {
-	SqStack S1, S2;	//S1ÓÃÓÚ±£´æÔªËØ£¬S2ÓÃÓÚµ÷ÕûÔªËØË³Ğò
+	SqStack S1, S2;	//S1ç”¨äºä¿å­˜å…ƒç´ ï¼ŒS2ç”¨äºè°ƒæ•´å…ƒç´ é¡ºåº
 }QueueUsing2Stacks;
 
 bool EnQueue(QueueUsing2Stacks& Q, int x)
@@ -308,12 +308,12 @@ bool QueueEmpty(QueueUsing2Stacks Q)
 }
 #pragma endregion
 
-//4 ²Î¿¼Á´¶ÓÖ®Ñ­»·¶ÓÁĞµÄ»ù±¾²Ù×÷
+//4 å‚è€ƒé“¾é˜Ÿä¹‹å¾ªç¯é˜Ÿåˆ—çš„åŸºæœ¬æ“ä½œ
 #pragma endregion
 
-#pragma region 3.3 ×ÛºÏÌâ
-//1 À¨ºÅÆ¥Åä
-//Ê±¼äO(n),¿Õ¼äO(1),nÎªËãÊõ±í´ïÊ½³¤¶È
+#pragma region 3.3 ç»¼åˆé¢˜
+//1 æ‹¬å·åŒ¹é…
+//æ—¶é—´O(n),ç©ºé—´O(1),nä¸ºç®—æœ¯è¡¨è¾¾å¼é•¿åº¦
 bool BracketMatching(string expression)
 {
 	if (expression == "")
@@ -342,14 +342,14 @@ bool BracketMatching(string expression)
 	return match;
 }
 
-//2 ÀûÓÃ»ğ³µµ÷¶ÈÕ»½«ËùÓĞÈí×ù³µÏáµ÷Õûµ½Ó²×ù³µÏáÖ®Ç°
-//Ê±¼äO(n),¿Õ¼äO(1),nÎª¶ÓÁĞ³¤¶È
+//2 åˆ©ç”¨ç«è½¦è°ƒåº¦æ ˆå°†æ‰€æœ‰è½¯åº§è½¦å¢è°ƒæ•´åˆ°ç¡¬åº§è½¦å¢ä¹‹å‰
+//æ—¶é—´O(n),ç©ºé—´O(1),nä¸ºé˜Ÿåˆ—é•¿åº¦
 void Adjust(char* train)
 {
 	LinkStack stack;
 	InitStack(stack);
 	char* p = train, * q = train;
-	int x;	//0±íÊ¾S£¬1±íÊ¾H
+	int x;	//0è¡¨ç¤ºSï¼Œ1è¡¨ç¤ºH
 	while (*p)
 	{
 		if (*p == 'H')
@@ -370,13 +370,13 @@ void Adjust(char* train)
 	DestroyStack(stack);
 }
 
-//3 ÀûÓÃÒ»¸öÕ»ÊµÏÖµİ¹éº¯ÊıµÄ·Çµİ¹é¼ÆËã
-//Ê±¼äO(n),¿Õ¼äÎªO(1),nÎªÈë²În
+//3 åˆ©ç”¨ä¸€ä¸ªæ ˆå®ç°é€’å½’å‡½æ•°çš„éé€’å½’è®¡ç®—
+//æ—¶é—´O(n),ç©ºé—´ä¸ºO(1),nä¸ºå…¥å‚n
 int P(int x, int n)
 {
 	SqStack stack;
 	InitStack(stack);
-	int temp;	//º¯ÊıÖĞ¶¨Òå¾Ö²¿±äÁ¿£¬Èç¹û²»³õÊ¼»¯£¬ÔòÖµÎªÎ´¶¨Òå
+	int temp;	//å‡½æ•°ä¸­å®šä¹‰å±€éƒ¨å˜é‡ï¼Œå¦‚æœä¸åˆå§‹åŒ–ï¼Œåˆ™å€¼ä¸ºæœªå®šä¹‰
 	for (int i = 0; i <= n; i++)
 	{
 
@@ -398,8 +398,8 @@ int P(int x, int n)
 	return temp;
 }
 
-//4 ÂÖ¶É¹ÜÀí
-//vehiclesÖĞ1±íÊ¾¿Í³µ£¬0±íÊ¾»õ³µ
+//4 è½®æ¸¡ç®¡ç†
+//vehiclesä¸­1è¡¨ç¤ºå®¢è½¦ï¼Œ0è¡¨ç¤ºè´§è½¦
 void FerryManagement(int vehicles[], int length)
 {
 	SqQueue trucks, cars, ferryQ;

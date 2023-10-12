@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "myinclude.h"
 
 /** @brief 41:
@@ -36,7 +36,7 @@ public:
  */
 class RecentCounter {
 private:
-	queue<int> _requests; // ´æ´¢ÇëÇóÊ±¼ä£¬ÓÉÓÚÃ¿´Î¶Ô ping µÄµ÷ÓÃ¶¼Ê¹ÓÃ±ÈÖ®Ç°¸ü´óµÄ t Öµ£¬Ôò¶ÓÁĞ´Ófrontµ½backÊıÖµµİÔö
+	queue<int> _requests; // å­˜å‚¨è¯·æ±‚æ—¶é—´ï¼Œç”±äºæ¯æ¬¡å¯¹ ping çš„è°ƒç”¨éƒ½ä½¿ç”¨æ¯”ä¹‹å‰æ›´å¤§çš„ t å€¼ï¼Œåˆ™é˜Ÿåˆ—ä»frontåˆ°backæ•°å€¼é€’å¢
 public:
 	RecentCounter() {
 
@@ -51,7 +51,7 @@ public:
 };
 
 /**
-* Ê®½øÖÆ×ª¶ş½øÖÆ
+* åè¿›åˆ¶è½¬äºŒè¿›åˆ¶
 */
 string toBinary(int n)
 {
@@ -70,7 +70,7 @@ string toBinary(int n)
 }
 
 /**
-* ·´×ª×Ö·û´®
+* åè½¬å­—ç¬¦ä¸²
 */
 void reverseString(string& s)
 {
