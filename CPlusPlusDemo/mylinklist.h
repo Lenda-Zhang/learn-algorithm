@@ -225,6 +225,29 @@ ListNode* deleteNthFromEndHard(ListNode* head, int n)
 }
 
 /**
+* @brief 找到倒数第k个结点
+*/
+int FindKthFromEnd(ListNode* head, int k)
+{
+	ListNode* p = head->next, * q = head->next;
+	int count = 0;
+	while (p != nullptr)
+	{
+		if (count == k)
+			q = q->next;
+		else
+			count++;
+		p = p->next;
+	}
+	if (count == k)
+	{
+		cout << q->val << endl;
+		return 1;
+	}
+	return 0;
+}
+
+/**
 * @brief 删除所有节点
 */
 ListNode* deleteAll(ListNode* head)
